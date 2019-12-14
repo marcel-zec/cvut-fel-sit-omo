@@ -8,19 +8,19 @@
 
 Hlavná entita systému je Factory */singleton/* .
 Za výrobný proces zodpovedá trieda ProductionOperator.
-Produkčný operátor má zoznam produkčných liniek a na ních spustí výrobu (o operátorovy a linke detailnejšie v popise [Production diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/edit/master/README.md#production-diagram)).
+Produkčný operátor má zoznam produkčných liniek a na ních spustí výrobu (o operátorovy a linke detailnejšie v popise [Production diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#production-diagram)).
 
 Produkčná linka pošle neopracovaný produkt prvému pracovníkovy výroky a tým je stroj,robot alebo človek (majú interface LineWorker). Ten ho opracuje a posiela ďalej následujúcemu pracovníkovy */chain of responsibility/* .
-Posledný stroj vo výrobe je kontrolór, ktorý v prípade správneho počtu vyrobených výrobkov odošle event o ukončení výrobnej série (o strojoch detailnejšie v popise [Machines diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/edit/master/README.md#machines-diagram)).
+Posledný stroj vo výrobe je kontrolór, ktorý v prípade správneho počtu vyrobených výrobkov odošle event o ukončení výrobnej série (o strojoch detailnejšie v popise [Machines diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#machines-diagram)).
 
 Eventy sa odosielajú do EventList(u), ktorý ich uchováva a zároveň je observovaný EventOperator(om) */observer/* .
 EventOperator okamžite spracováva určité druhy eventov. V prípade Alert eventu požiada RepairmentPool o Repairman(a), aby ho poslal opraviť pokazený stroj */object pool/* .
-Ak žiaden opravár nie je voľný, tak si tento event uloží do zoznamu nevyriešených eventov. Ak príjme event o ukončení opravy tak zaradí opravára naspäť do RepairmentPool(u) a pozrie sa do zoznamu nevybavených eventov (o eventoch detialnejšie v popise [Events diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/edit/master/README.md#events-diagram)).
+Ak žiaden opravár nie je voľný, tak si tento event uloží do zoznamu nevyriešených eventov. Ak príjme event o ukončení opravy tak zaradí opravára naspäť do RepairmentPool(u) a pozrie sa do zoznamu nevybavených eventov (o eventoch detialnejšie v popise [Events diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#events-diagram)).
 
 Továreň má ďalej triedu FactoryTimer, ktorá má zoznam všetkých pracovníkom (interface FactryWorker) a pravidelne im bude aktualizovať čas. 
 
 V továrni sa nachádzajú okrem strojov aj ľudia. Opravári už boli spomenutý a ďalej sú to výrobný pracovníci, inšpektor a riaditeľ. 
-Riaditeľ a inšpektor budú robiť návštevy prostredníctvom iterátorov továrne (viac v popise [FactoryIterators diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/edit/master/README.md#factoryiterators-diagram)).
+Riaditeľ a inšpektor budú robiť návštevy prostredníctvom iterátorov továrne (viac v popise [FactoryIterators diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#factoryiterators-diagram)).
 
 V aplikácií je aj trieda FileManager, ktorá bude generovať konfiguračný report továrne a zároveň načítavať konfigráciu továrne.
 
