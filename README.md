@@ -66,4 +66,4 @@ Aby mohli byť navštevy vykonané tak všetci pracovníci a iné vybrané entit
 * state
 
 
-Sandra Hamrakova a Marcel Zec 
+Sandra Hamráková a Marcel Žec 
