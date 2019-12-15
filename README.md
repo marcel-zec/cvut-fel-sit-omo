@@ -10,7 +10,7 @@ Hlavná entita systému je Factory */singleton/* .
 Za výrobný proces zodpovedá trieda ProductionOperator.
 Produkčný operátor má zoznam produkčných liniek a na ních spustí výrobu (o operátorovy a linke detailnejšie v popise [Production diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#production-diagram)).
 
-Produkčná linka pošle neopracovaný produkt prvému pracovníkovy výroky a tým je stroj,robot alebo človek (majú interface LineWorker). Ten ho opracuje a posiela ďalej následujúcemu pracovníkovy */chain of responsibility/* .
+Produkčná linka pošle neopracovaný produkt prvému pracovníkovi výroby, a tým je stroj,robot alebo človek (majú interface LineWorker). Ten ho opracuje a posiela ďalej následujúcemu pracovníkovi */chain of responsibility/* .
 Posledný stroj vo výrobe je kontrolór, ktorý v prípade správneho počtu vyrobených výrobkov odošle event o ukončení výrobnej série (o strojoch detailnejšie v popise [Machines diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#machines-diagram)).
 
 Eventy sa odosielajú do EventList(u), ktorý ich uchováva a zároveň je observovaný EventOperator(om) */observer/* .
@@ -19,23 +19,23 @@ Ak žiaden opravár nie je voľný, tak si tento event uloží do zoznamu nevyri
 
 Továreň má ďalej triedu FactoryTimer, ktorá má zoznam všetkých pracovníkom (interface FactryWorker) a pravidelne im bude aktualizovať čas. 
 
-V továrni sa nachádzajú okrem strojov aj ľudia. Opravári už boli spomenutý a ďalej sú to výrobný pracovníci, inšpektor a riaditeľ. 
+V továrni sa nachádzajú okrem strojov aj ľudia. Opravári už boli spomenutí a ďalej sú to výrobní pracovníci, inšpektor a riaditeľ. 
 Riaditeľ a inšpektor budú robiť návštevy prostredníctvom iterátorov továrne (viac v popise [FactoryIterators diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#factoryiterators-diagram)).
 
 V aplikácií je aj trieda FileManager, ktorá bude generovať konfiguračný report továrne a zároveň načítavať konfigráciu továrne.
 
 ##### Production diagram
 
-ProdutionOperator má výrobný plán továrne, v ňom sú všetky naplánované a ukončené výrobné série.
+ProductionOperator má výrobný plán továrne, v ktorom sú všetky naplánované a ukončené výrobné série.
 Výrobná séria v sebe nesie informáciu o množstve výrobkov a referencie na ProductFactory a LineBuilder */factory method a builder/* .
-Nové série vytvára ProdactionOperator pomocou SeriesFactory, ktorá nakombinuje správnu ProductFactory s LineBuilder(om).
+Nové série vytvára ProductionOperator pomocou SeriesFactory, ktorá nakombinuje správnu ProductFactory s LineBuilder(om).
 
-Výrobá sa spustí tak, že ProductionOperator postupne prechádza zoznám plánovaných výrobných sérií v produkčonom pláne.
+Výrobá sa spustí tak, že ProductionOperator postupne prechádza zoznam plánovaných výrobných sérií v produkčonom pláne.
 Od LineBuilder(a) série požiada o postavenie výrobnej linky. LineBuilder pri stavaní linky si u produkčného operátora overuje dostupnosť strojov/robotov/ľudí.
 Ak nebude mať dostatok pracovníkov tak linku nepostaví a produkčný operátor prechádza ďalšie naplánované série. 
 Naopak ak je možné postaviť linku tak je tato linka vrátená výrobnému operátorovi a ten ju zaradí do zoznamu aktívních liniek a vyradí jej pracovníkov zo zoznamu
 dostupných pracovníkov. Po prejdení celého plánu spustí výrobu aktívnych liniek.
-Výroba začína tým, že produkčná linka prostredníctvom ProductFactory pošle prvý neopracovaný výrobok prvému pracovníkový linky.
+Výroba začína tým, že produkčná linka prostredníctvom ProductFactory pošle prvý neopracovaný výrobok prvému pracovníkovi linky.
 
 ##### Machines diagram
 
@@ -45,15 +45,15 @@ Každý stroj má na začiatku stav Working, ktorý sa po istom čase zmení na 
 ##### Events diagram
 
 Základné fungovanie EventList(u) už bolo popísané pri hlavnom diagramu. V hlavnom diagrame kvôli prehľadnosti chýbalo prepojenie EventList(u) a ProductionOperator(a), 
-preto je doplnený v tomto diagrame. ProductionOperator po stustení liniek posiela eventy o začiatku produkcie.
-Ďalej bude EventList vytvárať EventIterator (pravdepodobne aj viac iterátorov), ktorý budú využívat reporteri.
+preto je doplnený v tomto diagrame. ProductionOperator po spustení liniek posiela eventy o začiatku produkcie.
+Ďalej bude EventList vytvárať EventIterator (pravdepodobne aj viac iterátorov), ktorý budú využívať reportéri.
 Každý reportér bude zodpovedať za iný druh reportu.
 
 ##### FactoryIterators diagram
 
 Inšpektor bude robiť inšpekcie prechádzaním strojov prostredníctom InspectorIterator(u) a bude jednotlivé stroje navštevovať */iterator a visitor/* .
-Riaditeľ bude navštevovať isté entity továrne prostredníctvom DirectorIterator(u) a tak ako inšpector ich bude navštevovať.
-Aby mohli byť navštevy vykonané tak všetci pracovníci a iné vybrané entity maju interface Visitable.
+Riaditeľ bude navštevovať isté entity továrne prostredníctvom DirectorIterator(u), a tak ako inšpector ich bude navštevovať.
+Aby mohli byť navštevy vykonané, tak všetci pracovníci a iné vybrané entity maju interface Visitable.
 
 #### Zoznam návrhových vzorov
 * singleton
