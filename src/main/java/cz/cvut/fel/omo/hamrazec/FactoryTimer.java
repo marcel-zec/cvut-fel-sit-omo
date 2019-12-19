@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.hamrazec;
+package main.java.cz.cvut.fel.omo.hamrazec;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
