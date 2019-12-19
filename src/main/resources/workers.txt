@@ -1,0 +1,9 @@
+[{
+"firstname": "Zdeno",
+ "lastname": "Rom"
+},
+{
+"firstname": "Koloman",
+ "lastname": "Drozd"
+}
+]
