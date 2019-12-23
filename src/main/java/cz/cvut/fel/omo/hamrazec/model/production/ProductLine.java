@@ -27,7 +27,8 @@ public class ProductLine {
     }
 
     public void update(){
-        firstWorker.work();
+        //TODO - ak funguje
+        firstWorker.work(series.getProductFactory().getProduct());
     }
 
 

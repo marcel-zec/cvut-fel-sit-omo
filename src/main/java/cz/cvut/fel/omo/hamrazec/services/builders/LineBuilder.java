@@ -3,10 +3,13 @@ package main.java.cz.cvut.fel.omo.hamrazec.services.builders;
 import main.java.cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import main.java.cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkMachine;
+import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkRobot;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 abstract public class LineBuilder implements Builder {
     protected ProductionOperator operator;

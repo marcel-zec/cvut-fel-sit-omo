@@ -8,6 +8,7 @@ import main.java.cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkMachine;
 import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkRobot;
 import main.java.cz.cvut.fel.omo.hamrazec.model.person.Person;
+import main.java.cz.cvut.fel.omo.hamrazec.model.person.Worker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
@@ -54,7 +55,7 @@ public class ProductionOperator implements FactoryWorker {
     }
 
     public List<LineWorker> getAvailablePeople(){
-        return availableWorkers.stream().filter(worker -> worker.getClass() == Person.class).collect(Collectors.toList());
+        return availableWorkers.stream().filter(worker -> worker.getClass() == Worker.class).collect(Collectors.toList());
     }
 
     public List<LineWorker> getAvailableMachines(){

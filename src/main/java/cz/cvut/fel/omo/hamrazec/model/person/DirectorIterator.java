@@ -1,6 +1,8 @@
 package main.java.cz.cvut.fel.omo.hamrazec.model.person;
 
-public class DirectorIterator implements Iterator {
+import main.java.cz.cvut.fel.omo.hamrazec.model.Visitable;
+
+public class DirectorIterator implements cz.cvut.fel.omo.hamrazec.Iterator {
     public boolean hasNext() {
 
         return false;

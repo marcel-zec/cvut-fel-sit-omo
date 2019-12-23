@@ -1,5 +1,7 @@
 package main.java.cz.cvut.fel.omo.hamrazec.model.machine;
 
+import main.java.cz.cvut.fel.omo.hamrazec.model.production.Product;
+
 public class WorkRobot extends Machine {
     public WorkRobot(int serialNumber, int yearOfManufacture) {
 
@@ -8,7 +10,7 @@ public class WorkRobot extends Machine {
 
 
     @Override
-    public void work() {
+    public void work(Product product) {
 
     }
 }

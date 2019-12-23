@@ -9,12 +9,20 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     protected int SerialNumber;
     protected int YearOfManufacture;
     protected LineWorker next;
-
+    protected int productionShare;
 
     public Machine(int serialNumber, int yearOfManufacture) {
 
         SerialNumber = serialNumber;
         YearOfManufacture = yearOfManufacture;
+    }
+
+    public int getProductionShare() {
+        return productionShare;
+    }
+
+    public void setProductionShare(int productionShare) {
+        this.productionShare = productionShare;
     }
 
     public LineWorker getNext() {
