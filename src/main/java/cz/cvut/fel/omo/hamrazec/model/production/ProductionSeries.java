@@ -2,7 +2,6 @@ package main.java.cz.cvut.fel.omo.hamrazec.model.production;
 
 import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import main.java.cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
-import main.java.cz.cvut.fel.omo.hamrazec.services.BuilderDirector;
 import main.java.cz.cvut.fel.omo.hamrazec.services.builders.Builder;
 
 public class ProductionSeries implements BuilderDirector {
@@ -51,6 +50,7 @@ public class ProductionSeries implements BuilderDirector {
             lineBuilder.setMachines();
             lineBuilder.setRobots();
             lineBuilder.setPeople();
+            lineBuilder.setControl();
             lineBuilder.setOrder();
             return lineBuilder.getResult();
         } catch (NotEnoughWorkers e){

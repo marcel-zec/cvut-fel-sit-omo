@@ -8,6 +8,7 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     protected int tack;
     protected int SerialNumber;
     protected int YearOfManufacture;
+    protected LineWorker next;
 
 
     public Machine(int serialNumber, int yearOfManufacture) {
@@ -16,6 +17,13 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         YearOfManufacture = yearOfManufacture;
     }
 
+    public LineWorker getNext() {
+        return next;
+    }
+
+    public void setNext(LineWorker next) {
+        this.next = next;
+    }
 
     public int getSerialNumber() {
 

@@ -9,6 +9,7 @@ public interface Builder {
     void setPeople() throws NotEnoughWorkers;
     void setRobots() throws NotEnoughWorkers;
     void setOrder();
+    void setControl() throws NotEnoughWorkers;
     void cancelBuilding();
     ProductLine getResult();
 }

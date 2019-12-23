@@ -1,13 +1,17 @@
 package main.java.cz.cvut.fel.omo.hamrazec.controller;
 
 import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
+import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import main.java.cz.cvut.fel.omo.hamrazec.model.events.StartProduction;
+import main.java.cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkMachine;
 import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkRobot;
 import main.java.cz.cvut.fel.omo.hamrazec.model.person.Person;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
+import main.java.cz.cvut.fel.omo.hamrazec.services.EventList;
 import main.java.cz.cvut.fel.omo.hamrazec.services.SeriesFactory;
 
 import java.util.ArrayList;
@@ -15,7 +19,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class ProductionOperator {
+public class ProductionOperator implements FactoryWorker {
 
     private static ProductionOperator instance;
     private List<LineWorker> availableWorkers;
@@ -23,7 +27,9 @@ public class ProductionOperator {
     private ProductionPlan plan;
     private SeriesFactory factory;
     private List<ProductLine> activeLines;
+    private EventList eventList;
     private static final Logger LOG = Logger.getLogger(ProductionOperator.class.getName());
+    private int tack;
 
     private ProductionOperator() {
         this.availableWorkers = new ArrayList<>();
@@ -31,11 +37,11 @@ public class ProductionOperator {
         this.plan = new ProductionPlan();
         this.activeLines = new ArrayList<>();
         this.factory = new SeriesFactory();
+        this.eventList = EventList.getInstance();
     }
 
 
     public static ProductionOperator getInstance() {
-
         if (instance == null) {
             instance = new ProductionOperator();
         }
@@ -57,6 +63,10 @@ public class ProductionOperator {
 
     public List<LineWorker> getAvailableRobots(){
         return availableWorkers.stream().filter(worker -> worker.getClass() == WorkRobot.class).collect(Collectors.toList());
+    }
+
+    public List<LineWorker> getAvailableControlRobots(){
+        return availableWorkers.stream().filter(worker -> worker.getClass() == ControllingRobot.class).collect(Collectors.toList());
     }
 
     public void setAvailableWorkers(List<LineWorker> availableWorkers) {
@@ -125,8 +135,10 @@ public class ProductionOperator {
     public void activateLines() {
         for (ProductionSeries series : plan.getPlan()) {
             try {
-                activeLines.add(series.build());
+                ProductLine line = series.build();
+                activeLines.add(line);
                 LOG.info("Line was build for production series.");
+                eventList.receive(new StartProduction(this, line, series));
             } catch (CannotBuildLineException e) {
                 LOG.info("Line for production series cannot be build.");
             }
@@ -137,5 +149,15 @@ public class ProductionOperator {
         for (ProductLine line: activeLines){
             line.update();
         }
+    }
+
+    @Override
+    public int getTact() {
+        return tack;
+    }
+
+    @Override
+    public void updateTack(int tack) {
+        this.tack = tack;
     }
 }

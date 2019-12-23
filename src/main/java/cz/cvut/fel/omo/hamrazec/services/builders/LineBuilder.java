@@ -75,6 +75,14 @@ abstract public class LineBuilder implements Builder {
     }
 
     @Override
+    public void setControl() throws NotEnoughWorkers {
+        List<LineWorker> available = operator.getAvailableControlRobots();
+        if (available.size() > 0){
+                addWorker(available.remove(0));
+        } else throw new NotEnoughWorkers();
+    }
+
+    @Override
     public ProductLine getResult(){
         line.setLineWorkers(workers);
         operator.setWorkersToUse(workers);

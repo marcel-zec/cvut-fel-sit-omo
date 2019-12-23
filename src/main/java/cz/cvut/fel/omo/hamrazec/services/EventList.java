@@ -1,5 +1,7 @@
 package main.java.cz.cvut.fel.omo.hamrazec.services;
 
+import main.java.cz.cvut.fel.omo.hamrazec.model.events.Event;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,5 +24,9 @@ public class EventList {
 
     public List<Event> getEventList() {
         return eventList;
+    }
+
+    public void receive(Event event){
+        eventList.add(event);
     }
 }
