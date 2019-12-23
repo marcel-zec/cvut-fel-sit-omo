@@ -1,5 +1,6 @@
 package main.java.cz.cvut.fel.omo.hamrazec.model.production;
 
+import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import main.java.cz.cvut.fel.omo.hamrazec.services.BuilderDirector;
 import main.java.cz.cvut.fel.omo.hamrazec.services.builders.LineBuilder;
 
@@ -38,5 +39,15 @@ public class ProductionSeries implements BuilderDirector {
     public ProductFactory getProductFactory() {
 
         return productFactory;
+    }
+
+
+    @Override
+    public ProductLine build() throws CannotBuildLineException {
+        lineBuilder.setMachines();
+        lineBuilder.setRobots();
+        lineBuilder.setPeople();
+        lineBuilder.setOrder();
+        return lineBuilder.getResult();
     }
 }

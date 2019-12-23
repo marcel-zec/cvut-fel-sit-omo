@@ -1,5 +1,6 @@
 package main.java.cz.cvut.fel.omo.hamrazec.controller;
 
+import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
@@ -111,8 +112,12 @@ public class ProductionOperator {
     public void startProduction() {
 
         for (ProductionSeries series : plan.getPlan()) {
-            ProductLine line = series.build();
-            if (line != null) activeLines.add(line);
+            try {
+                activeLines.add(series.build());
+            } catch (CannotBuildLineException e){
+
+            }
+
         }
 
         for (ProductLine line: activeLines){
