@@ -2,6 +2,7 @@ package main.java.cz.cvut.fel.omo.hamrazec.services.builders;
 
 import main.java.cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
+import main.java.cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 
@@ -43,39 +44,39 @@ abstract public class LineBuilder implements Builder {
     }
 
     @Override
-    public void setMachines() throws CannotBuildLineException {
+    public void setMachines() throws NotEnoughWorkers {
         List<LineWorker> available = operator.getAvailableMachines();
         if (available.size() > machines){
             for (int i = 0; i < machines; i++) {
                 addWorker(available.remove(i));
             }
-        } else throw new CannotBuildLineException();
+        } else throw new NotEnoughWorkers();
     }
 
 
     @Override
-    public void setPeople() throws CannotBuildLineException {
+    public void setPeople() throws NotEnoughWorkers {
         List<LineWorker> available = operator.getAvailablePeople();
         if (available.size() > people){
             for (int i = 0; i < people; i++) {
                 addWorker(available.remove(i));
             }
-        } else throw new CannotBuildLineException();
+        } else throw new NotEnoughWorkers();
     }
 
 
     @Override
-    public void setRobots() throws CannotBuildLineException {
+    public void setRobots() throws NotEnoughWorkers {
         List<LineWorker> available = operator.getAvailablePeople();
         if (available.size() > people){
             for (int i = 0; i < people; i++) {
                 addWorker(available.remove(i));
             }
-        } else throw new CannotBuildLineException();
+        } else throw new NotEnoughWorkers();
     }
 
     @Override
-    public ProductLine getResult() throws CannotBuildLineException {
+    public ProductLine getResult(){
         line.setLineWorkers(workers);
         operator.setWorkersToUse(workers);
         return line;

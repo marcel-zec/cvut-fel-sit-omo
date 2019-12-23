@@ -20,7 +20,7 @@ public class BuilderProductA extends LineBuilder {
 
 
     @Override
-    public void setOrder() throws CannotBuildLineException {
+    public void setOrder() {
 
 
     }
