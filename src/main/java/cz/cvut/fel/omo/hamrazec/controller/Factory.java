@@ -1,5 +1,13 @@
 package main.java.cz.cvut.fel.omo.hamrazec.controller;
 
+import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import main.java.cz.cvut.fel.omo.hamrazec.model.person.Director;
+import main.java.cz.cvut.fel.omo.hamrazec.model.person.Inspector;
+import main.java.cz.cvut.fel.omo.hamrazec.services.EventOperator;
+import main.java.cz.cvut.fel.omo.hamrazec.services.FileManager;
+import main.java.cz.cvut.fel.omo.hamrazec.services.RepairPool;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +17,16 @@ public class Factory {
     private static Factory instance;
     private Director director;
     private Inspector inspector;
-    private EventOperator eventOperator;
     private ProductionOperator productionOperator;
-    private RepairPool pool = RepairPool.getInstance();
-    private List<FactoryWorker> factoryWorkers = new ArrayList<FactoryWorker>();
+    private RepairPool pool;
+    private List<FactoryWorker> factoryWorkers;
     private FileManager fileManager;
 
     private Factory() throws IOException {
+        factoryWorkers = new ArrayList<FactoryWorker>();
+        pool = RepairPool.getInstance();
         fileManager = new FileManager();
+        productionOperator = ProductionOperator.getInstance();
     }
 
     public static Factory getInstance() throws IOException {
@@ -44,16 +54,6 @@ public class Factory {
 
     public void setInspector(Inspector inspector) {
         this.inspector = inspector;
-    }
-
-
-    public EventOperator getEventOperator() {
-        return eventOperator;
-    }
-
-
-    public void setEventOperator(EventOperator eventOperator) {
-        this.eventOperator = eventOperator;
     }
 
 
@@ -88,5 +88,13 @@ public class Factory {
 
     public void addToFactoryWorkers(FactoryWorker factoryWorker) {
         factoryWorkers.add(factoryWorker);
+    }
+
+    public void putWorkersToProduction(List<LineWorker> workers){
+        productionOperator.addAvailableWorkers(workers);
+    }
+
+    public void putWorkersToProduction(LineWorker worker){
+        productionOperator.addAvailableWorkers(worker);
     }
 }
