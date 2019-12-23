@@ -5,4 +5,10 @@ public class WorkRobot extends Machine {
 
         super(serialNumber, yearOfManufacture);
     }
+
+
+    @Override
+    public void work() {
+
+    }
 }

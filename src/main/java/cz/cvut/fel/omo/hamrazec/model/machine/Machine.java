@@ -3,7 +3,7 @@ package main.java.cz.cvut.fel.omo.hamrazec.model.machine;
 import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
 
-abstract public class Machine implements FactoryWorker {
+abstract public class Machine implements FactoryWorker, LineWorker {
 
     protected int tack;
     protected int SerialNumber;

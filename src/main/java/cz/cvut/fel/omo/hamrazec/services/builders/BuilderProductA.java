@@ -1,43 +1,27 @@
 package main.java.cz.cvut.fel.omo.hamrazec.services.builders;
 
 import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
+import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 
-public class BuilderProductA implements LineBuilder {
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class BuilderProductA extends LineBuilder {
     //TODO - builderA
-    @Override
-    public void setMachines() throws CannotBuildLineException {
-
-        throw new CannotBuildLineException();
-    }
 
 
-    @Override
-    public void setPeople() throws CannotBuildLineException {
-
-        throw new CannotBuildLineException();
-    }
-
-
-    @Override
-    public void setRobots() throws CannotBuildLineException {
-
-        throw new CannotBuildLineException();
-
+    public BuilderProductA() {
+        this.machines = 4;
+        this.people = 2;
+        this.robots = 3;
     }
 
 
     @Override
     public void setOrder() throws CannotBuildLineException {
 
-        throw new CannotBuildLineException();
 
-    }
-
-
-    @Override
-    public ProductLine getResult() throws CannotBuildLineException {
-
-        throw new CannotBuildLineException();
     }
 }

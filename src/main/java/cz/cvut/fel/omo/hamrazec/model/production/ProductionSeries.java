@@ -1,53 +1,61 @@
 package main.java.cz.cvut.fel.omo.hamrazec.model.production;
 
 import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
+import main.java.cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
 import main.java.cz.cvut.fel.omo.hamrazec.services.BuilderDirector;
-import main.java.cz.cvut.fel.omo.hamrazec.services.builders.LineBuilder;
+import main.java.cz.cvut.fel.omo.hamrazec.services.builders.Builder;
 
 public class ProductionSeries implements BuilderDirector {
     private int amount;
-    private LineBuilder lineBuilder;
+    private Builder lineBuilder;
     private ProductFactory productFactory;
+    private int priority;
 
 
-    public ProductionSeries(int amount, LineBuilder lineBuilder, ProductFactory productFactory) {
-
+    public ProductionSeries(int amount, int priority, Builder lineBuilder, ProductFactory productFactory) {
         this.amount = amount;
+        this.priority = priority;
         this.lineBuilder = lineBuilder;
         this.productFactory = productFactory;
     }
 
 
-    public int getAmount() {
+    public int getPriority() {
+        return priority;
+    }
 
+
+    public int getAmount() {
         return amount;
     }
 
 
     public void setAmount(int amount) {
-
         this.amount = amount;
     }
 
 
-    public LineBuilder getLineBuilder() {
-
+    public Builder getLineBuilder() {
         return lineBuilder;
     }
 
 
     public ProductFactory getProductFactory() {
-
         return productFactory;
     }
 
 
     @Override
     public ProductLine build() throws CannotBuildLineException {
-        lineBuilder.setMachines();
-        lineBuilder.setRobots();
-        lineBuilder.setPeople();
-        lineBuilder.setOrder();
-        return lineBuilder.getResult();
+        try {
+            lineBuilder.setMachines();
+            lineBuilder.setRobots();
+            lineBuilder.setPeople();
+            lineBuilder.setOrder();
+            return lineBuilder.getResult();
+        } catch (NotEnoughWorkers e){
+            lineBuilder.cancelBuilding();
+            throw new CannotBuildLineException();
+        }
     }
 }
