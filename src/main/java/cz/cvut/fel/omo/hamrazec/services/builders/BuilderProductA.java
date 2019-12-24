@@ -5,9 +5,9 @@ public class BuilderProductA extends LineBuilder {
 
 
     public BuilderProductA() {
-        this.machines = 4;
-        this.people = 2;
-        this.robots = 3;
+        this.machinesAmount = 4;
+        this.peopleAmount = 2;
+        this.robotsAmount = 3;
     }
 
 
@@ -15,6 +15,5 @@ public class BuilderProductA extends LineBuilder {
     public void setOrder() {
 
     }
-
 
 }
