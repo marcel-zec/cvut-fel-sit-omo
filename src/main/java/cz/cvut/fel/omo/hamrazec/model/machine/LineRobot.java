@@ -2,8 +2,8 @@ package main.java.cz.cvut.fel.omo.hamrazec.model.machine;
 
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.Product;
 
-public class WorkRobot extends Machine {
-    public WorkRobot(int serialNumber, int yearOfManufacture) {
+public class LineRobot extends Machine {
+    public LineRobot(int serialNumber, int yearOfManufacture) {
 
         super(serialNumber, yearOfManufacture);
     }

@@ -4,7 +4,7 @@ import main.java.cz.cvut.fel.omo.hamrazec.controller.Factory;
 import main.java.cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkMachine;
+import main.java.cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import main.java.cz.cvut.fel.omo.hamrazec.model.person.Worker;
 
 import java.io.IOException;
@@ -26,10 +26,10 @@ public class Main {
     }
 
     public static void initWorkers(){
-        workers.add(new WorkMachine(0,2002));
-        workers.add(new WorkMachine(1,2002));
-        workers.add(new WorkMachine(2,2002));
-        workers.add(new WorkMachine(3,2002));
+        workers.add(new LineMachine(0,2002));
+        workers.add(new LineMachine(1,2002));
+        workers.add(new LineMachine(2,2002));
+        workers.add(new LineMachine(3,2002));
         workers.add(new Worker("Jan","Novak",200));
         workers.add(new Worker("Jan1","Novak1",200));
         workers.add(new Worker("Jan2","Novak2",200));

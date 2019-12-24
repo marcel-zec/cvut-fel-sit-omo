@@ -2,19 +2,30 @@ package main.java.cz.cvut.fel.omo.hamrazec.model.machine;
 
 import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import main.java.cz.cvut.fel.omo.hamrazec.model.costs.CostStatement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 abstract public class Machine implements FactoryWorker, LineWorker {
 
     protected int tack;
-    protected int SerialNumber;
-    protected int YearOfManufacture;
-    protected LineWorker next;
+    protected int serialNumber;
+    protected int yearOfManufacture;
     protected int productionShare;
+    protected int productPerTack;
+    protected LineWorker nextLineWorker;
+    protected List<CostStatement> costStatementList;
 
-    public Machine(int serialNumber, int yearOfManufacture) {
+    public Machine(int serialNumber, int yearOfManufacture, int productPerTack) {
+        this.serialNumber = serialNumber;
+        this.yearOfManufacture = yearOfManufacture;
+        this.productPerTack = productPerTack;
+    }
 
-        SerialNumber = serialNumber;
-        YearOfManufacture = yearOfManufacture;
+    public List<CostStatement> getCostStatementList() {
+        if (costStatementList == null) costStatementList = new ArrayList<>();
+        return costStatementList;
     }
 
     public int getProductionShare() {
@@ -26,24 +37,24 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     }
 
     public LineWorker getNext() {
-        return next;
+        return nextLineWorker;
     }
 
     public void setNext(LineWorker next) {
-        this.next = next;
+        this.nextLineWorker = next;
     }
 
     public int getSerialNumber() {
-
-        return SerialNumber;
+        return serialNumber;
     }
-
 
     public int getYearOfManufacture() {
-
-        return YearOfManufacture;
+        return yearOfManufacture;
     }
 
+    public int getProductPerTack() {
+        return productPerTack;
+    }
 
     @Override
     public int getTact() {

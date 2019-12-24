@@ -4,11 +4,6 @@ import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.events.StartProduction;
-import main.java.cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
-import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkMachine;
-import main.java.cz.cvut.fel.omo.hamrazec.model.machine.WorkRobot;
-import main.java.cz.cvut.fel.omo.hamrazec.model.person.Person;
-import main.java.cz.cvut.fel.omo.hamrazec.model.person.Worker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
 import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
@@ -18,7 +13,6 @@ import main.java.cz.cvut.fel.omo.hamrazec.services.SeriesFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class ProductionOperator implements FactoryWorker {
 
@@ -54,22 +48,6 @@ public class ProductionOperator implements FactoryWorker {
         return availableWorkers;
     }
 
-    public List<LineWorker> getAvailablePeople(){
-        return availableWorkers.stream().filter(worker -> worker.getClass() == Worker.class).collect(Collectors.toList());
-    }
-
-    public List<LineWorker> getAvailableMachines(){
-        return availableWorkers.stream().filter(worker -> worker.getClass() == WorkMachine.class).collect(Collectors.toList());
-    }
-
-    public List<LineWorker> getAvailableRobots(){
-        return availableWorkers.stream().filter(worker -> worker.getClass() == WorkRobot.class).collect(Collectors.toList());
-    }
-
-    public List<LineWorker> getAvailableControlRobots(){
-        return availableWorkers.stream().filter(worker -> worker.getClass() == ControllingRobot.class).collect(Collectors.toList());
-    }
-
     public void setAvailableWorkers(List<LineWorker> availableWorkers) {
         this.availableWorkers = availableWorkers;
     }
@@ -97,14 +75,25 @@ public class ProductionOperator implements FactoryWorker {
         return workerInUse;
     }
 
-    public void setWorkersToUse(List<LineWorker> workers){
+
+    public void setWorkersToUse(List<LineWorker> workers) {
         availableWorkers.removeAll(workers);
         workerInUse.addAll(workers);
     }
 
-    public void setWorkersToAvailable(List<LineWorker> workers){
+    public void setWorkersToUse(LineWorker worker) {
+        availableWorkers.remove(worker);
+        workerInUse.add(worker);
+    }
+
+    public void setWorkersToAvailable(List<LineWorker> workers) {
         workerInUse.removeAll(workers);
         availableWorkers.addAll(workers);
+    }
+
+    public void setWorkersToAvailable(LineWorker worker) {
+        workerInUse.remove(worker);
+        availableWorkers.add(worker);
     }
 
 
@@ -146,8 +135,8 @@ public class ProductionOperator implements FactoryWorker {
         }
     }
 
-    public void updateProduction(){
-        for (ProductLine line: activeLines){
+    public void updateProduction() {
+        for (ProductLine line : activeLines) {
             line.update();
         }
     }

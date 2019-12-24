@@ -22,12 +22,28 @@ public class ProductLine {
         this.firstWorker = firstWorker;
     }
 
+    public LineWorker getFirstWorker() {
+        return firstWorker;
+    }
+
+    public void setFirstWorker(LineWorker firstWorker) {
+        this.firstWorker = firstWorker;
+    }
+
     public void setLineWorkers(List<LineWorker> lineWorkers) {
         this.lineWorkers = lineWorkers;
     }
 
+    public void addLineWorkers(List<LineWorker> lineWorkers){
+        this.lineWorkers.addAll(lineWorkers);
+    }
+
+    public void addLineWorkers(LineWorker lineWorker){
+        lineWorkers.add(lineWorker);
+    }
+
     public void update(){
-        //TODO - ak funguje
+        //TODO - ak funguje prvy stroj
         firstWorker.work(series.getProductFactory().getProduct());
     }
 

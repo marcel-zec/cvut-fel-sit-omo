@@ -9,7 +9,7 @@ public class RepairPool {
     private static RepairPool instance;
     private List<Repairman> repairmen;
 
-    private RepairPool(){
+    private RepairPool() {
     }
 
     public static RepairPool getInstance() {
@@ -19,18 +19,18 @@ public class RepairPool {
         return instance;
     }
 
-    public Repairman getRepairman(){
+    public Repairman getRepairman() {
 
-        if (repairmen.size() > 0){
-
-        Repairman repairman = repairmen.get(0);
-        repairmen.remove(0);
-        return repairman;
-        }
-        else return null;
+        if (repairmen.size() > 0) {
+            Repairman repairman = repairmen.get(0);
+            repairmen.remove(0);
+            return repairman;
+            // myslim ze pri obycajnom Liste metoda remove vracia odstraneny prvom, takze staci asi return repairmen.remove(0);
+            // pri arrayliste to uz ale nefunguje lebo tam remove vracia boolean
+        } else return null;
     }
 
-    public void PutRepairman(Repairman repairman){
+    public void putRepairman(Repairman repairman) {
         repairmen.add(repairman);
     }
 
