@@ -53,9 +53,14 @@ abstract public class LineBuilder implements Builder {
         machineList.add(machine);
     }
 
-    //TODO - ak peoplelist neexistuje tak vytvorit, a dorobit addPerson
     public List<LineWorker> getPeopleList() {
+        if (peopleList == null) peopleList = new ArrayList<>();
         return peopleList;
+    }
+
+    protected void addPerson(LineWorker person){
+        if (peopleList == null) peopleList = new ArrayList<>();
+        peopleList.add(person);
     }
 
 
@@ -68,7 +73,7 @@ abstract public class LineBuilder implements Builder {
     }
 
     protected void countShareInProduction(int robotPercentage, int machinePercentage, int peoplePercentage){
-        if((robotPercentage + machinePercentage + peoplePercentage) > 100) throw new BadPercentageException();
+        if((robotPercentage + machinePercentage + peoplePercentage) != 100) throw new BadPercentageException();
         machineShare = machinePercentage / machinesAmount;
         robotShare = robotPercentage / robotShare;
         peopleShare = peoplePercentage / peopleAmount;
@@ -112,7 +117,7 @@ abstract public class LineBuilder implements Builder {
 
         if (available.size() >= peopleAmount) {
             for (int i = 0; i < peopleAmount; i++) {
-//                addPerson(available.remove(i));
+                addPerson(available.remove(i));
             }
         } else throw new NotEnoughWorkers();
     }
@@ -172,10 +177,9 @@ abstract public class LineBuilder implements Builder {
 
     @Override
     public void cancelBuilding() {
-        //TODO - nie setWorkers.. ale list = null
-        if (machineList != null) operator.setWorkersToAvailable(machineList);
-        if (peopleList != null) operator.setWorkersToAvailable(peopleList);
-        if (robotList != null) operator.setWorkersToAvailable(robotList);
-        if (controllingRobot != null) operator.setWorkersToAvailable(controllingRobot);
+        if (machineList != null) machineList = null;
+        if (peopleList != null) peopleList = null;
+        if (robotList != null) robotList = null;
+        if (controllingRobot != null) controllingRobot = null;
     }
 }
