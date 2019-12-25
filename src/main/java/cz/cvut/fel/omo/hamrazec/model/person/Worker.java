@@ -9,13 +9,13 @@ public class Worker extends Person implements LineWorker {
     }
 
     @Override
-    public int getTact() {
-        return 0;
+    public LineWorker setNextWorker(LineWorker nextWorker) {
+        return null;
     }
 
     @Override
-    public void updateTack(int tack) {
-
+    public LineWorker setShareInProduction(int shareInProduction) {
+        return null;
     }
 
     @Override

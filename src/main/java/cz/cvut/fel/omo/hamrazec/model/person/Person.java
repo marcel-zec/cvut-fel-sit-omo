@@ -8,17 +8,16 @@ import java.util.List;
 
 public abstract class Person implements FactoryWorker {
 
-    protected String firstname;
-    protected String lastname;
+    protected String firstName;
+    protected String lastName;
     protected List<PayCheck> payCheckList;
     protected int wage;
     protected int tack;
 
 
-    public Person(String firstname, String lastname, int wage) {
-
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Person(String firstName, String lastName, int wage) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.wage = wage;
     }
 
@@ -29,33 +28,33 @@ public abstract class Person implements FactoryWorker {
     }
 
 
-    public int getTack() {
+    public String getFirstName() {
+        return firstName;
+    }
 
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+
+    public String getLastName() {
+        return lastName;
+    }
+
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public int getTact() {
         return tack;
     }
 
-
-    public String getFirstname() {
-
-        return firstname;
-    }
-
-
-    public void setFirstname(String firstname) {
-
-        this.firstname = firstname;
-    }
-
-
-    public String getLastname() {
-
-        return lastname;
-    }
-
-
-    public void setLastname(String lastname) {
-
-        this.lastname = lastname;
+    @Override
+    public void updateTack(int tack) {
+        this.tack = tack;
     }
 
 }

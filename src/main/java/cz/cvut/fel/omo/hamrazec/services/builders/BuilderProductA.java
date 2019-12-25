@@ -11,7 +11,7 @@ public class BuilderProductA extends LineBuilder {
         this.peopleAmount = 2;
         this.robotsAmount = 3;
     }
-
+    
 
     @Override
     public void setOrder() {

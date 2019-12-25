@@ -6,6 +6,7 @@ import main.java.cz.cvut.fel.omo.hamrazec.model.costs.CostStatement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 abstract public class Machine implements FactoryWorker, LineWorker {
 
@@ -16,11 +17,15 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     protected int productPerTack;
     protected LineWorker nextLineWorker;
     protected List<CostStatement> costStatementList;
+    protected int depreciation;
+    protected Random random;
 
     public Machine(int serialNumber, int yearOfManufacture, int productPerTack) {
         this.serialNumber = serialNumber;
         this.yearOfManufacture = yearOfManufacture;
         this.productPerTack = productPerTack;
+        this.depreciation = 0;
+        this.random = new Random();
     }
 
     public List<CostStatement> getCostStatementList() {
@@ -65,5 +70,17 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     @Override
     public void updateTack(int tack) {
         this.tack = tack;
+    }
+
+    @Override
+    public LineWorker setNextWorker(LineWorker nextWorker) {
+        this.nextLineWorker = nextWorker;
+        return nextWorker;
+    }
+
+    @Override
+    public LineWorker setShareInProduction(int shareInProduction) {
+        productionShare = shareInProduction;
+        return this;
     }
 }
