@@ -50,7 +50,7 @@ public class EventOperator implements Observer {
                 setAlertPrioritiest();
             }
         }
-        if (event.getClass() == Alert.class && alertPrioritiest!=null){
+        if (event.getClass() == Alert.class && (alertPrioritiest!=null || alertList.size() != 0)){
             repairman = repairPool.getRepairman();
             repairman.repair(event.getSender());
             alertPrioritiest = null;
