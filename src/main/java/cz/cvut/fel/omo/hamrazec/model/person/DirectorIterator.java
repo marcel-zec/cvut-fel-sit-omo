@@ -1,6 +1,6 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model.person;
+package cz.cvut.fel.omo.hamrazec.model.person;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.Visitable;
+import cz.cvut.fel.omo.hamrazec.model.Visitable;
 
 public class DirectorIterator implements cz.cvut.fel.omo.hamrazec.Iterator {
     public boolean hasNext() {

@@ -1,4 +1,4 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model;
+package cz.cvut.fel.omo.hamrazec.model;
 
 public interface Visitor<T> {
 

@@ -1,6 +1,6 @@
-package main.java.cz.cvut.fel.omo.hamrazec.services;
+package cz.cvut.fel.omo.hamrazec.services;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.person.Repairman;
+import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 
 import java.util.List;
 

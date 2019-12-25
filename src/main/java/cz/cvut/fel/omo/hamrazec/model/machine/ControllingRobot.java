@@ -1,6 +1,6 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model.machine;
+package cz.cvut.fel.omo.hamrazec.model.machine;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.Product;
+import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class ControllingRobot extends Machine {
     private int controlAmount;

@@ -1,14 +1,14 @@
-package main.java.cz.cvut.fel.omo.hamrazec.services.builders;
+package cz.cvut.fel.omo.hamrazec.services.builders;
 
-import main.java.cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
-import main.java.cz.cvut.fel.omo.hamrazec.exceptions.BadPercentageException;
-import main.java.cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
-import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
-import main.java.cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
-import main.java.cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
-import main.java.cz.cvut.fel.omo.hamrazec.model.person.Worker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
+import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
+import cz.cvut.fel.omo.hamrazec.exceptions.BadPercentageException;
+import cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
+import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
+import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
+import cz.cvut.fel.omo.hamrazec.model.person.Worker;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 
 import java.util.ArrayList;
 import java.util.List;

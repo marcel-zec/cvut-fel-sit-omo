@@ -1,8 +1,8 @@
-package main.java.cz.cvut.fel.omo.hamrazec.services;
+package cz.cvut.fel.omo.hamrazec.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import main.java.cz.cvut.fel.omo.hamrazec.controller.Factory;
+import cz.cvut.fel.omo.hamrazec.controller.Factory;
 
 import java.io.File;
 import java.io.IOException;

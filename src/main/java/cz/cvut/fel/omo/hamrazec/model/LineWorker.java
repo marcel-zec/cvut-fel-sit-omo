@@ -1,6 +1,6 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model;
+package cz.cvut.fel.omo.hamrazec.model;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.Product;
+import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public interface LineWorker extends FactoryWorker{
     void work(Product product);

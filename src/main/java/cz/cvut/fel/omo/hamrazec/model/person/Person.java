@@ -1,7 +1,7 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model.person;
+package cz.cvut.fel.omo.hamrazec.model.person;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.costs.PayCheck;
+import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import cz.cvut.fel.omo.hamrazec.model.costs.PayCheck;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,8 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model.production;
+package cz.cvut.fel.omo.hamrazec.model.production;
 
-import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
-import main.java.cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
-import main.java.cz.cvut.fel.omo.hamrazec.services.builders.Builder;
+import cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
+import cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
+import cz.cvut.fel.omo.hamrazec.services.builders.Builder;
 
 public class ProductionSeries implements BuilderDirector {
     private int amount;

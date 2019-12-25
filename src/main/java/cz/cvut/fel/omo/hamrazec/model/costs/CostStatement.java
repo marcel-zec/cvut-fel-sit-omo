@@ -1,4 +1,4 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model.costs;
+package cz.cvut.fel.omo.hamrazec.model.costs;
 
 public class CostStatement {
     private int electricity;

@@ -1,6 +1,6 @@
-package main.java.cz.cvut.fel.omo.hamrazec.services;
+package cz.cvut.fel.omo.hamrazec.services;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.events.Event;
+import cz.cvut.fel.omo.hamrazec.model.events.Event;
 
 import java.util.ArrayList;
 import java.util.List;

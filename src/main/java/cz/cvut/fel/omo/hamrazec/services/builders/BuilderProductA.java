@@ -1,6 +1,6 @@
-package main.java.cz.cvut.fel.omo.hamrazec.services.builders;
+package cz.cvut.fel.omo.hamrazec.services.builders;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 
 public class BuilderProductA extends LineBuilder {
     //TODO - builderA

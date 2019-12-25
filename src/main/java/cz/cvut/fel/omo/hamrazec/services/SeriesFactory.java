@@ -1,7 +1,7 @@
-package main.java.cz.cvut.fel.omo.hamrazec.services;
+package cz.cvut.fel.omo.hamrazec.services;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.*;
-import main.java.cz.cvut.fel.omo.hamrazec.services.builders.*;
+import cz.cvut.fel.omo.hamrazec.model.production.*;
+import cz.cvut.fel.omo.hamrazec.services.builders.*;
 
 public class SeriesFactory {
 

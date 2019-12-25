@@ -1,8 +1,8 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model.machine;
+package cz.cvut.fel.omo.hamrazec.model.machine;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.costs.CostStatement;
+import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.costs.CostStatement;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,12 +1,12 @@
-package main.java.cz.cvut.fel.omo.hamrazec.controller;
+package cz.cvut.fel.omo.hamrazec.controller;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.person.Director;
-import main.java.cz.cvut.fel.omo.hamrazec.model.person.Inspector;
-import main.java.cz.cvut.fel.omo.hamrazec.services.EventOperator;
-import main.java.cz.cvut.fel.omo.hamrazec.services.FileManager;
-import main.java.cz.cvut.fel.omo.hamrazec.services.RepairPool;
+import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.person.Director;
+import cz.cvut.fel.omo.hamrazec.model.person.Inspector;
+import cz.cvut.fel.omo.hamrazec.services.EventOperator;
+import cz.cvut.fel.omo.hamrazec.services.FileManager;
+import cz.cvut.fel.omo.hamrazec.services.RepairPool;
 
 import javax.sound.sampled.Line;
 import java.io.IOException;

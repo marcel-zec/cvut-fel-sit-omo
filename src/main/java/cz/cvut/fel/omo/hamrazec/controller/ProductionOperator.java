@@ -1,14 +1,14 @@
-package main.java.cz.cvut.fel.omo.hamrazec.controller;
+package cz.cvut.fel.omo.hamrazec.controller;
 
-import main.java.cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
-import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.events.StartProduction;
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
-import main.java.cz.cvut.fel.omo.hamrazec.services.EventList;
-import main.java.cz.cvut.fel.omo.hamrazec.services.SeriesFactory;
+import cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
+import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.events.StartProduction;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
+import cz.cvut.fel.omo.hamrazec.services.EventList;
+import cz.cvut.fel.omo.hamrazec.services.SeriesFactory;
 
 import java.util.ArrayList;
 import java.util.List;

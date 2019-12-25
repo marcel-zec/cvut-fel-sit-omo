@@ -1,7 +1,7 @@
-package main.java.cz.cvut.fel.omo.hamrazec.services.builders;
+package cz.cvut.fel.omo.hamrazec.services.builders;
 
-import main.java.cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
+import cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 
 public interface Builder {
     void createLine();

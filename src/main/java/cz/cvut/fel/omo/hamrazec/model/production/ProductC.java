@@ -1,4 +1,4 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model.production;
+package cz.cvut.fel.omo.hamrazec.model.production;
 
 public class ProductC extends Product {
     public ProductC() {

@@ -1,7 +1,7 @@
-package main.java.cz.cvut.fel.omo.hamrazec.model.person;
+package cz.cvut.fel.omo.hamrazec.model.person;
 
-import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.production.Product;
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class Worker extends Person implements LineWorker {
     public Worker(String firstname, String lastname, int wage) {
