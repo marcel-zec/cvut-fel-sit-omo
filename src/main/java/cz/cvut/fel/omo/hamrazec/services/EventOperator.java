@@ -16,6 +16,7 @@ public class EventOperator implements Observer {
     private RepairPool repairPool = RepairPool.getInstance();
     private List<Alert> alertList = new ArrayList<>();
     private Alert alertPrioritiest = null;
+    private boolean wasPriority = false;
     private Repairman repairman;
 
 
@@ -31,40 +32,53 @@ public class EventOperator implements Observer {
     }
 
 
-    private void goRepair(Event event){
+    private void processAlert(Alert event){
 
-        if (alertList.size() == 0 && event.getClass() == Alert.class) {
-            repairman = repairPool.getRepairman();
-            if ( repairman != null)  {
-                repairman.repair(event.getSender());
-            }
-            else alertList.add((Alert) event);
+        if (alertList.size() != 0 && !wasPriority){
+            setAlertPrioritiest();
         }
-        if (event.getClass() == EndRepair.class && alertList.size() != 0){
-            if (alertPrioritiest != null) {
+        else goRepair(event);
+    }
+
+    private boolean goRepair(Alert alert){
+
+        repairman = repairPool.getRepairman();
+        if ( repairman != null)  {
+            repairman.repair(alert.getSender());
+            repairman = null;
+            return true;
+        }
+        else {
+            alertList.add(alert);
+        }
+        return false;
+    }
+
+    private void endRepair (EndRepair event ){
+
+        if (alertList.size() != 0){
+            if (!wasPriority) {
+                wasPriority = true;
                 alertList.remove(alertPrioritiest);
                 goRepair(alertPrioritiest);
+                alertPrioritiest = null;
             }
             else {
                 goRepair(alertList.remove(0));
                 setAlertPrioritiest();
+                wasPriority = false;
             }
         }
-        if (event.getClass() == Alert.class && (alertPrioritiest!=null || alertList.size() != 0)){
-            repairman = repairPool.getRepairman();
-            repairman.repair(event.getSender());
-            alertPrioritiest = null;
-        }
-        repairman = null;
 
     }
 
-
     private void setAlertPrioritiest(){
 
-        for (Alert alert: alertList) {
-            if (alertPrioritiest == null) alertPrioritiest = alert;
-            if (alertPrioritiest.getPriority() < alert.getPriority()) alertPrioritiest = alert;
+        if (alertList.size() > 0) {
+            for (Alert alert : alertList) {
+                if (alertPrioritiest == null) alertPrioritiest = alert;
+                if (alertPrioritiest.getPriority() < alert.getPriority()) alertPrioritiest = alert;
+            }
         }
     }
 
@@ -72,11 +86,11 @@ public class EventOperator implements Observer {
     public void update(Event event) {
 
         if (event.getClass() == Alert.class) {
-            goRepair(event);
+            processAlert((Alert) event);
         }
         if (event.getClass() == EndRepair.class){
             repairPool.putRepairman((Repairman) event.getSender());
-            goRepair(event);
+            endRepair((EndRepair) event);
         }
 
     }
