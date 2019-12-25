@@ -15,24 +15,25 @@ public class BuilderProductA extends LineBuilder {
 
     @Override
     public void setOrder() {
+        countShareInProduction(30,60,10);
         robotList.get(0)
-                .setShareInProduction(0)
+                .setShareInProduction(robotShare)
                 .setNextWorker(machineList.get(0))
-                .setShareInProduction(0)
+                .setShareInProduction(machineShare)
                 .setNextWorker(machineList.get(1))
-                .setShareInProduction(0)
+                .setShareInProduction(machineShare)
                 .setNextWorker(machineList.get(2))
-                .setShareInProduction(0)
+                .setShareInProduction(machineShare)
                 .setNextWorker(peopleList.get(0))
-                .setShareInProduction(0)
+                .setShareInProduction(peopleShare)
                 .setNextWorker(robotList.get(1))
-                .setShareInProduction(0)
+                .setShareInProduction(robotShare)
                 .setNextWorker(robotList.get(2))
-                .setShareInProduction(0)
+                .setShareInProduction(robotShare)
                 .setNextWorker(machineList.get(3))
-                .setShareInProduction(0)
+                .setShareInProduction(machineShare)
                 .setNextWorker(peopleList.get(1))
-                .setShareInProduction(0)
+                .setShareInProduction(peopleShare)
                 .setNextWorker(controllingRobot);
     }
 }

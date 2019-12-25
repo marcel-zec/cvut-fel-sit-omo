@@ -1,6 +1,7 @@
 package main.java.cz.cvut.fel.omo.hamrazec.services.builders;
 
 import main.java.cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
+import main.java.cz.cvut.fel.omo.hamrazec.exceptions.BadPercentageException;
 import main.java.cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
@@ -23,6 +24,9 @@ abstract public class LineBuilder implements Builder {
     protected int machinesAmount;
     protected int peopleAmount;
     protected int robotsAmount;
+    protected int machineShare;
+    protected int peopleShare;
+    protected int robotShare;
 
 
     public LineBuilder() {
@@ -34,7 +38,7 @@ abstract public class LineBuilder implements Builder {
         return robotList;
     }
 
-    private void addRobot(LineWorker robot) {
+    protected void addRobot(LineWorker robot) {
         if (robotList == null) robotList = new ArrayList<>();
         robotList.add(robot);
     }
@@ -44,7 +48,7 @@ abstract public class LineBuilder implements Builder {
         return machineList;
     }
 
-    private void addMachine(LineWorker machine) {
+    protected void addMachine(LineWorker machine) {
         if (machineList == null) machineList = new ArrayList<>();
         machineList.add(machine);
     }
@@ -59,8 +63,15 @@ abstract public class LineBuilder implements Builder {
         return controllingRobot;
     }
 
-    private void setControllingRobot(LineWorker controllingRobot) {
+    protected void setControllingRobot(LineWorker controllingRobot) {
         this.controllingRobot = controllingRobot;
+    }
+
+    protected void countShareInProduction(int robotPercentage, int machinePercentage, int peoplePercentage){
+        if((robotPercentage + machinePercentage + peoplePercentage) > 100) throw new BadPercentageException();
+        machineShare = machinePercentage / machinesAmount;
+        robotShare = robotPercentage / robotShare;
+        peopleShare = peoplePercentage / peopleAmount;
     }
 
     @Override
