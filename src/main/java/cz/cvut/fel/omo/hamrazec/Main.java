@@ -13,23 +13,23 @@ import java.util.List;
 
 public class Main {
 
-    public static List<FactoryWorker> workers = new ArrayList<>();
+    public static List<LineWorker> workers = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         Factory factory = Factory.getInstance();
         ProductionOperator operator = factory.getProductionOperator();
         initWorkers();
-        factory.setFactoryWorkers(workers);
-        factory.putWorkersToProduction((LineWorker) factory.getFactoryWorkers());
+        factory.setLineWorkers(workers);
+        factory.putWorkersToProduction(factory.getLineWorkers());
         System.out.println(operator.getAvailableWorkers());
 
     }
 
     public static void initWorkers(){
-        workers.add(new LineMachine(0,2002));
-        workers.add(new LineMachine(1,2002));
-        workers.add(new LineMachine(2,2002));
-        workers.add(new LineMachine(3,2002));
+        workers.add(new LineMachine(0,2002,6));
+        workers.add(new LineMachine(1,2002,8));
+        workers.add(new LineMachine(2,2002,4));
+        workers.add(new LineMachine(3,2002,6));
         workers.add(new Worker("Jan","Novak",200));
         workers.add(new Worker("Jan1","Novak1",200));
         workers.add(new Worker("Jan2","Novak2",200));

@@ -2,9 +2,8 @@ package main.java.cz.cvut.fel.omo.hamrazec.services;
 
 import main.java.cz.cvut.fel.omo.hamrazec.model.events.Alert;
 import main.java.cz.cvut.fel.omo.hamrazec.model.events.Event;
-import main.java.cz.cvut.fel.omo.hamrazec.model.person.Person;
 
-public class EventOperator extends Person {
+public class EventOperator {
 
 
     private EventList eventList = EventList.getInstance();

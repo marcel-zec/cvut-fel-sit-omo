@@ -8,6 +8,7 @@ import main.java.cz.cvut.fel.omo.hamrazec.services.EventOperator;
 import main.java.cz.cvut.fel.omo.hamrazec.services.FileManager;
 import main.java.cz.cvut.fel.omo.hamrazec.services.RepairPool;
 
+import javax.sound.sampled.Line;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,13 @@ public class Factory {
     private Inspector inspector;
     private ProductionOperator productionOperator;
     private RepairPool pool;
-    private List<FactoryWorker> factoryWorkers;
+    private List<LineWorker> lineWorkers;
     private FileManager fileManager;
 
     private Factory() throws IOException {
-        factoryWorkers = new ArrayList<FactoryWorker>();
+        lineWorkers = new ArrayList<>();
         pool = RepairPool.getInstance();
-        fileManager = new FileManager();
+//        fileManager = new FileManager();
         productionOperator = ProductionOperator.getInstance();
     }
 
@@ -76,18 +77,16 @@ public class Factory {
         this.pool = pool;
     }
 
-
-    public List<FactoryWorker> getFactoryWorkers() {
-        return factoryWorkers;
+    public List<LineWorker> getLineWorkers() {
+        return lineWorkers;
     }
 
-
-    public void setFactoryWorkers(List<FactoryWorker> factoryWorkers) {
-        this.factoryWorkers = factoryWorkers;
+    public void setLineWorkers(List<LineWorker> lineWorkers) {
+        this.lineWorkers = lineWorkers;
     }
 
-    public void addToFactoryWorkers(FactoryWorker factoryWorker) {
-        factoryWorkers.add(factoryWorker);
+    public void addToLineWorkers(LineWorker lineWorker) {
+        lineWorkers.add(lineWorker);
     }
 
     public void putWorkersToProduction(List<LineWorker> workers){
