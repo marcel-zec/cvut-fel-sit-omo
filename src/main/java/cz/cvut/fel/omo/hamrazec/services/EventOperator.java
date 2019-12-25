@@ -40,18 +40,17 @@ public class EventOperator implements Observer {
         else goRepair(event);
     }
 
-    private boolean goRepair(Alert alert){
+    private void goRepair(Alert alert){
 
         repairman = repairPool.getRepairman();
         if ( repairman != null)  {
             repairman.repair(alert.getSender());
             repairman = null;
-            return true;
+            return;
         }
         else {
             alertList.add(alert);
         }
-        return false;
     }
 
     private void endRepair (EndRepair event ){
