@@ -53,9 +53,14 @@ public class ProductionSeries implements BuilderDirector {
             lineBuilder.setControl();
             lineBuilder.setOrder();
             return lineBuilder.getResult();
-        } catch (NotEnoughWorkers e){
+        } catch (NotEnoughWorkers e) {
             lineBuilder.cancelBuilding();
             throw new CannotBuildLineException();
         }
+    }
+
+    @Override
+    public String toString() {
+        return productFactory.getProduct().getClass().getSimpleName() + " of amount " + amount + " with priority " + priority;
     }
 }

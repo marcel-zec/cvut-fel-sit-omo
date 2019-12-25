@@ -139,7 +139,7 @@ abstract public class LineBuilder implements Builder {
 
     /**
      * Take a list of available workers from ProductionOperator, filter it by ControllingRobot class and
-     * add available controlling robot to line.
+     * add available controlling robot to line. Also set amount of product that robot control in production.
      * @throws NotEnoughWorkers - when no controlling robot is available
      */
     @Override
@@ -151,6 +151,8 @@ abstract public class LineBuilder implements Builder {
 
         if (available.size() > 0) {
             setControllingRobot(available.remove(0));
+            ControllingRobot robot = (ControllingRobot) controllingRobot;
+            robot.setControlAmount(line.getSeries().getAmount());
         } else throw new NotEnoughWorkers();
     }
 
@@ -170,9 +172,9 @@ abstract public class LineBuilder implements Builder {
 
     @Override
     public void cancelBuilding() {
-        operator.setWorkersToAvailable(machineList);
-        operator.setWorkersToAvailable(peopleList);
-        operator.setWorkersToAvailable(robotList);
-        operator.setWorkersToAvailable(controllingRobot);
+        if (machineList != null) operator.setWorkersToAvailable(machineList);
+        if (peopleList != null) operator.setWorkersToAvailable(peopleList);
+        if (robotList != null) operator.setWorkersToAvailable(robotList);
+        if (controllingRobot != null) operator.setWorkersToAvailable(controllingRobot);
     }
 }

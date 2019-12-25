@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec;
 
 import main.java.cz.cvut.fel.omo.hamrazec.controller.Factory;
 import main.java.cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
+import main.java.cz.cvut.fel.omo.hamrazec.controller.SeriesName;
 import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import main.java.cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
@@ -21,7 +22,10 @@ public class Main {
         initWorkers();
         factory.setLineWorkers(workers);
         factory.putWorkersToProduction(factory.getLineWorkers());
-        System.out.println(operator.getAvailableWorkers());
+        operator.addSeriesToPlan(200, SeriesName.SeriesA,1);
+        operator.addSeriesToPlan(50, SeriesName.SeriesA,2);
+        System.out.println(operator.getPlan());
+        operator.activateLines();
 
     }
 
@@ -34,5 +38,6 @@ public class Main {
         workers.add(new Worker("Jan1","Novak1",200));
         workers.add(new Worker("Jan2","Novak2",200));
         workers.add(new Worker("Jan3","Novak3",200));
+
     }
 }

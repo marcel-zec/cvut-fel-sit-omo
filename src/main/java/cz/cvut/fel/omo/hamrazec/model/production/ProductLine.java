@@ -14,6 +14,14 @@ public class ProductLine {
         lineWorkers = new ArrayList<>();
     }
 
+    public ProductionSeries getSeries() {
+        return series;
+    }
+
+    public void setSeries(ProductionSeries series) {
+        this.series = series;
+    }
+
     public int getPriority(){
        return series.getPriority();
     }
