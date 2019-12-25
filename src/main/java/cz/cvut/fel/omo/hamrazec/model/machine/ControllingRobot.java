@@ -5,8 +5,8 @@ import cz.cvut.fel.omo.hamrazec.model.production.Product;
 public class ControllingRobot extends Machine {
     private int controlAmount;
 
-    public ControllingRobot(int serialNumber, int yearOfManufacture, int productPerTack) {
-        super(serialNumber, yearOfManufacture, productPerTack);
+    public ControllingRobot(int serialNumber, int yearOfManufacture, int productPerTact) {
+        super(serialNumber, yearOfManufacture, productPerTact);
     }
 
     public int getControlAmount() {

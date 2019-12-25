@@ -3,8 +3,6 @@ package cz.cvut.fel.omo.hamrazec.services.builders;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 
 public class BuilderProductA extends LineBuilder {
-    //TODO - builderA
-
 
     public BuilderProductA() {
         this.machinesAmount = 4;

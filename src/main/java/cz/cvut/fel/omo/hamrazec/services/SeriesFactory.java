@@ -11,7 +11,6 @@ public class SeriesFactory {
 
     public ProductionSeries getSeriesB(int amount, int priority){
         return new ProductionSeries(amount, priority, new BuilderProductB(), new FactoryProductB());
-
     }
 
     public ProductionSeries getSeriesC(int amount, int priority){

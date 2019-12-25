@@ -5,5 +5,5 @@ public class CostStatement {
     private int oil;
     private int petrol;
     private int material;
-    private int tack;
+    private int tact;
 }

@@ -4,8 +4,8 @@ import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class LineRobot extends Machine {
-    public LineRobot(int serialNumber, int yearOfManufacture, int productPerTack) {
-        super(serialNumber, yearOfManufacture, productPerTack);
+    public LineRobot(int serialNumber, int yearOfManufacture, int productPerTact) {
+        super(serialNumber, yearOfManufacture, productPerTact);
     }
 
 

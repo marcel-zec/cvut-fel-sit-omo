@@ -1,12 +1,12 @@
 package cz.cvut.fel.omo.hamrazec;
 
-import main.java.cz.cvut.fel.omo.hamrazec.controller.Factory;
-import main.java.cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
-import main.java.cz.cvut.fel.omo.hamrazec.controller.SeriesName;
-import main.java.cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import main.java.cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
-import main.java.cz.cvut.fel.omo.hamrazec.model.person.Worker;
+import cz.cvut.fel.omo.hamrazec.controller.Factory;
+import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
+import cz.cvut.fel.omo.hamrazec.controller.SeriesName;
+import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
+import cz.cvut.fel.omo.hamrazec.model.person.Worker;
 
 import java.io.IOException;
 import java.util.ArrayList;

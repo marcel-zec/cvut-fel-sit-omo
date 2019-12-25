@@ -91,7 +91,7 @@ abstract public class LineBuilder implements Builder {
                 .filter(worker -> worker.getClass() == LineMachine.class)
                 .collect(Collectors.toList());
 
-        if (available.size() > machinesAmount) {
+        if (available.size() >= machinesAmount) {
             for (int i = 0; i < machinesAmount; i++) {
                 addMachine(available.remove(i));
             }
@@ -110,7 +110,7 @@ abstract public class LineBuilder implements Builder {
                 .filter(worker -> worker.getClass() == Worker.class)
                 .collect(Collectors.toList());
 
-        if (available.size() > peopleAmount) {
+        if (available.size() >= peopleAmount) {
             for (int i = 0; i < peopleAmount; i++) {
 //                addPerson(available.remove(i));
             }
@@ -130,7 +130,7 @@ abstract public class LineBuilder implements Builder {
                 .filter(worker -> worker.getClass() == LineRobot.class)
                 .collect(Collectors.toList());
 
-        if (available.size() > robotsAmount) {
+        if (available.size() >= robotsAmount) {
             for (int i = 0; i < robotsAmount; i++) {
                 addRobot(available.remove(i));
             }
@@ -151,6 +151,7 @@ abstract public class LineBuilder implements Builder {
 
         if (available.size() > 0) {
             setControllingRobot(available.remove(0));
+            //TODO - treba nastavit mnozsvto alebo sa vie dostat k nemu nejako?
             ControllingRobot robot = (ControllingRobot) controllingRobot;
             robot.setControlAmount(line.getSeries().getAmount());
         } else throw new NotEnoughWorkers();
@@ -158,7 +159,6 @@ abstract public class LineBuilder implements Builder {
 
     @Override
     public ProductLine getResult() {
-        //TODO - nejaka metoda na zgrupenie do jedneho listu? ak nebude cas tak netreba
         line.addLineWorkers(machineList);
         line.addLineWorkers(robotList);
         line.addLineWorkers(peopleList);
@@ -172,6 +172,7 @@ abstract public class LineBuilder implements Builder {
 
     @Override
     public void cancelBuilding() {
+        //TODO - nie setWorkers.. ale list = null
         if (machineList != null) operator.setWorkersToAvailable(machineList);
         if (peopleList != null) operator.setWorkersToAvailable(peopleList);
         if (robotList != null) operator.setWorkersToAvailable(robotList);

@@ -40,7 +40,7 @@ public class FileManager {
 //            factory.getPool().setRepairmen(repairmen);
 //
 //        } catch (IOException e){
-//            e.printStackTrace();
+//            e.printStactTrace();
 //        }
 //
 //    }

@@ -20,18 +20,18 @@ public class ProductionOperator implements FactoryWorker {
     private List<LineWorker> availableWorkers;
     private List<LineWorker> workerInUse;
     private ProductionPlan plan;
-    private SeriesFactory factory;
+    private SeriesFactory seriesFactory;
     private List<ProductLine> activeLines;
     private EventList eventList;
     private static final Logger LOG = Logger.getLogger(ProductionOperator.class.getName());
-    private int tack;
+    private int tact;
 
     private ProductionOperator() {
         this.availableWorkers = new ArrayList<>();
         this.workerInUse = new ArrayList<>();
         this.plan = new ProductionPlan();
         this.activeLines = new ArrayList<>();
-        this.factory = new SeriesFactory();
+        this.seriesFactory = new SeriesFactory();
         this.eventList = EventList.getInstance();
     }
 
@@ -110,13 +110,13 @@ public class ProductionOperator implements FactoryWorker {
     public void addSeriesToPlan(int amount, SeriesName name, int priority) {
         switch (name) {
             case SeriesA:
-                plan.addSeries(factory.getSeriesA(amount, priority));
+                plan.addSeries(seriesFactory.getSeriesA(amount, priority));
                 break;
             case SeriesB:
-                plan.addSeries(factory.getSeriesB(amount, priority));
+                plan.addSeries(seriesFactory.getSeriesB(amount, priority));
                 break;
             case SeriesC:
-                plan.addSeries(factory.getSeriesC(amount, priority));
+                plan.addSeries(seriesFactory.getSeriesC(amount, priority));
                 break;
         }
     }
@@ -143,11 +143,11 @@ public class ProductionOperator implements FactoryWorker {
 
     @Override
     public int getTact() {
-        return tack;
+        return tact;
     }
 
     @Override
-    public void updateTack(int tack) {
-        this.tack = tack;
+    public void updateTact(int tact) {
+        this.tact = tact;
     }
 }

@@ -10,20 +10,20 @@ import java.util.Random;
 
 abstract public class Machine implements FactoryWorker, LineWorker {
 
-    protected int tack;
+    protected int tact;
     protected int serialNumber;
     protected int yearOfManufacture;
     protected int productionShare;
-    protected int productPerTack;
+    protected int productPerTact;
     protected LineWorker nextLineWorker;
     protected List<CostStatement> costStatementList;
     protected int depreciation;
     protected Random random;
 
-    public Machine(int serialNumber, int yearOfManufacture, int productPerTack) {
+    public Machine(int serialNumber, int yearOfManufacture, int productPerTact) {
         this.serialNumber = serialNumber;
         this.yearOfManufacture = yearOfManufacture;
-        this.productPerTack = productPerTack;
+        this.productPerTact = productPerTact;
         this.depreciation = 0;
         this.random = new Random();
     }
@@ -57,19 +57,19 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         return yearOfManufacture;
     }
 
-    public int getProductPerTack() {
-        return productPerTack;
+    public int getProductPerTact() {
+        return productPerTact;
     }
 
     @Override
     public int getTact() {
-        return tack;
+        return tact;
     }
 
 
     @Override
-    public void updateTack(int tack) {
-        this.tack = tack;
+    public void updateTact(int tact) {
+        this.tact = tact;
     }
 
     @Override

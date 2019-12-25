@@ -12,7 +12,7 @@ public abstract class Person implements FactoryWorker {
     protected String lastName;
     protected List<PayCheck> payCheckList;
     protected int wage;
-    protected int tack;
+    protected int tact;
 
 
     public Person(String firstName, String lastName, int wage) {
@@ -49,12 +49,12 @@ public abstract class Person implements FactoryWorker {
 
     @Override
     public int getTact() {
-        return tack;
+        return tact;
     }
 
     @Override
-    public void updateTack(int tack) {
-        this.tack = tack;
+    public void updateTact(int tact) {
+        this.tact = tact;
     }
 
 }

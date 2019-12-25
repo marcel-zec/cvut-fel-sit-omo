@@ -5,8 +5,8 @@ import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class LineMachine extends Machine {
 
-    public LineMachine(int serialNumber, int yearOfManufacture, int productPerTack) {
-        super(serialNumber, yearOfManufacture, productPerTack);
+    public LineMachine(int serialNumber, int yearOfManufacture, int productPerTact) {
+        super(serialNumber, yearOfManufacture, productPerTact);
     }
 
 
