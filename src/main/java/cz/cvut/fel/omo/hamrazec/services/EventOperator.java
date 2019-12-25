@@ -31,36 +31,42 @@ public class EventOperator implements Observer {
     }
 
 
-    public void goRepair(Event event){
+    private void goRepair(Event event){
 
-        if (alertList == null && event.getClass() == Alert.class) {
+        if (alertList.size() == 0 && event.getClass() == Alert.class) {
             repairman = repairPool.getRepairman();
             if ( repairman != null)  {
                 repairman.repair(event.getSender());
             }
             else alertList.add((Alert) event);
         }
-        if (event.getClass() == EndRepair.class && alertList != null){
+        if (event.getClass() == EndRepair.class && alertList.size() != 0){
             if (alertPrioritiest != null) {
                 alertList.remove(alertPrioritiest);
                 goRepair(alertPrioritiest);
             }
             else {
                 goRepair(alertList.remove(0));
-                for (Alert alert: alertList) {
-                    if (alertPrioritiest == null) alertPrioritiest = alert;
-                    if (alertPrioritiest.getPriority() < alert.getPriority()) alertPrioritiest = alert;
-                }
+                setAlertPrioritiest();
             }
         }
-        if (event.getClass() == Alert.class && alertList != null){
+        if (event.getClass() == Alert.class && alertPrioritiest!=null){
             repairman = repairPool.getRepairman();
             repairman.repair(event.getSender());
+            alertPrioritiest = null;
         }
         repairman = null;
 
     }
 
+
+    private void setAlertPrioritiest(){
+
+        for (Alert alert: alertList) {
+            if (alertPrioritiest == null) alertPrioritiest = alert;
+            if (alertPrioritiest.getPriority() < alert.getPriority()) alertPrioritiest = alert;
+        }
+    }
 
     @Override
     public void update(Event event) {
