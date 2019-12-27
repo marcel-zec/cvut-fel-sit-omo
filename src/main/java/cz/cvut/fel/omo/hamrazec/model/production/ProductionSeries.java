@@ -2,9 +2,11 @@ package cz.cvut.fel.omo.hamrazec.model.production;
 
 import cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
+import cz.cvut.fel.omo.hamrazec.model.Visitable;
+import cz.cvut.fel.omo.hamrazec.model.Visitor;
 import cz.cvut.fel.omo.hamrazec.services.builders.Builder;
 
-public class ProductionSeries implements BuilderDirector {
+public class ProductionSeries implements BuilderDirector, Visitable {
     private int amount;
     private Builder lineBuilder;
     private ProductFactory productFactory;
@@ -62,5 +64,11 @@ public class ProductionSeries implements BuilderDirector {
     @Override
     public String toString() {
         return productFactory.getProduct().getClass().getSimpleName() + " of amount " + amount + " with priority " + priority;
+    }
+
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

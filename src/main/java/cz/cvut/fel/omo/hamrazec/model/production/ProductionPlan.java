@@ -1,9 +1,12 @@
 package cz.cvut.fel.omo.hamrazec.model.production;
 
+import cz.cvut.fel.omo.hamrazec.model.Visitable;
+import cz.cvut.fel.omo.hamrazec.model.Visitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductionPlan {
+public class ProductionPlan implements Visitable {
     private List<ProductionSeries> endedSeries;
     private List<ProductionSeries> plan;
 
@@ -38,5 +41,11 @@ public class ProductionPlan {
     @Override
     public String toString() {
         return "Production plan [" + plan.size() + " planned series. " + endedSeries.size() + " ended series.] \n" + plan;
+    }
+
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

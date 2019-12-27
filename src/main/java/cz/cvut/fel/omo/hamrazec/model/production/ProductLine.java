@@ -1,11 +1,13 @@
 package cz.cvut.fel.omo.hamrazec.model.production;
 
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.Visitable;
+import cz.cvut.fel.omo.hamrazec.model.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductLine {
+public class ProductLine implements Visitable {
     private ProductionSeries series;
     List<LineWorker> lineWorkers;
     LineWorker firstWorker;
@@ -55,4 +57,8 @@ public class ProductLine {
     }
 
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }

@@ -19,7 +19,6 @@ public class FactoryTimer {
     private int tact;
 
     private FactoryTimer() throws IOException {
-        factory = Factory.getInstance();
         factoryWorkers = new ArrayList<>();
     }
 
@@ -67,5 +66,10 @@ public class FactoryTimer {
 
     public void setFactoryWorkers(List<FactoryWorker> factoryWorkers) {
         this.factoryWorkers = factoryWorkers;
+    }
+
+
+    public void setFactory(Factory factory) {
+        this.factory = factory;
     }
 }

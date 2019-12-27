@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.hamrazec.model.person;
 
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import cz.cvut.fel.omo.hamrazec.model.Visitor;
 import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 
 public class Repairman extends Person {
@@ -12,4 +13,10 @@ public class Repairman extends Person {
     public void repair(FactoryWorker machine){
         //todo repair
     }
+
+
+    @Override
+    public void accept(Visitor visitor) {
+    }
+
 }

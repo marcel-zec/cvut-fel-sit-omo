@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model.machine;
 
+import cz.cvut.fel.omo.hamrazec.model.Visitor;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class ControllingRobot extends Machine {
@@ -7,6 +8,13 @@ public class ControllingRobot extends Machine {
 
     public ControllingRobot(int serialNumber, int yearOfManufacture, int productPerTact) {
         super(serialNumber, yearOfManufacture, productPerTact);
+    }
+
+
+    @Override
+    protected Product workOnProduct(Product product) {
+
+        return null;
     }
 
     public int getControlAmount() {
@@ -18,7 +26,7 @@ public class ControllingRobot extends Machine {
     }
 
     @Override
-    public void work(Product product) {
+    public void accept(Visitor visitor) {
 
     }
 }

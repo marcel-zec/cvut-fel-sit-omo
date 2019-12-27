@@ -12,4 +12,10 @@ public class Inspector extends Person implements Visitor {
     public void visit(Object o) {
 
     }
+
+
+    @Override
+    public void accept(Visitor visitor) {
+    }
+
 }
