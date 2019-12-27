@@ -8,10 +8,8 @@ public class LineRobot extends Machine {
         super(serialNumber, yearOfManufacture, productPerTact);
     }
 
-
     @Override
-    public void work(Product product) {
-        product.setCompleted(product.getCompleted() + productionShare);
-        nextLineWorker.work(product);
+    protected Product workOnProduct(Product product) {
+        return null;
     }
 }

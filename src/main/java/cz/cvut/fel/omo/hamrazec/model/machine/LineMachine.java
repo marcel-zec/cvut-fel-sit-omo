@@ -9,14 +9,8 @@ public class LineMachine extends Machine {
         super(serialNumber, yearOfManufacture, productPerTact);
     }
 
-
     @Override
-    public void work(Product product) {
-        //TODO - state
-        if (true){
-//            if (random.nextInt(50) == 2) setState(new Broken());
-            product.setCompleted(product.getCompleted() + productionShare);
-            nextLineWorker.work(product);
-        }
+    protected Product workOnProduct(Product product) {
+        return null;
     }
 }

@@ -1,5 +1,10 @@
 package cz.cvut.fel.omo.hamrazec.services;
 
+import cz.cvut.fel.omo.hamrazec.controller.Factory;
+import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+
+import java.io.IOException;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -9,26 +14,58 @@ public class FactoryTimer {
     private Timer timer = new Timer();
     private LocalDate date = LocalDate.now();
     private static FactoryTimer instance;
+    private Factory factory;
+    private List<FactoryWorker> factoryWorkers;
+    private int tact;
 
-
-    private FactoryTimer() {
+    private FactoryTimer() throws IOException {
+        factory = Factory.getInstance();
+        factoryWorkers = new ArrayList<>();
     }
 
     private TimerTask tt = new TimerTask() {
         @Override
         public void run() {
+            for (FactoryWorker worker: factoryWorkers) {
+                worker.updateTact(tact++);
+            }
+            factory.update();
         }
     };
 
     public void timeLapse(){
-        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,60*60*1000);
+        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,1000);
     }
 
 
-    public static FactoryTimer getInstance() {
+    public static FactoryTimer getInstance() throws IOException {
         if (instance == null) {
             instance = new FactoryTimer();
         }
         return instance;
+    }
+
+    public List<FactoryWorker> getFactoryWorkers() {
+        return factoryWorkers;
+    }
+
+    public void addFactoryWorkers(List<FactoryWorker> factoryWorkers){
+        this.factoryWorkers.addAll(factoryWorkers);
+    }
+
+    public void addFactoryWorkers(FactoryWorker factoryWorker){
+        factoryWorkers.add(factoryWorker);
+    }
+
+    public void removeFactoryWorkers(List<FactoryWorker> factoryWorkers){
+        this.factoryWorkers.removeAll(factoryWorkers);
+    }
+
+    public void removeFactoryWorkers(FactoryWorker factoryWorker){
+        this.factoryWorkers.remove(factoryWorker);
+    }
+
+    public void setFactoryWorkers(List<FactoryWorker> factoryWorkers) {
+        this.factoryWorkers = factoryWorkers;
     }
 }
