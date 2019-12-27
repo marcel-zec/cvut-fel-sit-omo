@@ -7,7 +7,6 @@ import cz.cvut.fel.omo.hamrazec.model.machine.state.State;
 import cz.cvut.fel.omo.hamrazec.model.machine.state.Working;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
-import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

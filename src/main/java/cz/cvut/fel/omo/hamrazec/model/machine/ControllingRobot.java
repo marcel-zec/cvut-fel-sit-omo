@@ -9,16 +9,21 @@ public class ControllingRobot extends Machine {
         super(serialNumber, yearOfManufacture, productPerTact);
     }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    protected Product workOnProduct(Product product) {
+        return null;
+    }
+
     public int getControlAmount() {
         return controlAmount;
     }
 
     public void setControlAmount(int controlAmount) {
         this.controlAmount = controlAmount;
-    }
-
-    @Override
-    public void work(Product product) {
-
     }
 }

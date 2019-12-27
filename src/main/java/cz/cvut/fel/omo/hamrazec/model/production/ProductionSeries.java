@@ -11,6 +11,8 @@ public class ProductionSeries implements BuilderDirector {
     private int priority;
 
 
+
+
     public ProductionSeries(int amount, int priority, Builder lineBuilder, ProductFactory productFactory) {
         this.amount = amount;
         this.priority = priority;

@@ -51,6 +51,7 @@ public class ProductLine {
     }
 
     public void update(){
+        firstWorker.forWork(series.getProductFactory().getProduct());
         firstWorker.update();
     }
 
