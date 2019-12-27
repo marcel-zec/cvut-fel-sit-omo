@@ -31,6 +31,7 @@ public class Factory {
 //        fileManager = new FileManager();
         productionOperator = ProductionOperator.getInstance();
         timer = FactoryTimer.getInstance();
+        timer.setFactory(this);
         timer.addFactoryWorkers(productionOperator);
     }
 

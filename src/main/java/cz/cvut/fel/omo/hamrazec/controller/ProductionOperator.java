@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.hamrazec.controller;
 import cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.Visitor;
 import cz.cvut.fel.omo.hamrazec.model.events.StartProduction;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
@@ -149,5 +150,11 @@ public class ProductionOperator implements FactoryWorker {
     @Override
     public void updateTact(int tact) {
         this.tact = tact;
+    }
+
+
+    @Override
+    public void accept(Visitor visitor) {
+
     }
 }
