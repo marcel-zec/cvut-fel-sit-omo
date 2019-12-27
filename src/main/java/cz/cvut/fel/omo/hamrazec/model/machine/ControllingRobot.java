@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model.machine;
 
+import cz.cvut.fel.omo.hamrazec.model.Visitor;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class ControllingRobot extends Machine {
@@ -25,5 +26,10 @@ public class ControllingRobot extends Machine {
 
     public void setControlAmount(int controlAmount) {
         this.controlAmount = controlAmount;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        
     }
 }

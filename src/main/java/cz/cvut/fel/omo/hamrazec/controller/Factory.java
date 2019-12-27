@@ -12,6 +12,7 @@ import cz.cvut.fel.omo.hamrazec.services.RepairPool;
 import javax.sound.sampled.Line;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Factory {
@@ -97,7 +98,11 @@ public class Factory {
 
     public void putWorkersToProduction(List<LineWorker> workers){
         productionOperator.addAvailableWorkers(workers);
-        timer.addFactoryWorkers((FactoryWorker) workers);
+        List<FactoryWorker> factoryWorkers = new ArrayList<>();
+        for (LineWorker worker:workers) {
+            factoryWorkers.add(worker);
+        }
+        timer.addFactoryWorkers(factoryWorkers);
     }
 
     public void putWorkersToProduction(LineWorker worker){
