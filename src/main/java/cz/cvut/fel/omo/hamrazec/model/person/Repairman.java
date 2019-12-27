@@ -1,8 +1,7 @@
 package cz.cvut.fel.omo.hamrazec.model.person;
 
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
-import cz.cvut.fel.omo.hamrazec.model.Visitor;
-import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
+import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 
 public class Repairman extends Person {
 
@@ -16,7 +15,7 @@ public class Repairman extends Person {
 
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(VisitorDirector visitor) {
         visitor.visit(this);
     }
 
@@ -24,10 +23,8 @@ public class Repairman extends Person {
     @Override
     public String toString() {
 
-        return "Repairman{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", wage=" + wage +
-                '}';
+        return "Repairman: " +
+                firstName + " " + lastName  +
+                ", wage=" + wage;
     }
 }

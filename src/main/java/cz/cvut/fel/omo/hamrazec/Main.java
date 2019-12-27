@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.hamrazec.controller.SeriesName;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
+import cz.cvut.fel.omo.hamrazec.model.person.Director;
 import cz.cvut.fel.omo.hamrazec.model.person.Worker;
 import cz.cvut.fel.omo.hamrazec.services.FactoryTimer;
 
@@ -30,6 +31,8 @@ public class Main {
         operator.addSeriesToPlan(50, SeriesName.SeriesA,2);
         System.out.println(operator.getPlan());
         operator.activateLines();
+        Director director = new Director("Palo", "Novu", 500);
+        workers.get(0).accept(director);
 
     }
 

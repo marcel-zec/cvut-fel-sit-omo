@@ -3,7 +3,7 @@ package cz.cvut.fel.omo.hamrazec.model.production;
 import cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import cz.cvut.fel.omo.hamrazec.exceptions.NotEnoughWorkers;
 import cz.cvut.fel.omo.hamrazec.model.Visitable;
-import cz.cvut.fel.omo.hamrazec.model.Visitor;
+import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.services.builders.Builder;
 
 public class ProductionSeries implements BuilderDirector, Visitable {
@@ -70,7 +70,7 @@ public class ProductionSeries implements BuilderDirector, Visitable {
 
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(VisitorDirector visitor) {
         visitor.visit(this);
     }
 }

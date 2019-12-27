@@ -10,4 +10,6 @@ abstract public class State {
     }
 
     public abstract boolean canWork();
+
+
 }

@@ -3,7 +3,7 @@ package cz.cvut.fel.omo.hamrazec.controller;
 import cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import cz.cvut.fel.omo.hamrazec.model.Visitor;
+import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.events.StartProduction;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
@@ -154,7 +154,7 @@ public class ProductionOperator implements FactoryWorker {
 
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(VisitorDirector visitor) {
 
     }
 }

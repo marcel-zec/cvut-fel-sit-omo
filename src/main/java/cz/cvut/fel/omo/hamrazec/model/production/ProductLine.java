@@ -2,7 +2,7 @@ package cz.cvut.fel.omo.hamrazec.model.production;
 
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.Visitable;
-import cz.cvut.fel.omo.hamrazec.model.Visitor;
+import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +59,7 @@ public class ProductLine implements Visitable {
 
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(VisitorDirector visitor) {
         visitor.visit(this);
     }
 
@@ -69,8 +69,8 @@ public class ProductLine implements Visitable {
 
         return  "ProductLine{" +
                 "series=" + series.toString() +
-                ", lineWorkers=" +  lineWorkers.getClass().getSimpleName() +
-                " and firstWorker=" + firstWorker.getClass().getSimpleName() +
+                ", lineWorkers=" +  lineWorkers +
+                " and firstWorker=" + firstWorker +
                 '}';
     }
 }
