@@ -98,10 +98,7 @@ public class Factory {
 
     public void putWorkersToProduction(List<LineWorker> workers){
         productionOperator.addAvailableWorkers(workers);
-        List<FactoryWorker> factoryWorkers = new ArrayList<>();
-        for (LineWorker worker:workers) {
-            factoryWorkers.add(worker);
-        }
+        List<FactoryWorker> factoryWorkers = new ArrayList<>(workers);
         timer.addFactoryWorkers(factoryWorkers);
     }
 
