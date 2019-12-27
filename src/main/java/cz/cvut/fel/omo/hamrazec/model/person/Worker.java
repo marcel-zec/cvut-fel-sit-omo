@@ -39,9 +39,19 @@ public class Worker extends Person implements LineWorker {
 
     }
 
-
     @Override
     public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 
+
+    @Override
+    public String toString() {
+
+        return "Worker{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", wage=" + wage +
+                '}';
     }
 }

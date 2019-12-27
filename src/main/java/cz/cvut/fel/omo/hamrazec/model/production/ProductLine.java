@@ -62,4 +62,15 @@ public class ProductLine implements Visitable {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+
+    @Override
+    public String toString() {
+
+        return  "ProductLine{" +
+                "series=" + series.toString() +
+                ", lineWorkers=" +  lineWorkers.getClass().getSimpleName() +
+                " and firstWorker=" + firstWorker.getClass().getSimpleName() +
+                '}';
+    }
 }

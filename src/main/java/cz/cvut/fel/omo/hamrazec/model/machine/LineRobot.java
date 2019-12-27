@@ -18,6 +18,6 @@ public class LineRobot extends Machine {
 
     @Override
     public void accept(Visitor visitor) {
-
+        visitor.visit(this);
     }
 }

@@ -17,6 +17,17 @@ public class Repairman extends Person {
 
     @Override
     public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
+
+    @Override
+    public String toString() {
+
+        return "Repairman{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", wage=" + wage +
+                '}';
+    }
 }
