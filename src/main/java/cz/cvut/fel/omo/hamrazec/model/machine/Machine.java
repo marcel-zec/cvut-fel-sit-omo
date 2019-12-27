@@ -3,6 +3,8 @@ package cz.cvut.fel.omo.hamrazec.model.machine;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.costs.CostStatement;
+import cz.cvut.fel.omo.hamrazec.model.machine.state.State;
+import cz.cvut.fel.omo.hamrazec.model.machine.state.Working;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 import javax.sound.sampled.Line;
@@ -22,6 +24,7 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     protected List<CostStatement> costStatementList;
     protected int depreciation;
     protected Random random;
+    protected State state;
 
     public Machine(int serialNumber, int yearOfManufacture, int productPerTact) {
         this.serialNumber = serialNumber;
@@ -30,6 +33,7 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         this.depreciation = 0;
         this.random = new Random();
         this.productsForWork = new ArrayList<>();
+        this.state = new Working(this);
     }
 
     public List<CostStatement> getCostStatementList() {
@@ -51,6 +55,14 @@ abstract public class Machine implements FactoryWorker, LineWorker {
 
     public void setNext(LineWorker next) {
         this.nextLineWorker = next;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public int getSerialNumber() {
@@ -95,8 +107,7 @@ abstract public class Machine implements FactoryWorker, LineWorker {
 
     @Override
     public void update() {
-        //TODO - dorobit stavy
-        if (productsForWork.isEmpty()){
+        if (productsForWork.isEmpty() || !state.canWork()){
             nextLineWorker.update();
         } else {
             for (int i = 0; i < Math.min(productPerTact,productsForWork.size()); i++) {
