@@ -7,6 +7,7 @@ import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.person.Worker;
+import cz.cvut.fel.omo.hamrazec.services.FactoryTimer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Factory factory = Factory.getInstance();
         ProductionOperator operator = factory.getProductionOperator();
+        FactoryTimer timer = FactoryTimer.getInstance();
+        timer.timeLapse();
+
         initWorkers();
         factory.setLineWorkers(workers);
         factory.putWorkersToProduction(factory.getLineWorkers());

@@ -51,8 +51,7 @@ public class ProductLine {
     }
 
     public void update(){
-        //TODO - ak funguje prvy stroj
-        firstWorker.work(series.getProductFactory().getProduct());
+        firstWorker.update();
     }
 
 

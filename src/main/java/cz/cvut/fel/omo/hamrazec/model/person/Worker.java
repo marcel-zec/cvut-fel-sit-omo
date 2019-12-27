@@ -9,6 +9,16 @@ public class Worker extends Person implements LineWorker {
     }
 
     @Override
+    public void forWork(Product product) {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
     public LineWorker setNextWorker(LineWorker nextWorker) {
         return null;
     }
@@ -19,7 +29,12 @@ public class Worker extends Person implements LineWorker {
     }
 
     @Override
-    public void work(Product product) {
+    public int getTact() {
+        return 0;
+    }
+
+    @Override
+    public void updateTact(int tact) {
 
     }
 }

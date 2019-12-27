@@ -5,6 +5,7 @@ import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.person.Director;
 import cz.cvut.fel.omo.hamrazec.model.person.Inspector;
 import cz.cvut.fel.omo.hamrazec.services.EventOperator;
+import cz.cvut.fel.omo.hamrazec.services.FactoryTimer;
 import cz.cvut.fel.omo.hamrazec.services.FileManager;
 import cz.cvut.fel.omo.hamrazec.services.RepairPool;
 
@@ -22,12 +23,15 @@ public class Factory {
     private RepairPool pool;
     private List<LineWorker> lineWorkers;
     private FileManager fileManager;
+    private FactoryTimer timer;
 
     private Factory() throws IOException {
         lineWorkers = new ArrayList<>();
         pool = RepairPool.getInstance();
 //        fileManager = new FileManager();
         productionOperator = ProductionOperator.getInstance();
+        timer = FactoryTimer.getInstance();
+        timer.addFactoryWorkers(productionOperator);
     }
 
     public static Factory getInstance() throws IOException {
@@ -65,6 +69,7 @@ public class Factory {
 
     public void setProductionOperator(ProductionOperator productionOperator) {
         this.productionOperator = productionOperator;
+        timer.addFactoryWorkers(productionOperator);
     }
 
 
@@ -91,9 +96,15 @@ public class Factory {
 
     public void putWorkersToProduction(List<LineWorker> workers){
         productionOperator.addAvailableWorkers(workers);
+        timer.addFactoryWorkers((FactoryWorker) workers);
     }
 
     public void putWorkersToProduction(LineWorker worker){
         productionOperator.addAvailableWorkers(worker);
+        timer.addFactoryWorkers(worker);
+    }
+
+    public void update(){
+        productionOperator.updateProduction();
     }
 }

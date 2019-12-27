@@ -98,7 +98,7 @@ abstract public class LineBuilder implements Builder {
 
         if (available.size() >= machinesAmount) {
             for (int i = 0; i < machinesAmount; i++) {
-                addMachine(available.remove(i));
+                addMachine(available.remove(0));
             }
         } else throw new NotEnoughWorkers();
     }
@@ -117,7 +117,7 @@ abstract public class LineBuilder implements Builder {
 
         if (available.size() >= peopleAmount) {
             for (int i = 0; i < peopleAmount; i++) {
-                addPerson(available.remove(i));
+                addPerson(available.remove(0));
             }
         } else throw new NotEnoughWorkers();
     }
@@ -137,7 +137,7 @@ abstract public class LineBuilder implements Builder {
 
         if (available.size() >= robotsAmount) {
             for (int i = 0; i < robotsAmount; i++) {
-                addRobot(available.remove(i));
+                addRobot(available.remove(0));
             }
         } else throw new NotEnoughWorkers();
     }
