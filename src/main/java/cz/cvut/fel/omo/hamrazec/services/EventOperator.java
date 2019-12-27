@@ -21,7 +21,7 @@ public class EventOperator implements Observer {
 
 
     private EventOperator() {
-
+        eventList.attach(this);
     }
 
     public static EventOperator getInstance(){
