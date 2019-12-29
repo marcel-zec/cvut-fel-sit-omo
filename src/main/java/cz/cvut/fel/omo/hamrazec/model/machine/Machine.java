@@ -3,9 +3,12 @@ package cz.cvut.fel.omo.hamrazec.model.machine;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.costs.CostStatement;
+import cz.cvut.fel.omo.hamrazec.model.machine.state.Broken;
 import cz.cvut.fel.omo.hamrazec.model.machine.state.State;
 import cz.cvut.fel.omo.hamrazec.model.machine.state.Working;
+import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
+import cz.cvut.fel.omo.hamrazec.services.EventList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,8 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     protected int depreciation;
     protected Random random;
     protected State state;
+    protected Repairman repairingBy;
+    protected EventList eventList;
 
     public Machine(int serialNumber, int yearOfManufacture, int productPerTact) {
         this.serialNumber = serialNumber;
@@ -33,6 +38,15 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         this.random = new Random();
         this.productsForWork = new ArrayList<>();
         this.state = new Working(this);
+        this.eventList = EventList.getInstance();
+    }
+
+    public Repairman getRepairingBy() {
+        return repairingBy;
+    }
+
+    public void setRepairingBy(Repairman repairingBy) {
+        if (state.getClass() != Working.class) this.repairingBy = repairingBy;
     }
 
     public List<CostStatement> getCostStatementList() {
@@ -118,5 +132,8 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         }
     }
 
-    protected abstract Product workOnProduct(Product product);
+    protected Product workOnProduct(Product product) {
+        product.setCompleted(product.getCompleted() + getProductionShare());
+        return product;
+    }
 }

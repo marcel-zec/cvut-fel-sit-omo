@@ -3,7 +3,6 @@ package cz.cvut.fel.omo.hamrazec;
 import cz.cvut.fel.omo.hamrazec.controller.Factory;
 import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.controller.SeriesName;
-import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.person.Director;

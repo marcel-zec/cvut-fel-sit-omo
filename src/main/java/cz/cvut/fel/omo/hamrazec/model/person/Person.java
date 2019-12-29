@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec.model.person;
 
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.costs.PayCheck;
+import cz.cvut.fel.omo.hamrazec.services.EventList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,14 @@ public abstract class Person implements FactoryWorker {
     protected List<PayCheck> payCheckList;
     protected int wage;
     protected int tact;
+    protected EventList eventList;
 
 
     public Person(String firstName, String lastName, int wage) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.wage = wage;
+        this.eventList = EventList.getInstance();
     }
 
 
