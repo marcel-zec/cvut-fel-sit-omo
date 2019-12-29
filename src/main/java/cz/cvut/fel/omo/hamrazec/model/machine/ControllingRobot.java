@@ -12,12 +12,14 @@ public class ControllingRobot extends Machine {
 
     @Override
     public void update() {
-
-    }
-
-    @Override
-    protected Product workOnProduct(Product product) {
-        return null;
+        if (productsForWork.isEmpty() || !state.canWork()){
+            nextLineWorker.update();
+        } else {
+            for (int i = 0; i < Math.min(productPerTact,productsForWork.size()); i++) {
+                Product product = productsForWork.get(0);
+                //TODO - kontrolovanie
+            }
+        }
     }
 
     public int getControlAmount() {

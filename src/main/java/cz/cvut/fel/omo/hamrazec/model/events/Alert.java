@@ -15,4 +15,6 @@ public class Alert extends Event {
         this.priority = priority;
     }
 
+
+
 }

@@ -9,11 +9,6 @@ public class LineRobot extends Machine {
         super(serialNumber, yearOfManufacture, productPerTact);
     }
 
-    @Override
-    protected Product workOnProduct(Product product) {
-        return null;
-    }
-
 
     @Override
     public void accept(VisitorDirector visitor) {

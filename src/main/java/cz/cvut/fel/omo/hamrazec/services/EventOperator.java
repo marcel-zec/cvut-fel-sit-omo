@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.events.Alert;
 import cz.cvut.fel.omo.hamrazec.model.events.EndRepair;
 import cz.cvut.fel.omo.hamrazec.model.events.Event;
+import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ public class EventOperator implements Observer {
     private List<Alert> alertList = new ArrayList<>();
     private Alert alertPrioritiest = null;
     private boolean wasPriority = false;
-    private Repairman repairman;
 
 
     private EventOperator() {
@@ -33,7 +33,6 @@ public class EventOperator implements Observer {
 
 
     private void processAlert(Alert event){
-
         if (alertList.size() != 0 && !wasPriority){
             setAlertPrioritiest();
         }
@@ -41,19 +40,15 @@ public class EventOperator implements Observer {
     }
 
     private void goRepair(Alert alert){
-
-        repairman = repairPool.getRepairman();
+        Repairman repairman = repairPool.getRepairman();
         if ( repairman != null)  {
-            repairman.repair(alert.getSender());
-            repairman = null;
-            return;
-        }
-        else {
+            repairman.repair((Machine) alert.getSender());
+        } else {
             alertList.add(alert);
         }
     }
 
-    private void endRepair (EndRepair event ){
+    private void endRepair (EndRepair event){
 
         if (alertList.size() != 0){
             if (!wasPriority) {
@@ -72,7 +67,6 @@ public class EventOperator implements Observer {
     }
 
     private void setAlertPrioritiest(){
-
         if (alertList.size() > 0) {
             for (Alert alert : alertList) {
                 if (alertPrioritiest == null) alertPrioritiest = alert;
@@ -83,7 +77,6 @@ public class EventOperator implements Observer {
 
     @Override
     public void update(Event event) {
-
         if (event.getClass() == Alert.class) {
             processAlert((Alert) event);
         }
