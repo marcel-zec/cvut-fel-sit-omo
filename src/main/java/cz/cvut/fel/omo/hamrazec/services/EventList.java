@@ -2,7 +2,11 @@ package cz.cvut.fel.omo.hamrazec.services;
 
 import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.model.events.Alert;
+import cz.cvut.fel.omo.hamrazec.model.events.EndRepair;
 import cz.cvut.fel.omo.hamrazec.model.events.Event;
+import cz.cvut.fel.omo.hamrazec.model.events.StartRepair;
+import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
+import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +38,21 @@ public class EventList implements Subject{
 
     public void receive(Event event){
         if (event.getClass() == Alert.class){
-            LOG.warning("Machine with serial number ");
+            Machine machine = (Machine) event.getSender();
+            LOG.warning("Machine with serial number " + machine.getSerialNumber() +
+                    " in production line with priority " + machine.getProductionLine().getPriority() + " is broken.");
+        } else if(event.getClass() == EndRepair.class){
+            EndRepair endRepairEvent = (EndRepair) event;
+            Machine machine = (Machine) endRepairEvent.getRepaired();
+            Repairman repairman = (Repairman) event.getSender();
+            LOG.warning("Repairing machine with serial number " + machine.getSerialNumber() +
+                    " by " + repairman.getFirstName() + " " + repairman.getLastName() + " is ended.");
+        } else if(event.getClass() == StartRepair.class){
+            StartRepair endRepairEvent = (StartRepair) event;
+            Machine machine = (Machine) endRepairEvent.getRepairing();
+            Repairman repairman = (Repairman) event.getSender();
+            LOG.warning(repairman.getFirstName() + " " + repairman.getLastName()
+                    + " start repairing on machine with serial number " + machine.getSerialNumber() + ".");
         }
         eventList.add(event);
         notifyAllObservers(event);

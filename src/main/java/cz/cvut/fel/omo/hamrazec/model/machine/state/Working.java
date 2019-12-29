@@ -14,7 +14,7 @@ public class Working extends State {
 
     @Override
     public boolean canWork() {
-        if (new Random().nextInt(15) == 3) {
+        if (new Random().nextInt(50) == 3) {
             context.setState(new Broken(context));
             ProductionLine line = context.getProductionLine();
             int priority = line.getPriority();

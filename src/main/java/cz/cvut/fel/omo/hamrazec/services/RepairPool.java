@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec.services;
 
 import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepairPool {
@@ -10,6 +11,7 @@ public class RepairPool {
     private List<Repairman> repairmen;
 
     private RepairPool() {
+        repairmen = new ArrayList<>();
     }
 
     public static RepairPool getInstance() {

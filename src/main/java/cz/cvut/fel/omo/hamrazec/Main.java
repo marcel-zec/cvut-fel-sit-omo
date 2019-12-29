@@ -25,6 +25,7 @@ public class Main {
         Factory factory = Factory.getInstance();
         ProductionOperator operator = factory.getProductionOperator();
         FactoryTimer timer = FactoryTimer.getInstance();
+
         timer.timeLapse();
         DirectorIterator directorIterator = new DirectorIterator();
         Director director = new Director("Palo", "Novu", 500);
