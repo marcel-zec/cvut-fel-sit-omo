@@ -36,6 +36,7 @@ public class Factory {
         timer = FactoryTimer.getInstance();
         timer.setFactory(this);
         timer.addFactoryWorkers(productionOperator);
+        EventOperator.getInstance();
     }
 
     public static Factory getInstance() throws IOException {

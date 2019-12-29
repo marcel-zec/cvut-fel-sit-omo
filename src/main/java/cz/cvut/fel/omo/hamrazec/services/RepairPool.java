@@ -11,6 +11,7 @@ public class RepairPool {
     private List<Repairman> repairmen = new ArrayList<>();
 
     private RepairPool() {
+        repairmen = new ArrayList<>();
     }
 
     public static RepairPool getInstance() {

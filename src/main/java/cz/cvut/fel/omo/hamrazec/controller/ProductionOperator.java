@@ -6,7 +6,7 @@ import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.Visitable;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.events.StartProduction;
-import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
 import cz.cvut.fel.omo.hamrazec.services.EventList;
@@ -23,7 +23,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     private List<LineWorker> workerInUse;
     private ProductionPlan plan;
     private SeriesFactory seriesFactory;
-    private List<ProductLine> activeLines;
+    private List<ProductionLine> activeLines;
     private EventList eventList;
     private static final Logger LOG = Logger.getLogger(ProductionOperator.class.getName());
     private int tact;
@@ -137,7 +137,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     public void activateLines() {
         for (ProductionSeries series : plan.getPlan()) {
             try {
-                ProductLine line = series.build();
+                ProductionLine line = series.build();
                 activeLines.add(line);
                 LOG.info("Line was build for production series.");
                 eventList.receive(new StartProduction(this, line, series));
@@ -148,7 +148,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     }
 
     public void updateProduction() {
-        for (ProductLine line : activeLines) {
+        for (ProductionLine line : activeLines) {
             line.update();
         }
     }

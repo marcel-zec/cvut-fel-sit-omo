@@ -8,7 +8,8 @@ import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
 import cz.cvut.fel.omo.hamrazec.model.person.Worker;
-import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 
 abstract public class LineBuilder implements Builder {
     protected ProductionOperator operator;
-    protected ProductLine line;
+    protected ProductionLine line;
     protected List<LineWorker> robotList;
     protected List<LineWorker> machineList;
     protected List<LineWorker> peopleList;
@@ -75,13 +76,13 @@ abstract public class LineBuilder implements Builder {
     protected void countShareInProduction(int robotPercentage, int machinePercentage, int peoplePercentage){
         if((robotPercentage + machinePercentage + peoplePercentage) != 100) throw new BadPercentageException();
         machineShare = machinePercentage / machinesAmount;
-        robotShare = robotPercentage / robotShare;
+        robotShare = robotPercentage / robotsAmount;
         peopleShare = peoplePercentage / peopleAmount;
     }
 
     @Override
     public void createLine() {
-        line = new ProductLine();
+        line = new ProductionLine();
     }
 
     /**
@@ -158,12 +159,11 @@ abstract public class LineBuilder implements Builder {
             setControllingRobot(available.remove(0));
             //TODO - treba nastavit mnozsvto alebo sa vie dostat k nemu nejako?
             ControllingRobot robot = (ControllingRobot) controllingRobot;
-            robot.setControlAmount(line.getSeries().getAmount());
         } else throw new NotEnoughWorkers();
     }
 
     @Override
-    public ProductLine getResult() {
+    public ProductionLine getResult() {
         line.addLineWorkers(machineList);
         line.addLineWorkers(robotList);
         line.addLineWorkers(peopleList);
@@ -174,6 +174,24 @@ abstract public class LineBuilder implements Builder {
         operator.setWorkersToUse(controllingRobot);
         return line;
     }
+
+
+    @Override
+    public void setLine(){
+        LineWorker worker = line.getFirstWorker().setProductionLine(line);
+        while (true){
+            if( worker.getNextWorker() != null) worker = worker.getNextWorker().setProductionLine(line);
+            else return;
+        }
+
+    }
+
+
+    @Override
+    public void setSeries(ProductionSeries series){
+        line.setSeries(series);
+    }
+
 
     @Override
     public void cancelBuilding() {

@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.events.EndRepair;
+import cz.cvut.fel.omo.hamrazec.model.events.StartRepair;
 import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 
 public class Repairman extends Person {
@@ -14,6 +15,7 @@ public class Repairman extends Person {
 
     public void repair(Machine machine){
         machine.setRepairingBy(this);
+        eventList.receive(new StartRepair(this,machine));
     }
 
     public void endRepair(Machine machine){

@@ -7,12 +7,12 @@ import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductLine implements Visitable {
+public class ProductionLine implements Visitable {
     private ProductionSeries series;
     List<LineWorker> lineWorkers;
     LineWorker firstWorker;
 
-    public ProductLine() {
+    public ProductionLine() {
         lineWorkers = new ArrayList<>();
     }
 
@@ -28,7 +28,7 @@ public class ProductLine implements Visitable {
        return series.getPriority();
     }
 
-    public ProductLine(LineWorker firstWorker) {
+    public ProductionLine(LineWorker firstWorker) {
         this.firstWorker = firstWorker;
     }
 
@@ -36,8 +36,9 @@ public class ProductLine implements Visitable {
         return firstWorker;
     }
 
-    public void setFirstWorker(LineWorker firstWorker) {
+    public LineWorker setFirstWorker(LineWorker firstWorker) {
         this.firstWorker = firstWorker;
+        return firstWorker;
     }
 
     public void setLineWorkers(List<LineWorker> lineWorkers) {

@@ -4,7 +4,6 @@ import cz.cvut.fel.omo.hamrazec.controller.Factory;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -25,9 +24,11 @@ public class FactoryTimer {
     private TimerTask tt = new TimerTask() {
         @Override
         public void run() {
+            tact++;
             for (FactoryWorker worker: factoryWorkers) {
-                worker.updateTact(tact++);
+                worker.updateTact(tact);
             }
+            System.out.println("tack: " + tact);
             factory.update();
         }
     };

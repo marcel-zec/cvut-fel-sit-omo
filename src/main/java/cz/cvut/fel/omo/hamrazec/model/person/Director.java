@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
-import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
 
@@ -43,7 +43,7 @@ public class Director extends Person implements VisitorDirector {
     }
 
     @Override
-    public void visit(ProductLine line) {
+    public void visit(ProductionLine line) {
 
         System.out.println(line.toString());
     }

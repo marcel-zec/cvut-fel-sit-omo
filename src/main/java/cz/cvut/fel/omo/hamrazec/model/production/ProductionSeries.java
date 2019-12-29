@@ -47,13 +47,16 @@ public class ProductionSeries implements BuilderDirector, Visitable {
 
 
     @Override
-    public ProductLine build() throws CannotBuildLineException {
+    public ProductionLine build() throws CannotBuildLineException {
         try {
+            lineBuilder.createLine();
             lineBuilder.setMachines();
             lineBuilder.setRobots();
             lineBuilder.setPeople();
             lineBuilder.setControl();
             lineBuilder.setOrder();
+            lineBuilder.setSeries(this);
+            lineBuilder.setLine();
             return lineBuilder.getResult();
         } catch (NotEnoughWorkers e) {
             lineBuilder.cancelBuilding();
