@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model;
 
+import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
@@ -11,13 +12,13 @@ import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
 
 public interface VisitorDirector{
 
-    public void visit(LineMachine machine);
-    public void visit(ControllingRobot controllingRobot);
-    public void visit(Worker worker);
-    public void visit(Repairman repairman);
-    public void visit(LineRobot lineRobot);
-    public void visit(ProductLine line);
-    public void visit(ProductionSeries series);
-    public void visit(ProductionPlan plan);
-
+    void visit(LineMachine machine);
+    void visit(ControllingRobot controllingRobot);
+    void visit(Worker worker);
+    void visit(Repairman repairman);
+    void visit(LineRobot lineRobot);
+    void visit(ProductLine line);
+    void visit(ProductionSeries series);
+    void visit(ProductionPlan plan);
+    void visit(ProductionOperator productionOperator);
 }

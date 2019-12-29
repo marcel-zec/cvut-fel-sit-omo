@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.hamrazec.controller.SeriesName;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.person.Director;
+import cz.cvut.fel.omo.hamrazec.model.person.DirectorIterator;
 import cz.cvut.fel.omo.hamrazec.model.person.Worker;
 import cz.cvut.fel.omo.hamrazec.services.FactoryTimer;
 
@@ -22,16 +23,21 @@ public class Main {
         ProductionOperator operator = factory.getProductionOperator();
         FactoryTimer timer = FactoryTimer.getInstance();
         timer.timeLapse();
+        DirectorIterator directorIterator = new DirectorIterator();
+        Director director = new Director("Palo", "Novu", 500);
+
 
         initWorkers();
+        List<FactoryWorker> factoryWorkers = new ArrayList<>(workers);
         factory.setLineWorkers(workers);
+        factory.putFactoryWorkersToFactory( factoryWorkers);
         factory.putWorkersToProduction(factory.getLineWorkers());
         operator.addSeriesToPlan(200, SeriesName.SeriesA,1);
         operator.addSeriesToPlan(50, SeriesName.SeriesA,2);
         System.out.println(operator.getPlan());
         operator.activateLines();
-        Director director = new Director("Palo", "Novu", 500);
-        workers.get(0).accept(director);
+
+        director.startIterate(directorIterator);
 
     }
 

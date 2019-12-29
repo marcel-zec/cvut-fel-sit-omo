@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model.person;
 
+import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
@@ -57,8 +58,23 @@ public class Director extends Person implements VisitorDirector {
         System.out.println(plan.toString());
     }
 
+
+    @Override
+    public void visit(ProductionOperator productionOperator) {
+        System.out.println("Operator of production has: " + productionOperator.getWorkersInUse().size()+ " workers in production, "+
+                productionOperator.getAvailableWorkers().size()+ " avalaible workers.");
+    }
+
+
     @Override
     public void accept(VisitorDirector visitor) {
+    }
+
+    public void startIterate(DirectorIterator directorIterator){
+
+        while (directorIterator.hasNext()){
+            directorIterator.next().accept(this);
+        }
     }
 }
 

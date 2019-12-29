@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec.controller;
 
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.Visitable;
 import cz.cvut.fel.omo.hamrazec.model.person.Director;
 import cz.cvut.fel.omo.hamrazec.model.person.Inspector;
 import cz.cvut.fel.omo.hamrazec.services.EventOperator;
@@ -19,6 +20,7 @@ public class Factory {
 
     private static Factory instance;
     private Director director;
+    private List<Visitable> factoryWorkers;
     private Inspector inspector;
     private ProductionOperator productionOperator;
     private RepairPool pool;
@@ -106,6 +108,20 @@ public class Factory {
         productionOperator.addAvailableWorkers(worker);
         timer.addFactoryWorkers(worker);
     }
+
+    public void putFactoryWorkerToFactory(FactoryWorker worker){
+        factoryWorkers.add(worker);
+    }
+
+    public void putFactoryWorkersToFactory(List<FactoryWorker> workers){
+        factoryWorkers = new ArrayList<>(workers);
+    }
+
+
+    public List<Visitable> getFactoryWorkers() {
+        return factoryWorkers;
+    }
+
 
     public void update(){
         productionOperator.updateProduction();
