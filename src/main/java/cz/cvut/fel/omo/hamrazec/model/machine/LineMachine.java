@@ -11,12 +11,6 @@ public class LineMachine extends Machine {
     }
 
     @Override
-    protected Product workOnProduct(Product product) {
-        return null;
-    }
-
-
-    @Override
     public void accept(Visitor visitor) {
 
     }

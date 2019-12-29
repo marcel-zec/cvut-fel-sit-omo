@@ -118,5 +118,8 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         }
     }
 
-    protected abstract Product workOnProduct(Product product);
+    protected Product workOnProduct(Product product) {
+        product.setCompleted(product.getCompleted() + getProductionShare());
+        return product;
+    }
 }
