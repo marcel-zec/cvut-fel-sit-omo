@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.services;
 
+import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.events.Alert;
 import cz.cvut.fel.omo.hamrazec.model.events.EndRepair;
@@ -9,6 +10,7 @@ import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class EventOperator implements Observer {
 
@@ -18,6 +20,7 @@ public class EventOperator implements Observer {
     private List<Alert> alertList = new ArrayList<>();
     private Alert alertPrioritiest = null;
     private boolean wasPriority = false;
+    private static final Logger LOG = Logger.getLogger(EventList.class.getName());
 
 
     private EventOperator() {

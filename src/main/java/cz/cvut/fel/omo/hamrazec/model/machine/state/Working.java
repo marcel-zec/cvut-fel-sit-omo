@@ -4,7 +4,6 @@ import cz.cvut.fel.omo.hamrazec.model.events.Alert;
 import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 
 import java.util.Random;
-import java.util.logging.Logger;
 
 public class Working extends State {
 
