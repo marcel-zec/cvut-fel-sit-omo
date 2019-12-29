@@ -2,12 +2,13 @@ package cz.cvut.fel.omo.hamrazec.services;
 
 import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepairPool {
 
     private static RepairPool instance;
-    private List<Repairman> repairmen;
+    private List<Repairman> repairmen = new ArrayList<>();
 
     private RepairPool() {
     }
@@ -31,9 +32,9 @@ public class RepairPool {
     }
 
     public void putRepairman(Repairman repairman) {
+        if (repairmen.contains(repairman))return;
         repairmen.add(repairman);
     }
-
 
     public void setRepairmen(List<Repairman> repairmen) {
         this.repairmen = repairmen;

@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.hamrazec.services;
 import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.model.events.Alert;
 import cz.cvut.fel.omo.hamrazec.model.events.Event;
+import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -81,7 +81,6 @@ public class Factory {
         return pool;
     }
 
-
     public void setPool(RepairPool pool) {
         this.pool = pool;
     }
