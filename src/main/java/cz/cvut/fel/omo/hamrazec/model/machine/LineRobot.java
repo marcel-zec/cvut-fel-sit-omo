@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model.machine;
 
-import cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import cz.cvut.fel.omo.hamrazec.model.Visitor;
+import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class LineRobot extends Machine {
@@ -11,7 +10,13 @@ public class LineRobot extends Machine {
     }
 
     @Override
-    public void accept(Visitor visitor) {
+    protected Product workOnProduct(Product product) {
+        return null;
+    }
 
+
+    @Override
+    public void accept(VisitorDirector visitor) {
+        visitor.visit(this);
     }
 }

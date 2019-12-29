@@ -2,5 +2,5 @@ package cz.cvut.fel.omo.hamrazec.model;
 
 public interface Visitable {
 
-    void accept(Visitor visitor);
+    void accept(VisitorDirector visitor);
 }

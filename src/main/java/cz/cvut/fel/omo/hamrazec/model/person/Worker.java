@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.hamrazec.model.person;
 
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import cz.cvut.fel.omo.hamrazec.model.Visitor;
+import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class Worker extends Person implements LineWorker {
@@ -39,9 +39,16 @@ public class Worker extends Person implements LineWorker {
 
     }
 
+    @Override
+    public void accept(VisitorDirector visitor) {
+        visitor.visit(this);
+    }
+
 
     @Override
-    public void accept(Visitor visitor) {
+    public String toString() {
 
+        return "Worker: " + firstName + " " + lastName  +
+                ", wage=" + wage;
     }
 }

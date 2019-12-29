@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model.machine;
 
-import cz.cvut.fel.omo.hamrazec.model.Visitor;
+import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 public class ControllingRobot extends Machine {
@@ -29,7 +29,7 @@ public class ControllingRobot extends Machine {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        
+    public void accept(VisitorDirector visitor) {
+        visitor.visit(this);
     }
 }
