@@ -70,6 +70,11 @@ public class Director extends Person implements VisitorDirector {
     public void accept(VisitorDirector visitor) {
     }
 
+
+    /**
+     * Starting control factory by director.
+     * @param directorIterator
+     */
     public void startIterate(DirectorIterator directorIterator){
 
         while (directorIterator.hasNext()){
