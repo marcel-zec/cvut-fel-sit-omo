@@ -3,20 +3,22 @@ package cz.cvut.fel.omo.hamrazec.model.person;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 
-import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Worker extends Person implements LineWorker {
     public Worker(String firstname, String lastname, int wage) {
         super(firstname, lastname, wage);
+        this.productsForWork = new ArrayList<>();
     }
 
     private List<Product> productsForWork;
     private int productPerTact;
     private int productionShare;
     private LineWorker nextLineWorker;
+    private ProductionLine productionLine;
 
     public int getProductionShare() {
         return productionShare;
@@ -45,6 +47,12 @@ public class Worker extends Person implements LineWorker {
         }
     }
 
+    @Override
+    public LineWorker setProductionLine(ProductionLine line) {
+        this.productionLine = line;
+        return this;
+    }
+
     private Product workOnProduct(Product product) {
         product.setCompleted(product.getCompleted() + getProductionShare());
         return product;
@@ -52,22 +60,28 @@ public class Worker extends Person implements LineWorker {
 
     @Override
     public LineWorker setNextWorker(LineWorker nextWorker) {
-        return null;
+        this.nextLineWorker = nextWorker;
+        return nextWorker;
+    }
+
+    public LineWorker getNextWorker(){
+        return nextLineWorker;
     }
 
     @Override
     public LineWorker setShareInProduction(int shareInProduction) {
-        return null;
+        this.productionShare = shareInProduction;
+        return this;
     }
 
     @Override
     public int getTact() {
-        return 0;
+        return tact;
     }
 
     @Override
     public void updateTact(int tact) {
-
+        this.tact = tact;
     }
 
     @Override

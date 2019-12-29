@@ -5,7 +5,9 @@ import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.controller.SeriesName;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
+import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
 import cz.cvut.fel.omo.hamrazec.model.person.Director;
 import cz.cvut.fel.omo.hamrazec.model.person.DirectorIterator;
 import cz.cvut.fel.omo.hamrazec.model.person.Worker;
@@ -51,6 +53,11 @@ public class Main {
         workers.add(new Worker("Jan1","Novak1",200));
         workers.add(new Worker("Jan2","Novak2",200));
         workers.add(new Worker("Jan3","Novak3",200));
+        workers.add(new LineRobot(4,2002,4));
+        workers.add(new LineRobot(5,2002,4));
+        workers.add(new LineRobot(6,2002,4));
+        workers.add(new LineRobot(7,2002,4));
+        workers.add(new ControllingRobot(7,2002,4));
 
     }
 }

@@ -12,9 +12,7 @@ public class ControllingRobot extends Machine {
 
     @Override
     public void update() {
-        if (productsForWork.isEmpty() || !state.canWork()){
-            nextLineWorker.update();
-        } else {
+        if (!productsForWork.isEmpty() && state.canWork()){
             for (int i = 0; i < Math.min(productPerTact,productsForWork.size()); i++) {
                 Product product = productsForWork.get(0);
                 //TODO - kontrolovanie

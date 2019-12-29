@@ -1,10 +1,14 @@
 package cz.cvut.fel.omo.hamrazec.model;
 
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
+
 
 public interface LineWorker extends FactoryWorker{
     void forWork(Product product);
     void update();
+    LineWorker setProductionLine(ProductionLine line);
+    LineWorker getNextWorker();
 
     /**
      * Set next line worker in chain of responsibility in production line.

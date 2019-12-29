@@ -1,7 +1,5 @@
 package cz.cvut.fel.omo.hamrazec.services.builders;
 
-import cz.cvut.fel.omo.hamrazec.model.LineWorker;
-
 public class BuilderProductA extends LineBuilder {
 
     public BuilderProductA() {
@@ -9,12 +7,12 @@ public class BuilderProductA extends LineBuilder {
         this.peopleAmount = 2;
         this.robotsAmount = 3;
     }
-    
+
 
     @Override
     public void setOrder() {
         countShareInProduction(30,60,10);
-        robotList.get(0)
+        line.setFirstWorker(robotList.get(0))
                 .setShareInProduction(robotShare)
                 .setNextWorker(machineList.get(0))
                 .setShareInProduction(machineShare)
