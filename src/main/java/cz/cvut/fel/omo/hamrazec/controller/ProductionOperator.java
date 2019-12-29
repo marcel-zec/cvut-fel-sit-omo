@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.hamrazec.controller;
 import cz.cvut.fel.omo.hamrazec.exceptions.CannotBuildLineException;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.Visitable;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.events.StartProduction;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ProductionOperator implements FactoryWorker {
+public class ProductionOperator implements FactoryWorker, Visitable {
 
     private static ProductionOperator instance;
     private List<LineWorker> availableWorkers;
@@ -142,6 +143,7 @@ public class ProductionOperator implements FactoryWorker {
         }
     }
 
+
     @Override
     public int getTact() {
         return tact;
@@ -155,6 +157,6 @@ public class ProductionOperator implements FactoryWorker {
 
     @Override
     public void accept(VisitorDirector visitor) {
-
+        visitor.visit(this);
     }
 }
