@@ -18,6 +18,7 @@ public class UnderRepair extends State {
     public UnderRepair(Machine context, int repairCounter) {
         super(context);
         this.repairCounter = repairCounter;
+        this.repairTime = new Random().nextInt((7 - 3) + 1) + 3;
     }
 
     @Override

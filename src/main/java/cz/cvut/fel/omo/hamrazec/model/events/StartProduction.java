@@ -14,18 +14,15 @@ public class StartProduction extends Event{
         this.line = line;
         this.series = series;
         this.tact = sender.getTact();
-
     }
 
 
     public ProductLine getLine() {
-
         return line;
     }
 
 
     public ProductionSeries getSeries() {
-
         return series;
     }
 }

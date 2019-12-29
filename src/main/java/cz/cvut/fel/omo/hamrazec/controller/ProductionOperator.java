@@ -81,21 +81,25 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     public void setWorkersToUse(List<LineWorker> workers) {
         availableWorkers.removeAll(workers);
         workerInUse.addAll(workers);
+        LOG.info(workers.size() + " workers set to work.");
     }
 
     public void setWorkersToUse(LineWorker worker) {
         availableWorkers.remove(worker);
         workerInUse.add(worker);
+        LOG.info("Worker set to work.");
     }
 
     public void setWorkersToAvailable(List<LineWorker> workers) {
         workerInUse.removeAll(workers);
         availableWorkers.addAll(workers);
+        LOG.info(workers.size() + " workers are available for work.");
     }
 
     public void setWorkersToAvailable(LineWorker worker) {
         workerInUse.remove(worker);
         availableWorkers.add(worker);
+        LOG.info("Worker is available for work.");
     }
 
 
@@ -113,12 +117,18 @@ public class ProductionOperator implements FactoryWorker, Visitable {
         switch (name) {
             case SeriesA:
                 plan.addSeries(seriesFactory.getSeriesA(amount, priority));
+                LOG.info("Series of product A of amount " + amount + " with priority " + priority +
+                        " was added to production plan.");
                 break;
             case SeriesB:
                 plan.addSeries(seriesFactory.getSeriesB(amount, priority));
+                LOG.info("Series of product B of amount " + amount + " with priority " + priority +
+                        " was added to production plan.");
                 break;
             case SeriesC:
                 plan.addSeries(seriesFactory.getSeriesC(amount, priority));
+                LOG.info("Series of product C of amount " + amount + " with priority " + priority +
+                        " was added to production plan.");
                 break;
         }
     }

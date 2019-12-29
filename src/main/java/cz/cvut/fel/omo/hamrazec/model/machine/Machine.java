@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model.machine;
 
+import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.costs.CostStatement;
@@ -8,11 +9,13 @@ import cz.cvut.fel.omo.hamrazec.model.machine.state.State;
 import cz.cvut.fel.omo.hamrazec.model.machine.state.Working;
 import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductLine;
 import cz.cvut.fel.omo.hamrazec.services.EventList;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 abstract public class Machine implements FactoryWorker, LineWorker {
 
@@ -29,6 +32,7 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     protected State state;
     protected Repairman repairingBy;
     protected EventList eventList;
+    protected ProductLine productLine;
 
     public Machine(int serialNumber, int yearOfManufacture, int productPerTact) {
         this.serialNumber = serialNumber;
@@ -39,6 +43,14 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         this.productsForWork = new ArrayList<>();
         this.state = new Working(this);
         this.eventList = EventList.getInstance();
+    }
+
+    public ProductLine getProductLine() {
+        return productLine;
+    }
+
+    public void setProductLine(ProductLine productLine) {
+        this.productLine = productLine;
     }
 
     public Repairman getRepairingBy() {
@@ -53,6 +65,8 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         if (costStatementList == null) costStatementList = new ArrayList<>();
         return costStatementList;
     }
+
+
 
     public int getProductionShare() {
         return productionShare;
@@ -80,6 +94,10 @@ abstract public class Machine implements FactoryWorker, LineWorker {
 
     public int getSerialNumber() {
         return serialNumber;
+    }
+
+    public EventList getEventList() {
+        return eventList;
     }
 
     public int getYearOfManufacture() {
