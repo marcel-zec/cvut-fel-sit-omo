@@ -21,7 +21,7 @@ public class EventOperatorTest {
 
 
     public EventOperatorTest() {
-        workerList.add(new LineRobot(35,2000,7));
+        workerList.add(new LineRobot(2000,7));
         alert = new Alert(10, workerList.get(0));
     }
 

@@ -8,10 +8,7 @@ import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
-import cz.cvut.fel.omo.hamrazec.model.person.Director;
-import cz.cvut.fel.omo.hamrazec.model.person.DirectorIterator;
-import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
-import cz.cvut.fel.omo.hamrazec.model.person.Worker;
+import cz.cvut.fel.omo.hamrazec.model.person.*;
 import cz.cvut.fel.omo.hamrazec.services.FactoryTimer;
 
 import java.io.IOException;
@@ -29,9 +26,6 @@ public class Main {
         FactoryTimer timer = FactoryTimer.getInstance();
 
         timer.timeLapse();
-        DirectorIterator directorIterator = new DirectorIterator();
-        Director director = new Director("Palo", "Novu", 500);
-
 
         initWorkers();
         initRepairmen();
@@ -44,9 +38,10 @@ public class Main {
         operator.addSeriesToPlan(50, SeriesName.SeriesA,2);
         System.out.println(operator.getPlan());
         operator.activateLines();
+        factory.setInspector(new Inspector("Palo", "Novu", 300));
+        factory.setDirector(new Director("Palo", "Novu", 500));
 
-        director.startIterate(directorIterator);
-
+        factory.getDirector().startIterate(new DirectorIterator());
     }
 
     public static void initWorkers(){

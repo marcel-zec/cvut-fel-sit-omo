@@ -3,9 +3,7 @@ package cz.cvut.fel.omo.hamrazec.controller;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.Visitable;
-import cz.cvut.fel.omo.hamrazec.model.person.Director;
-import cz.cvut.fel.omo.hamrazec.model.person.Inspector;
-import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
+import cz.cvut.fel.omo.hamrazec.model.person.*;
 import cz.cvut.fel.omo.hamrazec.services.EventOperator;
 import cz.cvut.fel.omo.hamrazec.services.FactoryTimer;
 import cz.cvut.fel.omo.hamrazec.services.FileManager;
@@ -27,6 +25,7 @@ public class Factory {
     private List<LineWorker> lineWorkers;
     private FileManager fileManager;
     private FactoryTimer timer;
+
 
     private Factory() throws IOException {
         lineWorkers = new ArrayList<>();
@@ -127,4 +126,9 @@ public class Factory {
     public void update(){
         productionOperator.updateProduction();
     }
+
+    public void startInspection() throws IOException {
+         inspector.startIterate(new InspectorIterator());
+    }
+
 }
