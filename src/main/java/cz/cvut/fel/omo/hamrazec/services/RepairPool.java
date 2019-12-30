@@ -24,11 +24,7 @@ public class RepairPool {
     public Repairman getRepairman() {
 
         if (repairmen.size() > 0) {
-            Repairman repairman = repairmen.get(0);
-            repairmen.remove(0);
-            return repairman;
-            // myslim ze pri obycajnom Liste metoda remove vracia odstraneny prvom, takze staci asi return repairmen.remove(0);
-            // pri arrayliste to uz ale nefunguje lebo tam remove vracia boolean
+            return repairmen.remove(0);
         } else return null;
     }
 
@@ -36,8 +32,15 @@ public class RepairPool {
         repairmen.add(repairman);
     }
 
+    public void putRepairman(List<Repairman> repairmen) {
+        this.repairmen.addAll(repairmen);
+    }
 
     public void setRepairmen(List<Repairman> repairmen) {
         this.repairmen = repairmen;
+    }
+
+    public List<Repairman> getRepairmen() {
+        return repairmen;
     }
 }

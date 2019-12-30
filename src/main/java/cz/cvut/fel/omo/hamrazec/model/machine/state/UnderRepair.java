@@ -25,6 +25,7 @@ public class UnderRepair extends State {
     public boolean canWork() {
         if (context.getRepairingBy() != null){
             if (++repairCounter == repairTime) {
+                context.getRepairingBy().endRepair(context);
                 context.setState(new Working(context));
             }
         } else {

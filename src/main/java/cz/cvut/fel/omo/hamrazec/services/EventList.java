@@ -39,19 +39,18 @@ public class EventList implements Subject{
     public void receive(Event event){
         if (event.getClass() == Alert.class){
             Machine machine = (Machine) event.getSender();
-            LOG.warning("Machine with serial number " + machine.getSerialNumber() +
-                    " in production line with priority " + machine.getProductionLine().getPriority() + " is broken.");
+            LOG.warning("Machine with serial number " + machine.getSerialNumber() + " is broken.");
         } else if(event.getClass() == EndRepair.class){
             EndRepair endRepairEvent = (EndRepair) event;
             Machine machine = (Machine) endRepairEvent.getRepaired();
             Repairman repairman = (Repairman) event.getSender();
-            LOG.warning("Repairing machine with serial number " + machine.getSerialNumber() +
+            LOG.info("Repairing machine with serial number " + machine.getSerialNumber() +
                     " by " + repairman.getFirstName() + " " + repairman.getLastName() + " is ended.");
         } else if(event.getClass() == StartRepair.class){
             StartRepair endRepairEvent = (StartRepair) event;
             Machine machine = (Machine) endRepairEvent.getRepairing();
             Repairman repairman = (Repairman) event.getSender();
-            LOG.warning(repairman.getFirstName() + " " + repairman.getLastName()
+            LOG.info(repairman.getFirstName() + " " + repairman.getLastName()
                     + " start repairing on machine with serial number " + machine.getSerialNumber() + ".");
         }
         eventList.add(event);

@@ -5,12 +5,12 @@ import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.Visitable;
 import cz.cvut.fel.omo.hamrazec.model.person.Director;
 import cz.cvut.fel.omo.hamrazec.model.person.Inspector;
+import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
 import cz.cvut.fel.omo.hamrazec.services.EventOperator;
 import cz.cvut.fel.omo.hamrazec.services.FactoryTimer;
 import cz.cvut.fel.omo.hamrazec.services.FileManager;
 import cz.cvut.fel.omo.hamrazec.services.RepairPool;
 
-import javax.sound.sampled.Line;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +37,8 @@ public class Factory {
         timer.setFactory(this);
         timer.addFactoryWorkers(productionOperator);
         EventOperator.getInstance();
+        //TODO - nacitavanie opravarov
+        //TODO - nacitavanie strojov
     }
 
     public static Factory getInstance() throws IOException {
@@ -45,7 +47,6 @@ public class Factory {
         }
         return instance;
     }
-
 
     public Director getDirector() {
         return director;

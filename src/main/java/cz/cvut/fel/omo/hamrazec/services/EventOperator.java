@@ -45,8 +45,8 @@ public class EventOperator implements Observer {
     private void goRepair(Alert alert){
         Repairman repairman = repairPool.getRepairman();
         if ( repairman != null)  {
-            repairman.repair((Machine) alert.getSender());
             LOG.info(repairman.getFirstName() + " " + repairman.getLastName() + " send for repairing machine.");
+            repairman.repair((Machine) alert.getSender());
         } else {
             alertList.add(alert);
             LOG.warning("No repairman available.");
