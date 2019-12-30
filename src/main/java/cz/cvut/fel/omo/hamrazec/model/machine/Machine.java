@@ -32,6 +32,7 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
     protected Repairman repairingBy;
     protected EventList eventList;
     protected ProductionLine productionLine;
+    protected int allWorkedProductAmount;
 
     public Machine(int yearOfManufacture, int productPerTact) {
         machineCounter++;
@@ -43,6 +44,15 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
         this.productsForWork = new ArrayList<>();
         this.state = new Working(this);
         this.eventList = EventList.getInstance();
+        this.allWorkedProductAmount = 0;
+    }
+
+    public int getDepreciation() {
+        return depreciation;
+    }
+
+    protected void setDepreciation(int depreciation) {
+        this.depreciation = depreciation;
     }
 
     public ProductionLine getProductionLine() {
@@ -137,13 +147,14 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
 
     @Override
     public void update() {
+        deprecation();
+
         if (productsForWork.isEmpty() || !state.canWork()){
             nextLineWorker.update();
         } else {
             for (int i = 0; i < Math.min(productPerTact,productsForWork.size()); i++) {
-                Product product = productsForWork.get(0);
-                product = workOnProduct(product);
-                nextLineWorker.forWork(product);
+                nextLineWorker.forWork(workOnProduct(productsForWork.get(0)));
+                allWorkedProductAmount++;
             }
             nextLineWorker.update();
         }
@@ -152,5 +163,11 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
     protected Product workOnProduct(Product product) {
         product.setCompleted(product.getCompleted() + getProductionShare());
         return product;
+    }
+
+    protected void deprecation(){
+        if(allWorkedProductAmount % (productPerTact * 3) == 0){
+            depreciation++;
+        }
     }
 }
