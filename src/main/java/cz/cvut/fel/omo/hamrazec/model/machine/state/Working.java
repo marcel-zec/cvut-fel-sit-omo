@@ -16,10 +16,7 @@ public class Working extends State {
     public boolean canWork() {
         if (new Random().nextInt(50) == 3) {
             context.setState(new Broken(context));
-            ProductionLine line = context.getProductionLine();
-            int priority = line.getPriority();
-            Alert a = new Alert(priority, context);
-            context.getEventList().receive(a);
+            context.getEventList().receive(new Alert(context.getProductionLine().getPriority(), context));
             return false;
         } else {
             return true;

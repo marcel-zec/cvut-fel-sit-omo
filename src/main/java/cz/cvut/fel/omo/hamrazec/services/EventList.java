@@ -44,13 +44,13 @@ public class EventList implements Subject{
             EndRepair endRepairEvent = (EndRepair) event;
             Machine machine = (Machine) endRepairEvent.getRepaired();
             Repairman repairman = (Repairman) event.getSender();
-            LOG.warning("Repairing machine with serial number " + machine.getSerialNumber() +
+            LOG.info("Repairing machine with serial number " + machine.getSerialNumber() +
                     " by " + repairman.getFirstName() + " " + repairman.getLastName() + " is ended.");
         } else if(event.getClass() == StartRepair.class){
             StartRepair endRepairEvent = (StartRepair) event;
             Machine machine = (Machine) endRepairEvent.getRepairing();
             Repairman repairman = (Repairman) event.getSender();
-            LOG.warning(repairman.getFirstName() + " " + repairman.getLastName()
+            LOG.info(repairman.getFirstName() + " " + repairman.getLastName()
                     + " start repairing on machine with serial number " + machine.getSerialNumber() + ".");
         }
         eventList.add(event);

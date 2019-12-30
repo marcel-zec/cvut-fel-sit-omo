@@ -17,7 +17,8 @@ import java.util.Random;
 abstract public class Machine implements FactoryWorker, LineWorker {
 
     protected int tact;
-    protected int serialNumber;
+    protected static int machineCounter = 0;
+    protected final int serialNumber;
     protected int yearOfManufacture;
     protected int productionShare;
     protected int productPerTact;
@@ -31,8 +32,9 @@ abstract public class Machine implements FactoryWorker, LineWorker {
     protected EventList eventList;
     protected ProductionLine productionLine;
 
-    public Machine(int serialNumber, int yearOfManufacture, int productPerTact) {
-        this.serialNumber = serialNumber;
+    public Machine(int yearOfManufacture, int productPerTact) {
+        machineCounter++;
+        this.serialNumber = machineCounter;
         this.yearOfManufacture = yearOfManufacture;
         this.productPerTact = productPerTact;
         this.depreciation = 0;
