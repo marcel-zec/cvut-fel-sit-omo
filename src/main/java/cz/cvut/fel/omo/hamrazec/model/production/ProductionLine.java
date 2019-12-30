@@ -9,11 +9,15 @@ import java.util.List;
 
 public class ProductionLine implements Visitable {
     private ProductionSeries series;
-    List<LineWorker> lineWorkers;
-    LineWorker firstWorker;
+    private List<LineWorker> lineWorkers;
+    private LineWorker firstWorker;
+    private final int serialNumber;
+    private static int counter = 1;
 
     public ProductionLine() {
         lineWorkers = new ArrayList<>();
+        this.serialNumber = counter++;
+
     }
 
     public ProductionSeries getSeries() {
@@ -26,10 +30,6 @@ public class ProductionLine implements Visitable {
 
     public int getPriority(){
        return series.getPriority();
-    }
-
-    public ProductionLine(LineWorker firstWorker) {
-        this.firstWorker = firstWorker;
     }
 
     public LineWorker getFirstWorker() {
@@ -58,6 +58,10 @@ public class ProductionLine implements Visitable {
         firstWorker.update();
     }
 
+    public int getSerialNum() {
+        return serialNumber;
+    }
+
 
     @Override
     public void accept(VisitorDirector visitor) {
@@ -68,10 +72,10 @@ public class ProductionLine implements Visitable {
     @Override
     public String toString() {
 
-        return  "ProductLine{" +
+        return  "ProductLine{ " +
                 "series=" + series.toString() +
                 ", lineWorkers=" +  lineWorkers +
-                " and firstWorker=" + firstWorker +
+                " and firstWorker=" + firstWorker.getClass().getSimpleName() +
                 '}';
     }
 }

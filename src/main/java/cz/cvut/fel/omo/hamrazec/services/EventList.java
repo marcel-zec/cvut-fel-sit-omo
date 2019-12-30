@@ -7,7 +7,6 @@ import cz.cvut.fel.omo.hamrazec.model.events.Event;
 import cz.cvut.fel.omo.hamrazec.model.events.StartRepair;
 import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
-import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,7 @@ public class EventList implements Subject{
     public void receive(Event event){
         if (event.getClass() == Alert.class){
             Machine machine = (Machine) event.getSender();
-            LOG.warning("Machine with serial number " + machine.getSerialNumber() +
-                    " in production line with priority " + machine.getProductionLine().getPriority() + " is broken.");
+            LOG.warning("Machine with serial number " + machine.getSerialNumber() + " is broken.");
         } else if(event.getClass() == EndRepair.class){
             EndRepair endRepairEvent = (EndRepair) event;
             Machine machine = (Machine) endRepairEvent.getRepaired();

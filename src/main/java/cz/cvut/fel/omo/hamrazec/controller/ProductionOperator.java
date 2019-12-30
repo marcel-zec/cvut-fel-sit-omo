@@ -169,4 +169,9 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     public void accept(VisitorDirector visitor) {
         visitor.visit(this);
     }
+
+
+    public List<ProductionLine> getActiveLines() {
+        return activeLines;
+    }
 }
