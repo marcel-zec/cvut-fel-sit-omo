@@ -58,7 +58,7 @@ public class ProductionLine implements Visitable {
         firstWorker.update();
     }
 
-    public int getSerialNum() {
+    public int getSerialNumber() {
         return serialNumber;
     }
 

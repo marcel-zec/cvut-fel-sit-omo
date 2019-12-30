@@ -31,7 +31,6 @@ public class InspectorIterator implements Iterator {
             for (Visitable visitable : factory.getFactoryWorkers()) {
                 if (visitable.getClass() == LineMachine.class || visitable.getClass() == LineRobot.class || visitable.getClass()==ControllingRobot.class) machines.add((Machine) visitable);
             }
-
             visitableInspectors = machines.stream().sorted(Comparator.comparingInt(Machine::getDepreciation).reversed())
                     .collect(Collectors.toList());
         }
@@ -43,7 +42,7 @@ public class InspectorIterator implements Iterator {
         updateStateIterator(factory);
         if (visitableInspectors == null) return false;
         if (visitableInspectors.size() > 0){
-            return counter != visitableInspectors.size() - 1;
+            return counter != visitableInspectors.size();
         }
         return false;
     }
