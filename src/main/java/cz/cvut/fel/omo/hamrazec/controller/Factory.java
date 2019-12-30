@@ -36,7 +36,7 @@ public class Factory {
         timer = FactoryTimer.getInstance();
         timer.setFactory(this);
         timer.addFactoryWorkers(productionOperator);
-        EventOperator.getInstance();
+        EventOperator.getInstance().setProductionOperator(productionOperator);
         //TODO - nacitavanie opravarov
         //TODO - nacitavanie strojov
     }

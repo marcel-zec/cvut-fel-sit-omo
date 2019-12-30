@@ -159,6 +159,11 @@ abstract public class Machine implements FactoryWorker, LineWorker {
         }
     }
 
+    public void deprecationAfterRepair(){
+        depreciation -= 10;
+        if (depreciation < 0) depreciation = 0;
+    }
+
     protected Product workOnProduct(Product product) {
         product.setCompleted(product.getCompleted() + getProductionShare());
         return product;

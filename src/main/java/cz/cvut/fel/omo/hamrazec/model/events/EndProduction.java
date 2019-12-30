@@ -8,18 +8,20 @@ public class EndProduction extends Event {
     private ProductionLine line;
     private ProductionSeries series;
 
-
-    public ProductionLine getLine() {
-
-        return line;
-    }
-
-
     public EndProduction(FactoryWorker sender, ProductionLine line, ProductionSeries series) {
 
         this.sender = sender;
         this.line = line;
         this.series = series;
         this.tact = sender.getTact();
+    }
+
+    public ProductionLine getLine() {
+        return line;
+    }
+
+
+    public ProductionSeries getSeries() {
+        return series;
     }
 }

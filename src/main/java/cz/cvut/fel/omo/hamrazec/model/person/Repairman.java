@@ -19,6 +19,7 @@ public class Repairman extends Person {
     }
 
     public void endRepair(Machine machine){
+        machine.deprecationAfterRepair();
         machine.setRepairingBy(null);
         eventList.receive(new EndRepair(this,machine));
     }

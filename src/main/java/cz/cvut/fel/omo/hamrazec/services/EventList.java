@@ -1,12 +1,11 @@
 package cz.cvut.fel.omo.hamrazec.services;
 
 import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
-import cz.cvut.fel.omo.hamrazec.model.events.Alert;
-import cz.cvut.fel.omo.hamrazec.model.events.EndRepair;
-import cz.cvut.fel.omo.hamrazec.model.events.Event;
-import cz.cvut.fel.omo.hamrazec.model.events.StartRepair;
+import cz.cvut.fel.omo.hamrazec.model.events.*;
 import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
+import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,19 +38,24 @@ public class EventList implements Subject{
     public void receive(Event event){
         if (event.getClass() == Alert.class){
             Machine machine = (Machine) event.getSender();
-            LOG.warning("Machine with serial number " + machine.getSerialNumber() + " is broken.");
+            LOG.warning("Machine broke down. (machine serial number: " + machine.getSerialNumber() +")" );
         } else if(event.getClass() == EndRepair.class){
             EndRepair endRepairEvent = (EndRepair) event;
             Machine machine = (Machine) endRepairEvent.getRepaired();
             Repairman repairman = (Repairman) event.getSender();
-            LOG.info("Repairing machine with serial number " + machine.getSerialNumber() +
-                    " by " + repairman.getFirstName() + " " + repairman.getLastName() + " is ended.");
+            LOG.info("Repair ended. (machine serial number: " + machine.getSerialNumber() +
+                    ", repairman: " + repairman.getFirstName() + " " + repairman.getLastName() + ")");
         } else if(event.getClass() == StartRepair.class){
             StartRepair endRepairEvent = (StartRepair) event;
             Machine machine = (Machine) endRepairEvent.getRepairing();
             Repairman repairman = (Repairman) event.getSender();
-            LOG.info(repairman.getFirstName() + " " + repairman.getLastName()
-                    + " start repairing on machine with serial number " + machine.getSerialNumber() + ".");
+            LOG.info("Repair started. (repairman: " + repairman.getFirstName() + " " + repairman.getLastName()
+                    + ", machine serial number: " + machine.getSerialNumber() + ")");
+        } else if(event.getClass() == EndProduction.class){
+            EndProduction endProductionEvent = (EndProduction) event;
+            ProductionSeries series = endProductionEvent.getSeries();
+            ProductionLine line = endProductionEvent.getLine();
+            LOG.info("Production ended. (line serial number: " + line.getSerialNumber() + ")");
         }
         eventList.add(event);
         notifyAllObservers(event);

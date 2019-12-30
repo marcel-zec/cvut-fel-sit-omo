@@ -30,6 +30,7 @@ public class BuilderProductA extends LineBuilder {
                 .setShareInProduction(machineShare)
                 .setNextWorker(peopleList.get(1))
                 .setShareInProduction(peopleShare)
-                .setNextWorker(controllingRobot);
+                .setNextWorker(controllingRobot)
+                .setShareInProduction(controlAmount);
     }
 }

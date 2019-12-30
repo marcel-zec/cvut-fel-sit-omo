@@ -28,6 +28,7 @@ abstract public class LineBuilder implements Builder {
     protected int machineShare;
     protected int peopleShare;
     protected int robotShare;
+    protected int controlAmount;
 
 
     public LineBuilder() {
@@ -78,6 +79,7 @@ abstract public class LineBuilder implements Builder {
         machineShare = machinePercentage / machinesAmount;
         robotShare = robotPercentage / robotsAmount;
         peopleShare = peoplePercentage / peopleAmount;
+        controlAmount = (machinesAmount * machineShare) + (robotsAmount * robotShare) + (peopleAmount * peopleShare);
     }
 
     @Override
