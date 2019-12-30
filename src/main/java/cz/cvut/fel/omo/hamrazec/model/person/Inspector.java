@@ -24,7 +24,6 @@ public class Inspector extends Person implements VisitorInspector {
     @Override
     public void visit(ControllingRobot controllingRobot) {
         LOG.info("Deprecation in " + controllingRobot.getClass().getSimpleName() + " is: "+ controllingRobot.getDepreciation());
-
     }
 
 
