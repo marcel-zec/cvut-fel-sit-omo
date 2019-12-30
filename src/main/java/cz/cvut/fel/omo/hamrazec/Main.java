@@ -54,8 +54,8 @@ public class Main {
         workers.add(new Worker("Jan2","Novak2",200));
         workers.add(new Worker("Jan3","Novak3",200));
         workers.add(new LineRobot(2002,4));
-        workers.add(new LineRobot(2002,4));
-        workers.add(new LineRobot(2002,4));
+        workers.add(new LineRobot(2002,8));
+        workers.add(new LineRobot(2002,7));
         workers.add(new LineRobot(2002,4));
         workers.add(new ControllingRobot(2002,4));
     }

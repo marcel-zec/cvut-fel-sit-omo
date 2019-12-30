@@ -46,7 +46,7 @@ public class Director extends Person implements VisitorDirector {
 
     @Override
     public void visit(ProductionLine line) {
-        LOG.info("First worker of line " + line.getSerialNum() + " is: "+ line.getFirstWorker().getClass().getSimpleName());
+        LOG.info("First worker of line " + line.getSerialNumber() + " is: "+ line.getFirstWorker().getClass().getSimpleName());
     }
 
     @Override

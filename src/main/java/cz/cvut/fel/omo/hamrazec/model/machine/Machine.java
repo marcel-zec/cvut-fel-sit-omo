@@ -161,8 +161,8 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
     }
 
     public void deprecationAfterRepair(){
-        depreciation -= 10;
-        if (depreciation < 0) depreciation = 0;
+        if (depreciation > 85) depreciation -= 5;
+
     }
 
     protected Product workOnProduct(Product product) {
@@ -171,7 +171,7 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
     }
 
     protected void deprecation(){
-        if(allWorkedProductAmount % (productPerTact * 3) == 0){
+        if(allWorkedProductAmount > 0 && (allWorkedProductAmount % (productPerTact * 2) == 0)){
             depreciation++;
         }
     }

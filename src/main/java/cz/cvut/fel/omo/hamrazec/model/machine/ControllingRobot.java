@@ -1,6 +1,9 @@
 package cz.cvut.fel.omo.hamrazec.model.machine;
 
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
+import cz.cvut.fel.omo.hamrazec.model.VisitorInspector;
+import cz.cvut.fel.omo.hamrazec.model.events.EndProduction;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 import java.util.ArrayList;

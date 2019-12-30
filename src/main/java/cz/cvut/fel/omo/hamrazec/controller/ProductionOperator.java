@@ -139,6 +139,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
             try {
                 ProductionLine line = series.build();
                 activeLines.add(line);
+                putProductToLine(line,series);
                 LOG.info("Line was build for production series.");
                 eventList.receive(new StartProduction(this, line, series));
             } catch (CannotBuildLineException e) {
@@ -150,6 +151,12 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     public void updateProduction() {
         for (ProductionLine line : activeLines) {
             line.update();
+        }
+    }
+
+    private void putProductToLine(ProductionLine line, ProductionSeries series){
+        for (int i = 0; i < series.getAmount(); i++) {
+            line.getFirstWorker().forWork(series.getProductFactory().getProduct());
         }
     }
 
