@@ -8,7 +8,7 @@ import java.util.List;
 public class RepairPool {
 
     private static RepairPool instance;
-    private List<Repairman> repairmen;
+    private List<Repairman> repairmen = new ArrayList<>();
 
     private RepairPool() {
         repairmen = new ArrayList<>();
@@ -29,6 +29,7 @@ public class RepairPool {
     }
 
     public void putRepairman(Repairman repairman) {
+        if (repairmen.contains(repairman))return;
         repairmen.add(repairman);
     }
 
@@ -38,9 +39,5 @@ public class RepairPool {
 
     public void setRepairmen(List<Repairman> repairmen) {
         this.repairmen = repairmen;
-    }
-
-    public List<Repairman> getRepairmen() {
-        return repairmen;
     }
 }

@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec.services;
 
 import cz.cvut.fel.omo.hamrazec.controller.Factory;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import cz.cvut.fel.omo.hamrazec.model.person.InspectorIterator;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -30,6 +31,15 @@ public class FactoryTimer {
             }
             System.out.println("tack: " + tact);
             factory.update();
+
+            if (tact % 50 == 0 && tact!=0) {
+                try {
+                    factory.startInspection();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
     };
 
@@ -73,4 +83,5 @@ public class FactoryTimer {
     public void setFactory(Factory factory) {
         this.factory = factory;
     }
+
 }

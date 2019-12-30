@@ -1,8 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model.machine;
 
-import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
-import cz.cvut.fel.omo.hamrazec.model.events.EndProduction;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 import java.util.ArrayList;
@@ -56,6 +54,12 @@ public class ControllingRobot extends Machine {
 
     @Override
     public void accept(VisitorDirector visitor) {
+        visitor.visit(this);
+    }
+
+
+    @Override
+    public void accept(VisitorInspector visitor) {
         visitor.visit(this);
     }
 }
