@@ -4,11 +4,11 @@ import cz.cvut.fel.omo.hamrazec.controller.Factory;
 import cz.cvut.fel.omo.hamrazec.model.Visitable;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
-
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
-public class DirectorIterator implements cz.cvut.fel.omo.hamrazec.Iterator {
+public class DirectorIterator implements Iterator {
 
     private Factory factory = Factory.getInstance();
     private Visitable context = factory.getProductionOperator();

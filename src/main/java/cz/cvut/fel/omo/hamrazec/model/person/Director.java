@@ -9,58 +9,60 @@ import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
 
+
+import java.util.logging.Logger;
+
 public class Director extends Person implements VisitorDirector {
+    private static final Logger LOG = Logger.getLogger(Director.class.getName());
+
     public Director(String firstName, String lastName, int wage) {
         super(firstName, lastName, wage);
     }
 
     @Override
     public void visit(LineMachine machine) {
-
-        System.out.println(machine.toString());
+        LOG.info(machine.toString());
     }
 
     @Override
     public void visit(ControllingRobot controllingRobot) {
-        System.out.println("Controlling robot state is: " + controllingRobot.getState().getClass().getSimpleName());
+        LOG.info("Controlling robot state is: " + controllingRobot.getState().getClass().getSimpleName());
     }
 
     @Override
     public void visit(Worker worker) {
-        System.out.println(worker.toString());
+        LOG.info(worker.toString());
     }
 
     @Override
     public void visit(Repairman repairman) {
-
-        System.out.println(repairman.toString());
+        LOG.info(repairman.toString());
     }
 
     @Override
     public void visit(LineRobot lineRobot) {
-
-        System.out.println("Linerobot state is: " + lineRobot.getState().getClass().getSimpleName());
+        LOG.info("Linerobot state is: " + lineRobot.getState().getClass().getSimpleName());
     }
 
     @Override
     public void visit(ProductionLine line) {
-        System.out.println("First worker of line " + line.getSerialNum() + " is: "+ line.getFirstWorker().getClass().getSimpleName());
+        LOG.info("First worker of line " + line.getSerialNum() + " is: "+ line.getFirstWorker().getClass().getSimpleName());
     }
 
     @Override
     public void visit(ProductionSeries series) {
-        System.out.println("Series: " + series.toString());
+        LOG.info("Series: " + series.toString());
     }
 
     @Override
     public void visit(ProductionPlan plan) {
-        System.out.println(plan.toString());
+        LOG.info(plan.toString());
     }
 
 
     @Override
     public void visit(ProductionOperator productionOperator) {
-        System.out.println("Operator of production has: " + productionOperator.getWorkersInUse().size()+ " workers in production, "+
+        LOG.info("Operator of production has: " + productionOperator.getWorkersInUse().size()+ " workers in production, "+
                 productionOperator.getAvailableWorkers().size()+ " avalaible workers.");
     }
 

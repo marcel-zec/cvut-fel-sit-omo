@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec.model.machine;
 
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
+import cz.cvut.fel.omo.hamrazec.model.VisitableInspector;
 import cz.cvut.fel.omo.hamrazec.model.costs.CostStatement;
 import cz.cvut.fel.omo.hamrazec.model.machine.state.State;
 import cz.cvut.fel.omo.hamrazec.model.machine.state.Working;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-abstract public class Machine implements FactoryWorker, LineWorker {
+abstract public class Machine implements FactoryWorker, LineWorker, VisitableInspector {
 
     protected int tact;
     protected static int machineCounter = 0;
