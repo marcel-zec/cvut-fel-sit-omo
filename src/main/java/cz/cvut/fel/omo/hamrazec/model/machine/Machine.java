@@ -147,8 +147,6 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
 
     @Override
     public void update() {
-        deprecation();
-
         if (productsForWork.isEmpty() || !state.canWork()){
             nextLineWorker.update();
         } else {
@@ -156,13 +154,13 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
             for (int i = 0; i < workedProductInTact; i++) {
                 nextLineWorker.forWork(workOnProduct(productsForWork.get(0)));
                 allWorkedProductAmount++;
+                depreciation();
             }
-            System.out.println("Worked at " + workedProductInTact + " products. (machine)");
             nextLineWorker.update();
         }
     }
 
-    public void deprecationAfterRepair(){
+    public void depreciationAfterRepair(){
         if (depreciation > 85) depreciation -= 5;
 
     }
@@ -172,8 +170,8 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
         return product;
     }
 
-    protected void deprecation(){
-        if(allWorkedProductAmount > 0 && (allWorkedProductAmount % (productPerTact * 3) == 0)){
+    protected void depreciation(){
+        if(allWorkedProductAmount > 0 && (allWorkedProductAmount % (productPerTact * 5) == 0)){
             depreciation++;
         }
     }

@@ -57,6 +57,7 @@ public class ProductionSeries implements BuilderDirector, Visitable {
             lineBuilder.setOrder();
             lineBuilder.setSeries(this);
             lineBuilder.setLine();
+            lineBuilder.putNewProductsForProduction();
             return lineBuilder.getResult();
         } catch (NotEnoughWorkers e) {
             lineBuilder.cancelBuilding();

@@ -46,7 +46,6 @@ public class Worker extends Person implements LineWorker {
                 product = workOnProduct(product);
                 nextLineWorker.forWork(product);
             }
-            System.out.println("Worked at " + workedProductInTact + " products. (person)");
             nextLineWorker.update();
         }
     }
