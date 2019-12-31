@@ -11,7 +11,6 @@ import cz.cvut.fel.omo.hamrazec.services.RepairPool;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Factory {
@@ -116,7 +115,6 @@ public class Factory {
     public void putFactoryWorkersToFactory(List<FactoryWorker> workers){
         factoryWorkers = new ArrayList<>(workers);
     }
-
 
     public List<Visitable> getFactoryWorkers() {
         return factoryWorkers;

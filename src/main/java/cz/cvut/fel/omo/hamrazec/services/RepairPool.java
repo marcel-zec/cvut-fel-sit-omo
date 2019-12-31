@@ -8,7 +8,7 @@ import java.util.List;
 public class RepairPool {
 
     private static RepairPool instance;
-    private List<Repairman> repairmen = new ArrayList<>();
+    private List<Repairman> repairmen;
 
     private RepairPool() {
         repairmen = new ArrayList<>();

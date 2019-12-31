@@ -35,6 +35,11 @@ public class FileManager {
             int numRobots = jsonNode.get("robots").asInt();
             int numMachines = jsonNode.get("machines").asInt();
 
+            List<Repairman> repairmenList = new ArrayList<>();
+            List<Worker> workerList = new ArrayList<>();
+            repairmenList.addAll(repairmen);
+            workerList.addAll(workers);
+
 
             List<FactoryWorker> factoryWorkers = new ArrayList<>();
             List<LineWorker> lineWorkers = new ArrayList<>();
@@ -62,7 +67,7 @@ public class FileManager {
             factoryWorkers.add(controllingRobot);
 
             factory.putFactoryWorkersToFactory(factoryWorkers);
-            factory.getPool().setRepairmen(repairmen);
+            factory.getPool().setRepairmen(repairmenList);
             factory.setLineWorkers(lineWorkers);
             factory.setDirector(director);
             factory.setInspector(inspector);
@@ -70,7 +75,6 @@ public class FileManager {
         } catch (IOException e){
             System.out.println(e);
         }
-
     }
 
     public FileManager() throws IOException {
