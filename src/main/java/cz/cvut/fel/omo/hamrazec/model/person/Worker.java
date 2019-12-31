@@ -10,17 +10,22 @@ import java.util.List;
 import java.util.Random;
 
 public class Worker extends Person implements LineWorker {
-    public Worker(String firstname, String lastname, int wage, int productPerTact) {
-        super(firstname, lastname, wage);
-        this.productsForWork = new ArrayList<>();
-        this.productPerTact = productPerTact;
-    }
 
     private List<Product> productsForWork;
     private int productPerTact;
     private int productionShare;
     private LineWorker nextLineWorker;
     private ProductionLine productionLine;
+
+    public Worker() {
+        this.productsForWork = new ArrayList<>();
+    }
+
+    public Worker(String firstname, String lastname, int wage, int productPerTact) {
+        super(firstname, lastname, wage);
+        this.productsForWork = new ArrayList<>();
+        this.productPerTact = productPerTact;
+    }
 
     public int getProductionShare() {
         return productionShare;
@@ -111,5 +116,15 @@ public class Worker extends Person implements LineWorker {
 
         return "Worker: " + firstName + " " + lastName  +
                 ", wage=" + wage;
+    }
+
+
+    public int getProductPerTact() {
+        return productPerTact;
+    }
+
+
+    public void setProductPerTact(int productPerTact) {
+        this.productPerTact = productPerTact;
     }
 }

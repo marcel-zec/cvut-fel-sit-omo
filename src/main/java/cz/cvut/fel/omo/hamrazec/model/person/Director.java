@@ -15,6 +15,10 @@ import java.util.logging.Logger;
 public class Director extends Person implements VisitorDirector {
     private static final Logger LOG = Logger.getLogger(Director.class.getName());
 
+
+    public Director() {
+    }
+
     public Director(String firstName, String lastName, int wage) {
         super(firstName, lastName, wage);
     }

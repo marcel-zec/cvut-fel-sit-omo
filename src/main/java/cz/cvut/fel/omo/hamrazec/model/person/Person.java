@@ -17,6 +17,10 @@ public abstract class Person implements FactoryWorker {
     protected EventList eventList;
 
 
+    public Person() {
+    }
+
+
     public Person(String firstName, String lastName, int wage) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -60,4 +64,12 @@ public abstract class Person implements FactoryWorker {
         this.tact = tact;
     }
 
+
+    public int getWage() {
+        return wage;
+    }
+
+    public void setWage(int wage) {
+        this.wage = wage;
+    }
 }

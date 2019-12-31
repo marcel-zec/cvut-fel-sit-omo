@@ -1,9 +1,11 @@
 [{
-"firstname": "Roman",
- "lastname": "Pomajbo"
+"firstName": "Roman",
+ "lastName": "Pomajbo",
+  "wage": 250
 },
 {
-"firstname": "Lenka",
- "lastname": "Mala"
+"firstName": "Lenka",
+ "lastName": "Mala",
+ "wage": 250
 }
 ]
