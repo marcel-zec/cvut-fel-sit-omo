@@ -34,7 +34,7 @@ public class Main {
         factory.putFactoryWorkersToFactory( factoryWorkers);
         factory.putWorkersToProduction(factory.getLineWorkers());
         factory.getPool().setRepairmen(repairmen);
-        operator.addSeriesToPlan(200, SeriesName.SeriesA,1);
+        operator.addSeriesToPlan(200, SeriesName.SeriesC,1);
         operator.addSeriesToPlan(50, SeriesName.SeriesA,2);
         System.out.println(operator.getPlan());
         operator.activateLines();
