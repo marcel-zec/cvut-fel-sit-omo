@@ -13,6 +13,7 @@ public interface Builder {
     void setControl() throws NotEnoughWorkers;
     void setSeries(ProductionSeries series);
     void setLine();
+    void putNewProductsForProduction();
     void cancelBuilding();
     ProductionLine getResult();
 }

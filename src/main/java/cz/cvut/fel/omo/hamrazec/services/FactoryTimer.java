@@ -29,6 +29,7 @@ public class FactoryTimer {
             for (FactoryWorker worker: factoryWorkers) {
                 worker.updateTact(tact);
             }
+            System.out.println("---------");
             System.out.println("tack: " + tact);
             factory.update();
 
@@ -44,7 +45,7 @@ public class FactoryTimer {
     };
 
     public void timeLapse(){
-        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,1000);
+        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,2000);
     }
 
 

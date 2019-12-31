@@ -54,7 +54,6 @@ public class ProductionLine implements Visitable {
     }
 
     public void update(){
-        firstWorker.forWork(series.getProductFactory().getProduct());
         firstWorker.update();
     }
 

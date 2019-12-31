@@ -21,6 +21,7 @@ public class ControllingRobot extends Machine {
 
     @Override
     public void update() {
+        int finishedProductBeforeUpdate = finishedAmount;
         if(finishedAmount == controlAmount) {
             eventList.receive(new EndProduction(this,productionLine,productionLine.getSeries()));
             return;
@@ -30,6 +31,7 @@ public class ControllingRobot extends Machine {
                 Product product = productsForWork.get(0);
                 if (product.getCompleted() == controlAmount){
                     finishedAmount++;
+                    allWorkedProductAmount++;
                     addFinishedProduct(product);
                 }
             }

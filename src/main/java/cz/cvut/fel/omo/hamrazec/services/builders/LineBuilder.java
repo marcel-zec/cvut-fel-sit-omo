@@ -194,6 +194,13 @@ abstract public class LineBuilder implements Builder {
         line.setSeries(series);
     }
 
+    @Override
+    public void putNewProductsForProduction(){
+        for (int i = 0; i < line.getSeries().getAmount(); i++) {
+            line.getFirstWorker().forWork(line.getSeries().getProductFactory().getProduct());
+        }
+    }
+
 
     @Override
     public void cancelBuilding() {
