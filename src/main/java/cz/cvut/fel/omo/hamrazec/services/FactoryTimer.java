@@ -45,7 +45,7 @@ public class FactoryTimer {
     };
 
     public void timeLapse(){
-        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,2000);
+        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,1000);
     }
 
 

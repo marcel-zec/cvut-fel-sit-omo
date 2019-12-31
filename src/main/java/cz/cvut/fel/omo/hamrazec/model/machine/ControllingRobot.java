@@ -35,6 +35,8 @@ public class ControllingRobot extends Machine {
                     addFinishedProduct(product);
                 }
             }
+            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") count "
+                    + finishedAmount + " finished products (" + (finishedAmount - finishedProductBeforeUpdate) +" in this tact).");
         }
     }
 

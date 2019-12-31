@@ -12,7 +12,7 @@ public class BuilderProductB extends LineBuilder {
     @Override
     public void setOrder() {
         countShareInProduction(35,30,35);
-        machineList.get(0)
+        line.setFirstWorker(machineList.get(0))
                 .setShareInProduction(machineShare)
                 .setNextWorker(robotList.get(0))
                 .setShareInProduction(robotShare)
@@ -34,7 +34,8 @@ public class BuilderProductB extends LineBuilder {
                 .setShareInProduction(robotShare)
                 .setNextWorker(peopleList.get(4))
                 .setShareInProduction(peopleShare)
-                .setNextWorker(controllingRobot);
+                .setNextWorker(controllingRobot)
+                .setShareInProduction(controlAmount);
     }
 
 
