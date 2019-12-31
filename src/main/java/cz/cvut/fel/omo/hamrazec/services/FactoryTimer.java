@@ -32,7 +32,7 @@ public class FactoryTimer {
             System.out.println("tack: " + tact);
             factory.update();
 
-            if (tact % 50 == 0 && tact!=0) {
+            if (tact % 10 == 0 && tact!=0) {
                 try {
                     factory.startInspection();
                 } catch (IOException e) {

@@ -49,10 +49,10 @@ public class Main {
         workers.add(new LineMachine(2002,8));
         workers.add(new LineMachine(2002,4));
         workers.add(new LineMachine(2002,6));
-        workers.add(new Worker("Jan","Novak",200));
-        workers.add(new Worker("Jan1","Novak1",200));
-        workers.add(new Worker("Jan2","Novak2",200));
-        workers.add(new Worker("Jan3","Novak3",200));
+        workers.add(new Worker("Jan","Novak",200, 5));
+        workers.add(new Worker("Jan1","Novak1",200, 5));
+        workers.add(new Worker("Jan2","Novak2",200, 4));
+        workers.add(new Worker("Jan3","Novak3",200, 6));
         workers.add(new LineRobot(2002,4));
         workers.add(new LineRobot(2002,8));
         workers.add(new LineRobot(2002,7));

@@ -7,11 +7,13 @@ import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Worker extends Person implements LineWorker {
-    public Worker(String firstname, String lastname, int wage) {
+    public Worker(String firstname, String lastname, int wage, int productPerTact) {
         super(firstname, lastname, wage);
         this.productsForWork = new ArrayList<>();
+        this.productPerTact = productPerTact;
     }
 
     private List<Product> productsForWork;
@@ -38,13 +40,27 @@ public class Worker extends Person implements LineWorker {
         if (productsForWork.isEmpty()){
             nextLineWorker.update();
         } else {
-            for (int i = 0; i < Math.min(productPerTact,productsForWork.size()); i++) {
+            int workedProductInTact = Math.min(productPerTactCount(),productsForWork.size());
+            for (int i = 0; i < workedProductInTact; i++) {
                 Product product = productsForWork.get(0);
                 product = workOnProduct(product);
                 nextLineWorker.forWork(product);
             }
+            System.out.println("Worked at " + workedProductInTact + " products. (person)");
             nextLineWorker.update();
         }
+    }
+
+    /**
+     * Method is used for simulate amount of worked product of person.
+     * @return amountOfProductPerTack
+     */
+    private int productPerTactCount(){
+        Random random = new Random();
+        int numberToCount = random.nextInt(3);
+        int minusOrPlus = random.nextInt(2);
+        if (minusOrPlus == 0) return productPerTact + numberToCount;
+        else return productPerTact - numberToCount;
     }
 
     @Override
