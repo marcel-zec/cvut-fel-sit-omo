@@ -2,7 +2,6 @@ package cz.cvut.fel.omo.hamrazec.model.machine;
 
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.VisitorInspector;
-import cz.cvut.fel.omo.hamrazec.model.production.Product;
 
 
 public class LineMachine extends Machine {

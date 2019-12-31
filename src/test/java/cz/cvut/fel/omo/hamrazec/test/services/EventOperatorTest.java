@@ -14,10 +14,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class EventOperatorTest {
-    EventOperator eventOperator = EventOperator.getInstance();
-    EventList eventList = EventList.getInstance();
-    List<LineWorker> workerList = new ArrayList<LineWorker>();
-    Alert alert;
+    private EventOperator eventOperator = EventOperator.getInstance();
+    private EventList eventList = EventList.getInstance();
+    private List<LineWorker> workerList = new ArrayList<LineWorker>();
+    private Alert alert;
 
 
     public EventOperatorTest() {

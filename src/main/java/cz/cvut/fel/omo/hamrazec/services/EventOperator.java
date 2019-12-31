@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.services;
 
 import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
-import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.events.Alert;
 import cz.cvut.fel.omo.hamrazec.model.events.EndProduction;
 import cz.cvut.fel.omo.hamrazec.model.events.EndRepair;
@@ -70,6 +69,7 @@ public class EventOperator implements Observer {
 
         if (alertList.size() != 0){
             if (!wasPriority) {
+                setAlertPrioritiest();
                 wasPriority = true;
                 alertList.remove(alertPrioritiest);
                 goRepair(alertPrioritiest);
