@@ -1,9 +1,13 @@
 [{
-"firstname": "Zdeno",
- "lastname": "Rom"
+"firstName": "Zdeno",
+ "lastName": "Rom",
+ "wage": 200,
+ "productPerTact": 7
 },
 {
-"firstname": "Koloman",
- "lastname": "Drozd"
+"firstName": "Koloman",
+ "lastName": "Drozd",
+ "wage": 200,
+ "productPerTact": 5
 }
 ]

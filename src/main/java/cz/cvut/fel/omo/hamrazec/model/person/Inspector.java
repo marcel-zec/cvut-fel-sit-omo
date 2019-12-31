@@ -11,6 +11,10 @@ import java.util.logging.Logger;
 public class Inspector extends Person implements VisitorInspector {
     private static final Logger LOG = Logger.getLogger(Inspector.class.getName());
 
+
+    public Inspector() {
+    }
+
     public Inspector(String firstName, String lastName, int wage) {
         super(firstName, lastName, wage);
     }

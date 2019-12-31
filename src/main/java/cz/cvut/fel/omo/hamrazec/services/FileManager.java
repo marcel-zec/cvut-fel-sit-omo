@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.cvut.fel.omo.hamrazec.controller.Factory;
 import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
+import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.Visitable;
+import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
-import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
-import cz.cvut.fel.omo.hamrazec.model.person.Repairman;
-import cz.cvut.fel.omo.hamrazec.model.person.Worker;
+import cz.cvut.fel.omo.hamrazec.model.person.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,27 +29,43 @@ public class FileManager {
         try {
             List<Repairman> repairmen =  Arrays.asList(mapper.readValue(new File("src/main/resources/repairmen.txt"), Repairman[].class));
             List<Worker> workers =  Arrays.asList(mapper.readValue(new File("src/main/resources/workers.txt"), Worker[].class));
+            Director director =  mapper.readValue(new File("src/main/resources/director.txt"), Director.class);
+            Inspector inspector =  mapper.readValue(new File("src/main/resources/inspector.txt"), Inspector.class);
             JsonNode jsonNode = mapper.readTree(new File("src/main/resources/machines.txt"));
             int numRobots = jsonNode.get("robots").asInt();
             int numMachines = jsonNode.get("machines").asInt();
 
 
             List<FactoryWorker> factoryWorkers = new ArrayList<>();
+            List<LineWorker> lineWorkers = new ArrayList<>();
             factoryWorkers.addAll(workers);
             factoryWorkers.addAll(repairmen);
+            lineWorkers.addAll(workers);
 
             for (int i = 0; i < numMachines; i++) {
                 int rand = random.nextInt(20);
-                factoryWorkers.add(new LineMachine(2000,rand));
+                LineMachine lineMachine = new LineMachine(2000,rand);
+                factoryWorkers.add(lineMachine);
+                lineWorkers.add(lineMachine);
             }
 
             for (int i = 0; i < numRobots ; i++) {
                 int rand = random.nextInt(20);
-                factoryWorkers.add(new LineRobot(2010, rand) );
+                LineRobot lineRobot = new LineRobot(2010, rand);
+                factoryWorkers.add( lineRobot);
+                lineWorkers.add(lineRobot);
             }
+
+            int rand = random.nextInt(10);
+            ControllingRobot controllingRobot = new ControllingRobot(2016, rand);
+            lineWorkers.add(controllingRobot);
+            factoryWorkers.add(controllingRobot);
 
             factory.putFactoryWorkersToFactory(factoryWorkers);
             factory.getPool().setRepairmen(repairmen);
+            factory.setLineWorkers(lineWorkers);
+            factory.setDirector(director);
+            factory.setInspector(inspector);
 
         } catch (IOException e){
             System.out.println(e);

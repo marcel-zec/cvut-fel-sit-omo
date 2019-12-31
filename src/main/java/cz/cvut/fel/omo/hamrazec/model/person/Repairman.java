@@ -7,6 +7,10 @@ import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 
 public class Repairman extends Person {
 
+    public Repairman() {
+    }
+
+
     public Repairman(String firstName, String lastName, int wage) {
         super(firstName, lastName, wage);
     }
