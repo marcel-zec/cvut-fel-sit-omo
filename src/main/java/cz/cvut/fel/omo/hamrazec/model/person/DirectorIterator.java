@@ -38,8 +38,8 @@ public class DirectorIterator implements Iterator {
                 return true;
             }
         }
-        else if (factory.getFactoryWorkers().size()>0 && counter<=4) {
-            if (listNumber < factory.getFactoryWorkers().size()) {
+        else if (factory.getVisitableWorker().size()>0 && counter<=4) {
+            if (listNumber < factory.getVisitableWorker().size()) {
                 counter=4;
                 return true;
             }
@@ -85,7 +85,7 @@ public class DirectorIterator implements Iterator {
                     }
                     break;
                 case 4:
-                    List<Visitable> list = factory.getFactoryWorkers();
+                    List<Visitable> list = factory.getVisitableWorker();
                     context = list.get(listNumber);
                     listNumber++;
                     break;
