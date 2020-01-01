@@ -20,9 +20,15 @@ import java.util.Random;
 
 public class FileManager {
 
-    private ObjectMapper mapper = new ObjectMapper();
-    private Factory factory = Factory.getInstance();
-    private Random random = new Random();
+    private ObjectMapper mapper;
+    private Factory factory;
+    private Random random;
+
+    public FileManager(Factory factory) {
+        mapper = new ObjectMapper();
+        this.factory = factory;
+        random = new Random();
+    }
 
     private void loading() {
 
