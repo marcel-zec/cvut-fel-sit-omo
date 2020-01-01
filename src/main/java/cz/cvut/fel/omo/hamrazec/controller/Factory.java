@@ -72,8 +72,45 @@ public class Factory {
         return pool;
     }
 
-    public void setPool(RepairPool pool) {
-        this.pool = pool;
+    public void setRepairmen(List<Repairman> repairmen){
+        pool.setRepairmen(repairmen);
+        timer.addFactoryWorkers(new ArrayList<>(repairmen));
+    }
+
+    /**
+     * Method add repairmen to repair pool and factory worker list in factory timer.
+     * @param repairmen
+     */
+    public void addRepairmen(List<Repairman> repairmen){
+        pool.putRepairman(repairmen);
+        timer.addFactoryWorkers(new ArrayList<>(repairmen));
+    }
+
+    /**
+     * Method add repairman to repair pool and factory worker list in factory timer.
+     * @param repairman
+     */
+    public void addRepairmen(Repairman repairman){
+        pool.putRepairman(repairman);
+        timer.addFactoryWorkers(repairman);
+    }
+
+    /**
+     * Method remove repairmen from repair pool and factory worker list in factory timer.
+     * @param repairmen
+     */
+    public void removeRepairmen(List<Repairman> repairmen){
+        pool.removeRepairmen(repairmen);
+        timer.removeFactoryWorkers(new ArrayList<>(repairmen));
+    }
+
+    /**
+     * Method remove repairman from repair pool and factory worker list in factory timer.
+     * @param repairman
+     */
+    public void removeRepairmen(Repairman repairman){
+        pool.removeRepairmen(repairman);
+        timer.removeFactoryWorkers(repairman);
     }
 
     public List<LineWorker> getLineWorkers() {
@@ -87,6 +124,8 @@ public class Factory {
     public void addToLineWorkers(LineWorker lineWorker) {
         lineWorkers.add(lineWorker);
     }
+
+
 
     /**
      * Method put workers to list of available workers for production.
@@ -102,12 +141,33 @@ public class Factory {
     /**
      * Method put worker to list of available workers for production.
      * Also put worker to list of factory workers in timer for updating its time.
-     * @param workers
+     * @param worker
      */
     public void putWorkersToProduction(LineWorker worker){
         productionOperator.addAvailableWorkers(worker);
         timer.addFactoryWorkers(worker);
     }
+
+    /**
+     * Method takes worker from list of available workers for production.
+     * Also takes worker from list of factory workers in timer for updating its time.
+     * @param worker
+     */
+    public void takeWorkersFromProduction(LineWorker worker){
+        productionOperator.removeWorkers(worker);
+        timer.removeFactoryWorkers(worker);
+    }
+
+    /**
+     * Method takes workers from list of available workers for production.
+     * Also takes workers from list of factory workers in timer for updating their time.
+     * @param workers
+     */
+    public void takeWokersFromProduction(List<LineWorker> workers){
+        productionOperator.removeWorkers(workers);
+        timer.removeFactoryWorkers(new ArrayList<>(workers));
+    }
+
 
 //    public void putFactoryWorkerToFactory(FactoryWorker worker){
 ////        factoryWorkers.add(worker);

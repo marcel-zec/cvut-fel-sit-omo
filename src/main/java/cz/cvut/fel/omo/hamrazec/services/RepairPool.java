@@ -43,6 +43,14 @@ public class RepairPool {
         this.repairmen.addAll(repairmen);
     }
 
+    public void removeRepairmen(List<Repairman> repairmen){
+        repairmen.removeAll(repairmen);
+    }
+
+    public void removeRepairmen(Repairman repairman){
+        repairmen.remove(repairman);
+    }
+
     public void setRepairmen(List<Repairman> repairmen) {
         this.repairmen = repairmen;
     }

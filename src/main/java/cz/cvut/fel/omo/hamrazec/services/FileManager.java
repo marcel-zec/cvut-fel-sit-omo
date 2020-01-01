@@ -43,25 +43,24 @@ public class FileManager {
             lineWorkers.addAll(workers);
 
             for (int i = 0; i < numMachines; i++) {
-                int rand = random.nextInt(20);
+                int rand = random.nextInt((12 - 2) + 1) + 2; //nextInt(max - min + 1) + min;
                 LineMachine lineMachine = new LineMachine(2000,rand);
                 factoryWorkers.add(lineMachine);
                 lineWorkers.add(lineMachine);
             }
 
             for (int i = 0; i < numRobots ; i++) {
-                int rand = random.nextInt(20);
+                int rand = random.nextInt((12 - 2) + 1) + 2;
                 LineRobot lineRobot = new LineRobot(2010, rand);
                 factoryWorkers.add( lineRobot);
                 lineWorkers.add(lineRobot);
             }
 
-            int rand = random.nextInt(10);
+            int rand = random.nextInt((8 - 4) + 1) + 4;
             ControllingRobot controllingRobot = new ControllingRobot(2016, rand);
             lineWorkers.add(controllingRobot);
             factoryWorkers.add(controllingRobot);
 
-            factory.putFactoryWorkersToFactory(factoryWorkers);
             factory.getPool().setRepairmen(repairmen);
             factory.setLineWorkers(lineWorkers);
             factory.setDirector(director);
