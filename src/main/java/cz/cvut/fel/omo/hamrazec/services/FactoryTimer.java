@@ -56,7 +56,7 @@ public class FactoryTimer {
         return instance;
     }
 
-    public List<FactoryWorker> getFactoryWorkers() {
+    public List<FactoryWorker> getVisitableWorkers() {
         return factoryWorkers;
     }
 

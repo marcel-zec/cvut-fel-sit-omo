@@ -183,7 +183,7 @@ public class Factory {
      * They are use for visit from director.
      * @return list of visitable workers
      */
-    public List<Visitable> getVisitableWorker() {
+    public List<Visitable> getVisitableWorkers() {
         List<Visitable> visitable = new ArrayList<>(lineWorkers);
         visitable.addAll(pool.getAllRepairman());
         return visitable;

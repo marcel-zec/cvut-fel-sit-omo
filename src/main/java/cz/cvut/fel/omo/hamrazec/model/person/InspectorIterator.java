@@ -27,8 +27,8 @@ public class InspectorIterator implements Iterator {
     private void updateStateIterator(Factory factory){
         List<Machine> machines = new ArrayList<>();
 
-        if (factory.getFactoryWorkers() != null) {
-            for (Visitable visitable : factory.getFactoryWorkers()) {
+        if (factory.getVisitableWorkers() != null) {
+            for (Visitable visitable : factory.getVisitableWorkers()) {
                 if (visitable.getClass() == LineMachine.class || visitable.getClass() == LineRobot.class || visitable.getClass()==ControllingRobot.class) machines.add((Machine) visitable);
             }
             visitableInspectors = machines.stream().sorted(Comparator.comparingInt(Machine::getDepreciation).reversed())
