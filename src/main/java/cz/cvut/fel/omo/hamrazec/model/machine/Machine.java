@@ -53,6 +53,7 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
         this.state = new Working(this);
         this.eventList = EventList.getInstance();
         this.allWorkedProductAmount = 0;
+        this.costStatementList = new ArrayList<>();
     }
 
     public int getDepreciation() {
@@ -173,6 +174,7 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
                 allWorkedProductAmount++;
                 depreciation();
             }
+            costStatementList.add(new CostStatement(kwPerTack,oilPerTack,petrolPerTack,materialPerProduct,workedProductInTact,tact));
             nextLineWorker.update();
         }
     }
