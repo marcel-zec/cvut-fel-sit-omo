@@ -28,6 +28,7 @@ public class FileManager {
         mapper = new ObjectMapper();
         this.factory = factory;
         random = new Random();
+        loading();
     }
 
     private void loading() {
@@ -75,7 +76,7 @@ public class FileManager {
                 factoryWorkers.add(controllingRobot);
             }
 
-            factory.getPool().setRepairmen(repairmen);
+            factory.getPool().setRepairmen(repairmenList);
             factory.setLineWorkers(lineWorkers);
             factory.setDirector(director);
             factory.setInspector(inspector);
@@ -84,9 +85,5 @@ public class FileManager {
             System.out.println(e);
         }
 
-    }
-
-    public FileManager() throws IOException {
-        loading();
     }
 }

@@ -23,7 +23,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        FileManager fileManager = new FileManager();
         Factory factory = Factory.getInstance();
         ProductionOperator operator = factory.getProductionOperator();
         FactoryTimer timer = FactoryTimer.getInstance();
