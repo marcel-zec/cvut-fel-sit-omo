@@ -5,7 +5,6 @@ import cz.cvut.fel.omo.hamrazec.model.events.Alert;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
 import cz.cvut.fel.omo.hamrazec.services.EventList;
 import org.junit.Test;
-import org.junit.Before;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,10 +23,6 @@ public class EventListTest {
         alert = new Alert(10, workerList.get(0));
     }
 
-    @Before
-    public void init() {
-
-    }
 
     @Test
     public void getRepairman_worksCorrect(){

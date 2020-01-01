@@ -18,6 +18,7 @@ public abstract class Person implements FactoryWorker {
 
 
     public Person() {
+        this.eventList = EventList.getInstance();
     }
 
 

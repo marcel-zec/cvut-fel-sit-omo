@@ -1,4 +1,5 @@
 {
 "machines":5,
-"robots":4
+"robots":4,
+"controlRobots": 3
 }

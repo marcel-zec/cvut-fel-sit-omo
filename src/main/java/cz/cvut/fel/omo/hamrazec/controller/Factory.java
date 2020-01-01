@@ -28,7 +28,7 @@ public class Factory {
     private Factory() throws IOException {
         lineWorkers = new ArrayList<>();
         pool = RepairPool.getInstance();
-//        fileManager = new FileManager();
+        fileManager = new FileManager(this);
         productionOperator = ProductionOperator.getInstance();
         timer = FactoryTimer.getInstance();
         timer.setFactory(this);
