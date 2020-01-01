@@ -11,7 +11,6 @@ import cz.cvut.fel.omo.hamrazec.services.RepairPool;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Factory {
@@ -163,19 +162,10 @@ public class Factory {
      * Also takes workers from list of factory workers in timer for updating their time.
      * @param workers
      */
-    public void takeWokersFromProduction(List<LineWorker> workers){
+    public void takeWorkersFromProduction(List<LineWorker> workers){
         productionOperator.removeWorkers(workers);
         timer.removeFactoryWorkers(new ArrayList<>(workers));
     }
-
-
-//    public void putFactoryWorkerToFactory(FactoryWorker worker){
-////        factoryWorkers.add(worker);
-//    }
-//
-//    public void putFactoryWorkersToFactory(List<FactoryWorker> workers){
-//        factoryWorkers = new ArrayList<>(workers);
-//    }
 
 
     /**
@@ -204,6 +194,14 @@ public class Factory {
      */
     public void startInspection() throws IOException {
          inspector.startIterate(new InspectorIterator());
+    }
+
+    /**
+     * Method start director visiting elements in factory.
+     * @throws IOException
+     */
+    public void startDirectorVisit() throws IOException {
+        director.startIterate(new DirectorIterator());
     }
 
 }

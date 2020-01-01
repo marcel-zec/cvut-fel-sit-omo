@@ -38,7 +38,7 @@ public class Main {
 //        factory.setInspector(new Inspector("Palo", "Novu", 300));
 //        factory.setDirector(new Director("Palo", "Novu", 500));
 
-        factory.getDirector().startIterate(new DirectorIterator());
+//        factory.getDirector().startIterate(new DirectorIterator());
     }
 
     public static void initWorkers(){

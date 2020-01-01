@@ -41,6 +41,14 @@ public class FactoryTimer {
                 }
             }
 
+            if (tact % 8 == 0 && tact!=0) {
+                try {
+                    factory.startDirectorVisit();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
     };
 
