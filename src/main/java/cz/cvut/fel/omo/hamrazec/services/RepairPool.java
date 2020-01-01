@@ -24,8 +24,14 @@ public class RepairPool {
     public Repairman getRepairman() {
 
         if (repairmen.size() > 0) {
-            return repairmen.remove(0);
+            Repairman repairman = repairmen.get(0);
+            repairmen.remove(repairman);
+            return repairman;
         } else return null;
+    }
+
+    public List<Repairman> getAllRepairman() {
+        return repairmen;
     }
 
     public void putRepairman(Repairman repairman) {
