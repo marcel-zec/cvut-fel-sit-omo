@@ -5,6 +5,7 @@ import cz.cvut.fel.omo.hamrazec.model.events.Alert;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
 import cz.cvut.fel.omo.hamrazec.services.EventList;
 import cz.cvut.fel.omo.hamrazec.services.EventOperator;
+import cz.cvut.fel.omo.hamrazec.services.MachineGenerator;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -18,10 +19,11 @@ public class EventOperatorTest {
     private EventList eventList = EventList.getInstance();
     private List<LineWorker> workerList = new ArrayList<LineWorker>();
     private Alert alert;
+    private MachineGenerator generator;
 
 
     public EventOperatorTest() {
-        workerList.add(new LineRobot(2000,7));
+        workerList.add(generator.generateRobot());
         alert = new Alert(10, workerList.get(0));
     }
 

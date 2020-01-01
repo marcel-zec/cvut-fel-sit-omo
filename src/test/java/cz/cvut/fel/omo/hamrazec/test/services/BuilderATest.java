@@ -10,6 +10,7 @@ import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
 import cz.cvut.fel.omo.hamrazec.model.person.Worker;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
+import cz.cvut.fel.omo.hamrazec.services.MachineGenerator;
 import cz.cvut.fel.omo.hamrazec.services.SeriesFactory;
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,6 +28,7 @@ public class BuilderATest {
     private Factory factory = Factory.getInstance();
     private SeriesFactory seriesFactory = new SeriesFactory();
     private ProductionSeries productionSeries = seriesFactory.getSeriesA(200,2);
+    private MachineGenerator generator = new MachineGenerator();
 
 
     public BuilderATest() throws IOException {
@@ -44,16 +46,16 @@ public class BuilderATest {
         List<LineWorker> machineList = new ArrayList<>();
         List<LineWorker> peopleList = new ArrayList<>();
         List<LineWorker> workers = new ArrayList<>();
-        machineList.add(new LineMachine(2000, 5));
-        machineList.add(new LineMachine(2000, 7));
-        machineList.add(new LineMachine(2000, 3));
-        machineList.add(new LineMachine(2000, 9));
-        robotList.add(new LineRobot(2010, 7));
-        robotList.add(new LineRobot(2010, 11));
-        robotList.add(new LineRobot(2010, 5));
+        machineList.add(generator.generateMachine());
+        machineList.add(generator.generateMachine());
+        machineList.add(generator.generateMachine());
+        machineList.add(generator.generateMachine());
+        robotList.add(generator.generateRobot());
+        robotList.add(generator.generateRobot());
+        robotList.add(generator.generateRobot());
         peopleList.add(new Worker("Jozef", "Jano", 200, 3));
         peopleList.add(new Worker("Jozef", "Judas", 200, 5));
-        ControllingRobot controllingRobot = new ControllingRobot(2018, 14);
+        ControllingRobot controllingRobot = generator.generateControlRobot();
 
         workers.addAll(robotList);
         workers.addAll(machineList);

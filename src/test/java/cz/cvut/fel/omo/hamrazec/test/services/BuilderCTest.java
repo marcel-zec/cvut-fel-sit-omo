@@ -9,6 +9,7 @@ import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
 import cz.cvut.fel.omo.hamrazec.model.person.Worker;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
+import cz.cvut.fel.omo.hamrazec.services.MachineGenerator;
 import cz.cvut.fel.omo.hamrazec.services.SeriesFactory;
 import org.junit.Before;
 import org.junit.Rule;
@@ -26,6 +27,7 @@ public class BuilderCTest {
     private Factory factory = Factory.getInstance();
     private SeriesFactory seriesFactory = new SeriesFactory();
     private ProductionSeries productionSeries = seriesFactory.getSeriesC(400,3);
+    private MachineGenerator generator = new MachineGenerator();
 
 
     public BuilderCTest() throws IOException {
@@ -41,12 +43,12 @@ public class BuilderCTest {
         List<LineWorker> machineList = new ArrayList<>();
         List<LineWorker> peopleList = new ArrayList<>();
         List<LineWorker> workers = new ArrayList<>();
-        machineList.add(new LineMachine(2000, 5));
-        machineList.add(new LineMachine(2000, 7));
-        robotList.add(new LineRobot(2010, 7));
-        robotList.add(new LineRobot(2010, 11));
+        machineList.add(generator.generateMachine());
+        machineList.add(generator.generateMachine());
+        robotList.add(generator.generateRobot());
+        robotList.add(generator.generateRobot());
         peopleList.add(new Worker("Jan", "Bolo", 200, 8));
-        ControllingRobot controllingRobot = new ControllingRobot(2018, 14);
+        ControllingRobot controllingRobot = generator.generateControlRobot();
 
         workers.addAll(robotList);
         workers.addAll(machineList);
