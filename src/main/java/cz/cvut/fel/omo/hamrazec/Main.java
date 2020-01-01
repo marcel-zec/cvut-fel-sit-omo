@@ -41,10 +41,11 @@ public class Main {
         operator.addSeriesToPlan(50, SeriesName.SeriesC,2);
         System.out.println(operator.getPlan());
         operator.activateLines();
+
 //        factory.setInspector(new Inspector("Palo", "Novu", 300));
 //        factory.setDirector(new Director("Palo", "Novu", 500));
 
-//        factory.getDirector().startIterate(new DirectorIterator());
+        factory.getDirector().startIterate(new DirectorIterator());
     }
 
     public static void initWorkers(){

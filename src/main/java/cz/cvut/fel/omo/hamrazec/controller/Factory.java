@@ -22,21 +22,17 @@ public class Factory {
     private ProductionOperator productionOperator;
     private RepairPool pool;
     private List<LineWorker> lineWorkers;
-    private FileManager fileManager;
     private FactoryTimer timer;
 
 
     private Factory() throws IOException {
         lineWorkers = new ArrayList<>();
         pool = RepairPool.getInstance();
-//        fileManager = new FileManager();
         productionOperator = ProductionOperator.getInstance();
         timer = FactoryTimer.getInstance();
         timer.setFactory(this);
         timer.addFactoryWorkers(productionOperator);
         EventOperator.getInstance().setProductionOperator(productionOperator);
-        //TODO - nacitavanie opravarov
-        //TODO - nacitavanie strojov
     }
 
     public static Factory getInstance() throws IOException {

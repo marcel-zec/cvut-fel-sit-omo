@@ -34,6 +34,7 @@ public class FileManager {
             JsonNode jsonNode = mapper.readTree(new File("src/main/resources/machines.txt"));
             int numRobots = jsonNode.get("robots").asInt();
             int numMachines = jsonNode.get("machines").asInt();
+            int numControllingRobots = jsonNode.get("controlRobots").asInt();
 
             List<Repairman> repairmenList = new ArrayList<>();
             List<Worker> workerList = new ArrayList<>();
@@ -61,10 +62,12 @@ public class FileManager {
                 lineWorkers.add(lineRobot);
             }
 
-            int rand = random.nextInt(10);
-            ControllingRobot controllingRobot = new ControllingRobot(2016, rand);
-            lineWorkers.add(controllingRobot);
-            factoryWorkers.add(controllingRobot);
+            for (int i = 0; i < numControllingRobots ; i++) {
+                int rand = random.nextInt(15);
+                ControllingRobot controllingRobot = new ControllingRobot(2017, rand);
+                lineWorkers.add(controllingRobot);
+                factoryWorkers.add(controllingRobot);
+            }
 
             factory.putFactoryWorkersToFactory(factoryWorkers);
             factory.getPool().setRepairmen(repairmenList);
