@@ -3,14 +3,9 @@ package cz.cvut.fel.omo.hamrazec;
 import cz.cvut.fel.omo.hamrazec.controller.Factory;
 import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.controller.SeriesName;
-import cz.cvut.fel.omo.hamrazec.model.FactoryWorker;
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
-import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
-import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
-import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
 import cz.cvut.fel.omo.hamrazec.model.person.*;
 import cz.cvut.fel.omo.hamrazec.services.FactoryTimer;
-import cz.cvut.fel.omo.hamrazec.services.FileManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,9 +31,8 @@ public class Main {
 //        factory.putFactoryWorkersToFactory( factoryWorkers);
         factory.putWorkersToProduction(factory.getLineWorkers());
 //        factory.getPool().setRepairmen(repairmen);
-        operator.addSeriesToPlan(200, SeriesName.SeriesC,1);
-        operator.addSeriesToPlan(50, SeriesName.SeriesC,2);
-        System.out.println(operator.getPlan());
+        operator.addSeriesToPlan(100, SeriesName.SeriesC,1);
+        //operator.addSeriesToPlan(50, SeriesName.SeriesC,2);
         operator.activateLines();
 
 //        factory.setInspector(new Inspector("Palo", "Novu", 300));

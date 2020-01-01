@@ -82,9 +82,12 @@ public class Director extends Person implements VisitorDirector {
      */
     public void startIterate(DirectorIterator directorIterator){
 
+        System.out.println("______________________________");
+        System.out.println("\"I will check how it works in my factory.\"\n - "+ firstName + " " + lastName +", director");
         while (directorIterator.hasNext()){
             directorIterator.next().accept(this);
         }
+        System.out.println("______________________________");
     }
 }
 

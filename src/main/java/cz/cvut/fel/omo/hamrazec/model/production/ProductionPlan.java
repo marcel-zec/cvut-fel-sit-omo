@@ -38,6 +38,14 @@ public class ProductionPlan implements Visitable {
         plan.add(series);
     }
 
+    public void addEndedSeries(ProductionSeries series){
+        endedSeries.add(series);
+    }
+
+    public void removeSeries(ProductionSeries series){
+        plan.remove(series);
+    };
+
     @Override
     public String toString() {
         return "Production plan [" + plan.size() + " planned series. " + endedSeries.size() + " ended series.] \n" + plan;

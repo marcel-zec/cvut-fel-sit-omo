@@ -21,27 +21,29 @@ public class Inspector extends Person implements VisitorInspector {
 
     @Override
     public void visit(LineRobot lineRobot) {
-        LOG.info("Deprecation in " + lineRobot.getClass().getSimpleName() + " is: "+ lineRobot.getDepreciation());
+        LOG.info("Deprecation in " + lineRobot.getClass().getSimpleName() + "(serial number: " + lineRobot.getSerialNumber() + ")" + " is: " + lineRobot.getDepreciation() + "%");
     }
 
 
     @Override
     public void visit(ControllingRobot controllingRobot) {
-        LOG.info("Deprecation in " + controllingRobot.getClass().getSimpleName() + " is: "+ controllingRobot.getDepreciation());
+        LOG.info("Deprecation in " + controllingRobot.getClass().getSimpleName()  + "(serial number: " + controllingRobot.getSerialNumber() + ")" + " is: " + controllingRobot.getDepreciation() + "%");
     }
 
 
     @Override
     public void visit(LineMachine machine) {
-        LOG.info("Deprecation in " + machine.getClass().getSimpleName() + " is: "+ machine.getDepreciation());
+        LOG.info("Deprecation in " + machine.getClass().getSimpleName()  + "(serial number: " + machine.getSerialNumber() + ")" + " is: " + machine.getDepreciation() + "%");
 
     }
 
-    public void startIterate(InspectorIterator inspectorIterator){
-
-        while (inspectorIterator.hasNext()){
+    public void startIterate(InspectorIterator inspectorIterator) {
+        System.out.println("______________________________");
+        System.out.println("\"It is time for inspection.\"\n - "+ firstName + " " + lastName +", inspector");
+        while (inspectorIterator.hasNext()) {
             inspectorIterator.next().accept(this);
         }
+        System.out.println("______________________________");
     }
 
 

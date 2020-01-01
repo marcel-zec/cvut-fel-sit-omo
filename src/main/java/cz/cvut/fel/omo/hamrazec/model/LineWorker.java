@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 
 public interface LineWorker extends FactoryWorker{
     void forWork(Product product);
+    void emptyForWorkList();
     void update();
     LineWorker setProductionLine(ProductionLine line);
     LineWorker getNextWorker();

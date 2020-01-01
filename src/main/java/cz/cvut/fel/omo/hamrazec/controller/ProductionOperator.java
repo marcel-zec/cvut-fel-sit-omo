@@ -24,6 +24,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     private ProductionPlan plan;
     private SeriesFactory seriesFactory;
     private List<ProductionLine> activeLines;
+    private List<ProductionLine> linesForEnded;
     private EventList eventList;
     private static final Logger LOG = Logger.getLogger(ProductionOperator.class.getName());
     private int tact;
@@ -33,6 +34,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
         this.workerInUse = new ArrayList<>();
         this.plan = new ProductionPlan();
         this.activeLines = new ArrayList<>();
+        this.linesForEnded = new ArrayList<>();
         this.seriesFactory = new SeriesFactory();
         this.eventList = EventList.getInstance();
     }
@@ -133,30 +135,39 @@ public class ProductionOperator implements FactoryWorker, Visitable {
         }
     }
 
+    public void endProduction(ProductionLine line){
+        if(activeLines.contains(line)){
+            linesForEnded.add(line);
+            plan.addEndedSeries(line.getSeries());
+        }
+    }
+
 
     public void activateLines() {
         for (ProductionSeries series : plan.getPlan()) {
             try {
                 ProductionLine line = series.build();
                 activeLines.add(line);
-                putProductToLine(line,series);
                 LOG.info("Line was build for production series.");
                 eventList.receive(new StartProduction(this, line, series));
             } catch (CannotBuildLineException e) {
                 LOG.info("Line for production series cannot be build.");
             }
         }
-    }
-
-    public void updateProduction() {
-        for (ProductionLine line : activeLines) {
-            line.update();
+        for (ProductionLine line : activeLines){
+            plan.removeSeries(line.getSeries());
         }
     }
 
-    private void putProductToLine(ProductionLine line, ProductionSeries series){
-        for (int i = 0; i < series.getAmount(); i++) {
-            line.getFirstWorker().forWork(series.getProductFactory().getProduct());
+    public void updateProduction() {
+        if (linesForEnded.size() > 0){
+            for (ProductionLine line : linesForEnded){
+                activeLines.remove(line);
+            }
+            linesForEnded = new ArrayList<>();
+        }
+        for (ProductionLine line : activeLines) {
+            line.update();
         }
     }
 

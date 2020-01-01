@@ -204,6 +204,7 @@ abstract public class LineBuilder implements Builder {
 
     @Override
     public void cancelBuilding() {
+        line.getFirstWorker().emptyForWorkList();
         if (machineList != null) machineList = null;
         if (peopleList != null) peopleList = null;
         if (robotList != null) robotList = null;

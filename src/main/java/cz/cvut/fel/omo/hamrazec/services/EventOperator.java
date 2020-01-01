@@ -51,7 +51,7 @@ public class EventOperator implements Observer {
     }
 
     private void processEndProduction(EndProduction event){
-        //TODO - endprodaction
+        productionOperator.endProduction(event.getLine());
     }
 
     private void goRepair(Alert alert){

@@ -22,22 +22,32 @@ public class ControllingRobot extends Machine {
     @Override
     public void update() {
         int finishedProductBeforeUpdate = finishedAmount;
-        if(finishedAmount == controlAmount) {
+        if(finishedAmount == productionLine.getSeries().getAmount()) {
+            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") count "
+                    + finishedAmount + " finished products.");
             eventList.receive(new EndProduction(this,productionLine,productionLine.getSeries()));
             return;
         }
         if (!productsForWork.isEmpty() && state.canWork()){
-            for (int i = 0; i < Math.min(productPerTact,productsForWork.size()); i++) {
+            int size = productsForWork.size();
+            for (int i = 0; i < Math.min(productPerTact,size); i++) {
                 Product product = productsForWork.get(0);
+                productsForWork.remove(product);
                 if (product.getCompleted() == controlAmount){
                     finishedAmount++;
                     allWorkedProductAmount++;
                     addFinishedProduct(product);
                 }
+                depreciation();
+
             }
             System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") count "
                     + finishedAmount + " finished products (" + (finishedAmount - finishedProductBeforeUpdate) +" in this tact).");
+        } else {
+            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") count "
+                    + finishedAmount + " finished products (0 in this tact).");
         }
+
     }
 
     @Override
