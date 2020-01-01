@@ -69,7 +69,7 @@ public class FileManager {
             }
 
             for (int i = 0; i < numControllingRobots ; i++) {
-                int rand = random.random.nextInt((8 - 4) + 1) + 4;;
+                int rand = random.nextInt((8 - 4) + 1) + 4;;
                 ControllingRobot controllingRobot = new ControllingRobot(2017, rand);
                 lineWorkers.add(controllingRobot);
                 factoryWorkers.add(controllingRobot);
