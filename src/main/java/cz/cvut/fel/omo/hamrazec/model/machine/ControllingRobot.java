@@ -14,8 +14,8 @@ public class ControllingRobot extends Machine {
     private int finishedAmount;
     private List<Product> finishedProducts;
 
-    public ControllingRobot(int yearOfManufacture, int productPerTact) {
-        super(yearOfManufacture, productPerTact);
+    public ControllingRobot(int yearOfManufacture, int productPerTact, double kwPerTack, double oilPerTack, double petrolPerTack, double materialPerProduct) {
+        super(yearOfManufacture, productPerTact, kwPerTack, oilPerTack, petrolPerTack, materialPerProduct);
         finishedAmount = 0;
     }
 

@@ -9,6 +9,7 @@ import cz.cvut.fel.omo.hamrazec.model.Visitable;
 import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
+import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 import cz.cvut.fel.omo.hamrazec.model.person.*;
 
 import java.io.File;
@@ -22,12 +23,12 @@ public class FileManager {
 
     private ObjectMapper mapper;
     private Factory factory;
-    private Random random;
+    private MachineGenerator generator;
 
     public FileManager(Factory factory) {
         mapper = new ObjectMapper();
         this.factory = factory;
-        random = new Random();
+        generator = new MachineGenerator();
         loading();
     }
 
@@ -56,22 +57,19 @@ public class FileManager {
             lineWorkers.addAll(workers);
 
             for (int i = 0; i < numMachines; i++) {
-                int rand = random.nextInt((12 - 2) + 1) + 2; //nextInt(max - min + 1) + min;
-                LineMachine lineMachine = new LineMachine(2000,rand);
+                LineMachine lineMachine = generator.generateMachine();
                 factoryWorkers.add(lineMachine);
                 lineWorkers.add(lineMachine);
             }
 
             for (int i = 0; i < numRobots ; i++) {
-                int rand = random.nextInt((12 - 2) + 1) + 2;
-                LineRobot lineRobot = new LineRobot(2010, rand);
+                LineRobot lineRobot = generator.generateRobot();
                 factoryWorkers.add( lineRobot);
                 lineWorkers.add(lineRobot);
             }
 
             for (int i = 0; i < numControllingRobots ; i++) {
-                int rand = random.nextInt((8 - 4) + 1) + 4;;
-                ControllingRobot controllingRobot = new ControllingRobot(2017, rand);
+                ControllingRobot controllingRobot = generator.generateControlRobot();
                 lineWorkers.add(controllingRobot);
                 factoryWorkers.add(controllingRobot);
             }

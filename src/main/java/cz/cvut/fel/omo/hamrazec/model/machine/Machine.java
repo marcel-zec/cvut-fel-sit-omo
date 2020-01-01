@@ -33,12 +33,20 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
     protected EventList eventList;
     protected ProductionLine productionLine;
     protected int allWorkedProductAmount;
+    protected double kwPerTack;
+    protected double oilPerTack;
+    protected double petrolPerTack;
+    protected double materialPerProduct;
 
-    public Machine(int yearOfManufacture, int productPerTact) {
+    public Machine(int yearOfManufacture, int productPerTact, double kwPerTack, double oilPerTack, double petrolPerTack, double materialPerProduct) {
         machineCounter++;
         this.serialNumber = machineCounter;
         this.yearOfManufacture = yearOfManufacture;
         this.productPerTact = productPerTact;
+        this.kwPerTack = kwPerTack;
+        this.oilPerTack = oilPerTack;
+        this.petrolPerTack = petrolPerTack;
+        this.materialPerProduct = materialPerProduct;
         this.depreciation = 0;
         this.random = new Random();
         this.productsForWork = new ArrayList<>();

@@ -6,10 +6,9 @@ import cz.cvut.fel.omo.hamrazec.model.VisitorInspector;
 
 public class LineMachine extends Machine {
 
-    public LineMachine(int yearOfManufacture, int productPerTact) {
-        super(yearOfManufacture, productPerTact);
+    public LineMachine(int yearOfManufacture, int productPerTact, double kwPerTack, double oilPerTack, double petrolPerTack, double materialPerProduct) {
+        super(yearOfManufacture, productPerTact, kwPerTack, oilPerTack, petrolPerTack, materialPerProduct);
     }
-
 
     @Override
     public void accept(VisitorDirector visitor) {

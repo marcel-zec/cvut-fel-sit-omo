@@ -139,6 +139,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
         if(activeLines.contains(line)){
             linesForEnded.add(line);
             plan.addEndedSeries(line.getSeries());
+
         }
     }
 
