@@ -64,7 +64,7 @@ linky, ak tento pracovnik nie je funkčný tak volá metodu update na ďalšom p
             notifikuje EventOperatora, ktorý začne spracovávať eventy.
 * **Factory method** - využívajú triedy FactoryProductA, FactoryProductB, FactoryProductC a implementuju interface ProductFactory.Používa sa na vytváranie nových koknkrétnych 
 produktov v linke, bez opracovania. 
-* **Abstract factory** - využíva trieda AbstractSeriesFactory. V našom prípade ide iba o jednu implementáciu v SeriesFactory pretože máme iba jednu továreň. Ak by sme mali viac tovární, dala by sa využiť pre viac implementácií.
+* **Abstract factory** - využíva trieda AbstractSeriesFactory. V našom prípade ide iba o jednu implementáciu v SeriesFactory pretože máme iba jednu továreň a vyrabame iba jeden druh vyrobkov. Ak by sme mali viac tovární alebo by sme rozlišovali serie aj inak ako podľa produktu, dala by sa využiť pre viac implementácií.
 * **Builder** - Produčná séria je builder director(om) a teda je na nej volaná metóda build ktorá vráti produkčná linku. Séria ma v sebe odkaz na builder(a), ktorý 
 implementuje metody na správne postavenie linky. V našej implementácií je časť metód builder(ov) rovnaká, preto máme abstraktnú triedu LineBuilder a následne konkrétne
 triedy doimplementúvajú konstruktor, v ktorom určujú počet pracovníkov a metódu na určenie správneho poradia.
