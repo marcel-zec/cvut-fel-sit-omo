@@ -21,6 +21,11 @@ public class UnderRepair extends State {
         this.repairTime = new Random().nextInt((7 - 3) + 1) + 3;
     }
 
+    /**
+     * Method simulate repairing when repairman is set. When the repair ends it set state to Working and call endRepair method at repairman.
+     * Change state of machine to Broken when repairman is not set at machine.
+     * @return always false
+     */
     @Override
     public boolean canWork() {
         if (context.getRepairingBy() != null){

@@ -9,6 +9,10 @@ abstract public class State {
         this.context = context;
     }
 
+    /**
+     * Method simulated time of states of machines.
+     * @return true when machine can work, false otherwise
+     */
     public abstract boolean canWork();
 
 

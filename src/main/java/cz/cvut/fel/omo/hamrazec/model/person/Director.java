@@ -77,7 +77,7 @@ public class Director extends Person implements VisitorDirector {
 
 
     /**
-     * Starting control factory by director.
+     * Starting visit of factory by director.
      * @param directorIterator
      */
     public void startIterate(DirectorIterator directorIterator){

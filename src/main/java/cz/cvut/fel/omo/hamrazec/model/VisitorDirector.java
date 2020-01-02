@@ -11,7 +11,6 @@ import cz.cvut.fel.omo.hamrazec.model.production.ProductionPlan;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionSeries;
 
 public interface VisitorDirector{
-
     void visit(LineMachine machine);
     void visit(ControllingRobot controllingRobot);
     void visit(Worker worker);

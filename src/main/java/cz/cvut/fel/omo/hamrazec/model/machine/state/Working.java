@@ -14,6 +14,10 @@ public class Working extends State {
         random = new Random();
     }
 
+    /**
+     * According to the size of depreciation of machine simulate machine damage.
+     * @return true when machine works, false when machine broke
+     */
     @Override
     public boolean canWork() {
         int deprecation = context.getDepreciation();
@@ -49,6 +53,9 @@ public class Working extends State {
         return true;
     }
 
+    /**
+     * Method set state of machine to Broken and send alert event to eventlist.
+     */
     private void brokeMachine(){
         context.setState(new Broken(context));
         context.getEventList().receive(new Alert(context.getProductionLine().getPriority(), context));

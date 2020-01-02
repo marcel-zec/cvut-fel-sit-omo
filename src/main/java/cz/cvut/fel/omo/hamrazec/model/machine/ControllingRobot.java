@@ -19,16 +19,24 @@ public class ControllingRobot extends Machine {
         finishedAmount = 0;
     }
 
+    /**
+     * At first check if amount of finished product is equals amount of series. Send EndProduction events when amount of
+     * finished products is correct. Otherwise check quality of product from line. At the end is called method for simulate
+     * depreciation of machine.
+     */
     @Override
     public void update() {
         int finishedProductBeforeUpdate = finishedAmount;
-        if(finishedAmount == productionLine.getSeries().getAmount()) {
+        boolean canWork = state.canWork();
+        //checking amount of finished product for end production
+        if(canWork && finishedAmount == productionLine.getSeries().getAmount()) {
             System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") count "
                     + finishedAmount + " finished products.");
             eventList.receive(new EndProduction(this,productionLine,productionLine.getSeries()));
             return;
         }
-        if (!productsForWork.isEmpty() && state.canWork()){
+        if (canWork && !productsForWork.isEmpty()){
+            //checking quality of products
             int size = productsForWork.size();
             for (int i = 0; i < Math.min(productPerTact,size); i++) {
                 Product product = productsForWork.get(0);

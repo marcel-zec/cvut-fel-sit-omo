@@ -5,7 +5,6 @@ import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
 
 public interface VisitorInspector {
-
     void visit(LineMachine machine);
     void visit(LineRobot lineRobot);
     void visit(ControllingRobot controllingRobot);

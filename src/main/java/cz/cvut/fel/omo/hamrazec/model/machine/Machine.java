@@ -78,6 +78,10 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
         return repairingBy;
     }
 
+    /**
+     * If machine is in state Working, it set repairman for repair.
+     * @param repairingBy
+     */
     public void setRepairingBy(Repairman repairingBy) {
         if (state.getClass() != Working.class) this.repairingBy = repairingBy;
     }
@@ -159,12 +163,20 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
         productsForWork = new ArrayList<>();
     }
 
+    /**
+     * At first check if machine will not be broken by canWork method in state Working.
+     * IF machine will broke than call update on next line worker in chain of responsibility.
+     * Otherwise it iterate through list of product for work and work on them.
+     * Then is called method for simulate depreciation of machine and generate cost statement for tact.
+     * At the end is called update method at next line worker in chain of responsibility.
+     */
     @Override
     public void update() {
         if (productsForWork.isEmpty() || !state.canWork()){
             System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") worked at 0 products.");
             nextLineWorker.update();
         } else {
+            //working on product
             int workedProductInTact = Math.min(productPerTact,productsForWork.size());
             System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") worked at " + workedProductInTact + " products.");
             for (int i = 0; i < workedProductInTact; i++) {
@@ -179,16 +191,27 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
         }
     }
 
+    /**
+     * Method for repairman to keep very depreciation machine in working state.
+     */
     public void depreciationAfterRepair(){
         if (depreciation > 85) depreciation -= 5;
 
     }
 
+    /**
+     * Method increase completeness of product by machine production share.
+     * @param product
+     * @return product
+     */
     protected Product workOnProduct(Product product) {
         product.setCompleted(product.getCompleted() + getProductionShare());
         return product;
     }
 
+    /**
+     * Simulate depreciation of machine.
+     */
     protected void depreciation(){
         if(allWorkedProductAmount > 0 && (allWorkedProductAmount % (productPerTact * 5) == 0)){
             depreciation++;

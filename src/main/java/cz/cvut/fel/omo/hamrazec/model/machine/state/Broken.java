@@ -15,6 +15,10 @@ public class Broken extends State {
         this.partiallyRepair = partiallyRepair;
     }
 
+    /**
+     * If repairman is already set to machine than change state to UnderRepair.
+     * @return always false
+     */
     @Override
     public boolean canWork() {
         if (context.getRepairingBy() != null){

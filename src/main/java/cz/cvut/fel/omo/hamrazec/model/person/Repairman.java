@@ -15,11 +15,21 @@ public class Repairman extends Person {
         super(firstName, lastName, wage);
     }
 
+    /**
+     * Method set this repairman to machine and send StartRepair event to eventlist.
+     * Reparation is simulated in UnderRepair state of machine.
+     * @param machine
+     */
     public void repair(Machine machine){
         machine.setRepairingBy(this);
         eventList.receive(new StartRepair(this,machine));
     }
 
+    /**
+     * At first is called method for decrease depreciation on machine if its very depreciation.
+     * Than is repairman unset from machine and sended EndRepair event to eventlist.
+     * @param machine
+     */
     public void endRepair(Machine machine){
         machine.depreciationAfterRepair();
         machine.setRepairingBy(null);
@@ -35,7 +45,6 @@ public class Repairman extends Person {
 
     @Override
     public String toString() {
-
         return "Repairman: " +
                 firstName + " " + lastName  +
                 ", wage=" + wage;

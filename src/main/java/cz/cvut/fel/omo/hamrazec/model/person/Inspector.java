@@ -37,6 +37,10 @@ public class Inspector extends Person implements VisitorInspector {
 
     }
 
+    /**
+     * Starting inspection of factory.
+     * @param inspectorIterator
+     */
     public void startIterate(InspectorIterator inspectorIterator) {
         System.out.println("______________________________");
         System.out.println("\"It is time for inspection.\"\n - "+ firstName + " " + lastName +", inspector");

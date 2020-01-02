@@ -17,9 +17,7 @@ public class DirectorIterator implements Iterator {
     private int listNumber = 0;
 
     public DirectorIterator() throws IOException {
-
     }
-
 
     public boolean hasNext() {
         if (first) {

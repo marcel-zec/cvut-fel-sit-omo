@@ -45,6 +45,11 @@ public class Worker extends Person implements LineWorker {
         productsForWork = new ArrayList<>();
     }
 
+    /**
+     * When worked does not have products to work on, it called update on next line worker in chain of responsibility.
+     * Otherwise worker works on product and send it to next line worker. At the end generate pay check for tact and
+     * called update on next line worker in chain of responsibility.
+     */
     @Override
     public void update() {
         if (productsForWork.isEmpty()){
@@ -64,6 +69,7 @@ public class Worker extends Person implements LineWorker {
 
     /**
      * Method is used for simulate amount of worked product of person.
+     * It simulates that person working tempo is changing during work.
      * @return amountOfProductPerTack
      */
     private int productPerTactCount(){
@@ -119,7 +125,6 @@ public class Worker extends Person implements LineWorker {
 
     @Override
     public String toString() {
-
         return "Worker: " + firstName + " " + lastName  +
                 ", wage=" + wage;
     }
