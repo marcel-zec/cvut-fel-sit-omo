@@ -43,10 +43,9 @@ public class EventOperator implements Observer {
         this.productionOperator = productionOperator;
     }
 
-
     /**
      * If repairman is not available method add to alertList else method send event to method for setting repairman for repairing
-     * @param event
+     * @param event of type Alert
      */
     private void processAlert(Alert event){
 
@@ -57,6 +56,11 @@ public class EventOperator implements Observer {
         else goRepair(event);
     }
 
+    /**
+     * Method is called when eventlist receive EndProduction event. EventOperator
+     * call method on ProductionOperator for correct ending of line.
+     * @param event of type EndProduction
+     */
     private void processEndProduction(EndProduction event){
         productionOperator.endProduction(event.getLine());
     }
@@ -64,7 +68,7 @@ public class EventOperator implements Observer {
 
     /**
      * Method get repairman from pool and send him to repair machine from alert. If repairman is not available, add alert to list.
-     * @param alert
+     * @param alert event contains machine to repair
      */
     private void goRepair(Alert alert){
         Repairman repairman = repairPool.getRepairman();
@@ -80,7 +84,7 @@ public class EventOperator implements Observer {
 
     /**
      * Method pull alert from list and push alert to goRepair method, set Alert prioritiest and find out whether was prioritiest or oldest (wasPriority)
-     * @param event
+     * @param event of type EndRepair
      */
     private void endRepair (EndRepair event){
 
@@ -114,6 +118,11 @@ public class EventOperator implements Observer {
         }
     }
 
+    /**
+     * Method called as observer method. At first find out type of event from observable subject and then call correct
+     * method for process event.
+     * @param event
+     */
     @Override
     public void update(Event event) {
         if (event.getClass() == Alert.class) {

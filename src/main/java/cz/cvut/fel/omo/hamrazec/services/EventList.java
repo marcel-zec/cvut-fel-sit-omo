@@ -35,6 +35,10 @@ public class EventList implements Subject{
         return eventList;
     }
 
+    /**
+     * At first log information about receive new event. Then add event to list and notify observers.
+     * @param event
+     */
     public void receive(Event event){
         if (event.getClass() == Alert.class){
             Machine machine = (Machine) event.getSender();
@@ -74,9 +78,12 @@ public class EventList implements Subject{
     }
 
 
+    /**
+     * Notify all observers after receive new event by calling update method on them.
+     * @param event
+     */
     @Override
     public void notifyAllObservers(Event event) {
-
         for (Observer observer: observers) {
             observer.update(event);
         }
