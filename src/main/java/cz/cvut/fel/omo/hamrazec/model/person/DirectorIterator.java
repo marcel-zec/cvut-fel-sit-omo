@@ -11,12 +11,14 @@ import java.util.List;
 public class DirectorIterator implements Iterator {
 
     private Factory factory = Factory.getInstance();
-    private Visitable context = factory.getProductionOperator();
-    private boolean first = true;
+    private Visitable context;
+    private boolean first;
     private int counter = 0;
     private int listNumber = 0;
 
     public DirectorIterator() throws IOException {
+        context = factory.getProductionOperator();
+        first= context != null;
     }
 
     public boolean hasNext() {

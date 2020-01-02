@@ -43,9 +43,16 @@ public class EventOperator implements Observer {
         this.productionOperator = productionOperator;
     }
 
+
+    /**
+     * If repairman is not available method add to alertList else method send event to method for setting repairman for repairing
+     * @param event
+     */
     private void processAlert(Alert event){
+
         if (alertList.size() != 0 && !wasPriority){
-            setAlertPrioritiest();
+            alertList.add(event);
+            LOG.warning("No repairman available.");
         }
         else goRepair(event);
     }
@@ -54,6 +61,11 @@ public class EventOperator implements Observer {
         productionOperator.endProduction(event.getLine());
     }
 
+
+    /**
+     * Method get repairman from pool and send him to repair machine from alert. If repairman is not available, add alert to list.
+     * @param alert
+     */
     private void goRepair(Alert alert){
         Repairman repairman = repairPool.getRepairman();
         if ( repairman != null)  {
@@ -65,6 +77,11 @@ public class EventOperator implements Observer {
         }
     }
 
+
+    /**
+     * Method pull alert from list and push alert to goRepair method, set Alert prioritiest and find out whether was prioritiest or oldest (wasPriority)
+     * @param event
+     */
     private void endRepair (EndRepair event){
 
         if (alertList.size() != 0){
@@ -84,6 +101,10 @@ public class EventOperator implements Observer {
 
     }
 
+
+    /**
+     * Method set Alert to prioritiest Alert from Alert list.
+     */
     private void setAlertPrioritiest(){
         if (alertList.size() > 0) {
             for (Alert alert : alertList) {
