@@ -15,7 +15,6 @@ import java.util.List;
 public class Main {
 
     public static List<LineWorker> workers = new ArrayList<>();
-    public static List<Repairman> repairmen = new ArrayList<>();
 
     public static void main(String[] args) throws IOException, SeriesNotExistException {
 
