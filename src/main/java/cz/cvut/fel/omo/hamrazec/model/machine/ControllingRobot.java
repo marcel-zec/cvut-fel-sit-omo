@@ -69,6 +69,12 @@ public class ControllingRobot extends Machine {
         this.controlAmount = controlAmount;
     }
 
+
+    public int getFinishedAmount() {
+        return finishedAmount;
+    }
+
+
     @Override
     public void accept(VisitorDirector visitor) {
         visitor.visit(this);

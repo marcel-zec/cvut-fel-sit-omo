@@ -11,7 +11,6 @@ import cz.cvut.fel.omo.hamrazec.services.RepairPool;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Factory {

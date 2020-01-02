@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec.model.person;
 
 import cz.cvut.fel.omo.hamrazec.controller.ProductionOperator;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
+import cz.cvut.fel.omo.hamrazec.model.costs.PayCheck;
 import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
@@ -19,7 +20,7 @@ public class Director extends Person implements VisitorDirector {
     public Director() {
     }
 
-    public Director(String firstName, String lastName, int wage) {
+    public Director(String firstName, String lastName, double wage) {
         super(firstName, lastName, wage);
     }
 
@@ -78,6 +79,7 @@ public class Director extends Person implements VisitorDirector {
 
     /**
      * Starting control factory by director.
+     * Add paycheck (wage) to director
      * @param directorIterator
      */
     public void startIterate(DirectorIterator directorIterator){
@@ -87,6 +89,7 @@ public class Director extends Person implements VisitorDirector {
         while (directorIterator.hasNext()){
             directorIterator.next().accept(this);
         }
+        addPayCheck(new PayCheck(tact,wage));
         System.out.println("______________________________");
     }
 }

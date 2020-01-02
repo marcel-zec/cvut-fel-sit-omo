@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.hamrazec.model.machine.state;
 
+import cz.cvut.fel.omo.hamrazec.model.costs.PayCheck;
 import cz.cvut.fel.omo.hamrazec.model.machine.Machine;
 
 import java.util.Random;
@@ -24,6 +25,7 @@ public class UnderRepair extends State {
     @Override
     public boolean canWork() {
         if (context.getRepairingBy() != null){
+            context.getRepairingBy().addPayCheck(new PayCheck(context.getRepairingBy().getTact(),context.getRepairingBy().getWage()));
             System.out.println("Repairing in progress at " + context.getClass().getSimpleName() + "(serial number:" + context.getSerialNumber() + ")");
             if (++repairCounter == repairTime) {
                 context.getRepairingBy().endRepair(context);

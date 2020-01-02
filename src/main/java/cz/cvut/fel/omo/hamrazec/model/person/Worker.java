@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec.model.person;
 
 import cz.cvut.fel.omo.hamrazec.model.LineWorker;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
+import cz.cvut.fel.omo.hamrazec.model.costs.PayCheck;
 import cz.cvut.fel.omo.hamrazec.model.production.Product;
 import cz.cvut.fel.omo.hamrazec.model.production.ProductionLine;
 
@@ -21,7 +22,7 @@ public class Worker extends Person implements LineWorker {
         this.productsForWork = new ArrayList<>();
     }
 
-    public Worker(String firstname, String lastname, int wage, int productPerTact) {
+    public Worker(String firstname, String lastname, double wage, int productPerTact) {
         super(firstname, lastname, wage);
         this.productsForWork = new ArrayList<>();
         this.productPerTact = productPerTact;
@@ -59,6 +60,14 @@ public class Worker extends Person implements LineWorker {
             }
             System.out.println(firstName + " " + lastName + " worked at " + workedProductInTact + " products.");
             nextLineWorker.update();
+
+            if (workedProductInTact > productPerTact){
+                addPayCheck(new PayCheck(tact, wage*1.05));
+            }
+            else if (workedProductInTact < productPerTact) {
+                addPayCheck(new PayCheck(tact, wage*0.95));
+            }
+            else addPayCheck(new PayCheck(tact, wage));
         }
     }
 

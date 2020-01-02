@@ -1,5 +1,5 @@
 {
     "firstName": "Zdenek",
      "lastName": "Velky",
-     "wage": 500
+     "wage": 30000
     }
