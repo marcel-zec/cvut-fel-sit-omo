@@ -6,6 +6,11 @@ import cz.cvut.fel.omo.hamrazec.model.Visitable;
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.services.builders.Builder;
 
+/**
+ * Instance of production series contains amount and of product and priority of series.
+ * Also contains line builder that it build production line suitable for this series.
+ * Last attributes reference to product factory that it return correct product for this series.
+ */
 public class ProductionSeries implements BuilderDirector, Visitable {
     private int amount;
     private Builder lineBuilder;
@@ -48,8 +53,9 @@ public class ProductionSeries implements BuilderDirector, Visitable {
 
     /**
      * Method called line builder methods to build production line.
+     * Or cancel building line when not enough workers are available.
      * @return production line
-     * @throws CannotBuildLineException
+     * @throws CannotBuildLineException when some building method failed
      */
     @Override
     public ProductionLine build() throws CannotBuildLineException {
