@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.hamrazec.model.person;
 
 import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import cz.cvut.fel.omo.hamrazec.model.VisitorInspector;
+import cz.cvut.fel.omo.hamrazec.model.costs.PayCheck;
 import cz.cvut.fel.omo.hamrazec.model.machine.ControllingRobot;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineMachine;
 import cz.cvut.fel.omo.hamrazec.model.machine.LineRobot;
@@ -15,7 +16,7 @@ public class Inspector extends Person implements VisitorInspector {
     public Inspector() {
     }
 
-    public Inspector(String firstName, String lastName, int wage) {
+    public Inspector(String firstName, String lastName, double wage) {
         super(firstName, lastName, wage);
     }
 
@@ -47,6 +48,7 @@ public class Inspector extends Person implements VisitorInspector {
         while (inspectorIterator.hasNext()) {
             inspectorIterator.next().accept(this);
         }
+        addPayCheck(new PayCheck(tact,wage));
         System.out.println("______________________________");
     }
 

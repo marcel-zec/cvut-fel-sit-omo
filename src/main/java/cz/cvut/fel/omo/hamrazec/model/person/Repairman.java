@@ -11,7 +11,7 @@ public class Repairman extends Person {
     }
 
 
-    public Repairman(String firstName, String lastName, int wage) {
+    public Repairman(String firstName, String lastName, double wage) {
         super(firstName, lastName, wage);
     }
 

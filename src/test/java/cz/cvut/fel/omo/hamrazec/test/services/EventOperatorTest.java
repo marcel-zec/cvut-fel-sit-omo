@@ -17,12 +17,13 @@ import static org.junit.Assert.assertEquals;
 public class EventOperatorTest {
     private EventOperator eventOperator = EventOperator.getInstance();
     private EventList eventList = EventList.getInstance();
-    private List<LineWorker> workerList = new ArrayList<LineWorker>();
     private Alert alert;
-    private MachineGenerator generator;
 
 
     public EventOperatorTest() {
+
+        MachineGenerator generator = new MachineGenerator();
+        List<LineWorker> workerList = new ArrayList<LineWorker>();
         workerList.add(generator.generateRobot());
         alert = new Alert(10, workerList.get(0));
     }

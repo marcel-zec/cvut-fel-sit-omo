@@ -28,7 +28,9 @@ public class BuilderCTest {
     private SeriesFactory seriesFactory = new SeriesFactory();
     private ProductionSeries productionSeries = seriesFactory.getSeriesC(400,3);
     private MachineGenerator generator = new MachineGenerator();
-
+    private List<LineWorker> workers = new ArrayList<>();
+    private ControllingRobot controllingRobot = generator.generateControlRobot();
+    private int minProduction = 0;
 
     public BuilderCTest() throws IOException {
     }
@@ -39,16 +41,15 @@ public class BuilderCTest {
     @Before
     public void init() throws IOException {
 
+        boolean first = true;
         List<LineWorker> robotList = new ArrayList<>();
         List<LineWorker> machineList = new ArrayList<>();
         List<LineWorker> peopleList = new ArrayList<>();
-        List<LineWorker> workers = new ArrayList<>();
         machineList.add(generator.generateMachine());
         machineList.add(generator.generateMachine());
         robotList.add(generator.generateRobot());
         robotList.add(generator.generateRobot());
         peopleList.add(new Worker("Jan", "Bolo", 200, 8));
-        ControllingRobot controllingRobot = generator.generateControlRobot();
 
         workers.addAll(robotList);
         workers.addAll(machineList);
@@ -56,17 +57,33 @@ public class BuilderCTest {
         workers.add(controllingRobot);
         factory.setLineWorkers(workers);
         factory.putWorkersToProduction(workers);
+
+        for (LineWorker lw: workers) {
+            if (first) {
+                minProduction = lw.getProductPerTact();
+                first = false;
+            }
+            if (lw.getProductPerTact() < minProduction) minProduction= lw.getProductPerTact();
+        }
     }
 
     @Test
-    public void getProductionSeriesFromLineC_worksCorrect() throws CannotBuildLineException {
+    public void build_enoughWorkersForBuildC_worksCorrect() throws CannotBuildLineException {
 
         ProductionLine productionLine = productionSeries.build();
         assertEquals("Line doesnt build",productionSeries,productionLine.getSeries());
     }
 
     @Test
-    public void getProductionSeriesFromLineC_noEnaughtWorkers_worksCorrect() throws CannotBuildLineException {
+    public void update_regularUpdateC_worksCorrect() throws CannotBuildLineException {
+
+        ProductionLine productionLine = productionSeries.build();
+        productionLine.update();
+        assertEquals("Line doesnt update product",minProduction,controllingRobot.getFinishedAmount());
+    }
+
+    @Test
+    public void build_noEnoughWorkersForBuildC_worksCorrect() throws CannotBuildLineException {
 
         thrown.expect(CannotBuildLineException.class);
         thrown.reportMissingExceptionWithMessage("Line was created without lineworkers");

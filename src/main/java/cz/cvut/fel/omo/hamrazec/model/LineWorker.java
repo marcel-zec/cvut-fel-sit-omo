@@ -43,4 +43,6 @@ public interface LineWorker extends FactoryWorker{
      * @return itself
      */
     LineWorker setShareInProduction(int shareInProduction);
+    int getProductPerTact();
+
 }

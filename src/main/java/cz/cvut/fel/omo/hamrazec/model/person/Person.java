@@ -12,17 +12,18 @@ public abstract class Person implements FactoryWorker {
     protected String firstName;
     protected String lastName;
     protected List<PayCheck> payCheckList;
-    protected int wage;
+    protected double wage;
     protected int tact;
     protected EventList eventList;
 
 
     public Person() {
         this.eventList = EventList.getInstance();
+        this.payCheckList =  new ArrayList<>();
     }
 
 
-    public Person(String firstName, String lastName, int wage) {
+    public Person(String firstName, String lastName, double wage) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.wage = wage;
@@ -31,7 +32,6 @@ public abstract class Person implements FactoryWorker {
 
 
     public List<PayCheck> getPayCheckList() {
-        if (payCheckList == null) payCheckList = new ArrayList<>();
         return payCheckList;
     }
 
@@ -66,11 +66,17 @@ public abstract class Person implements FactoryWorker {
     }
 
 
-    public int getWage() {
+    public double getWage() {
         return wage;
     }
 
-    public void setWage(int wage) {
+    public void setWage(double wage) {
         this.wage = wage;
     }
+
+
+    public void addPayCheck(PayCheck payCheck) {
+        payCheckList.add(payCheck);
+    }
+
 }
