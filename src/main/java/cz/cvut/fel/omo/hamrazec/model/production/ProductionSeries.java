@@ -46,6 +46,11 @@ public class ProductionSeries implements BuilderDirector, Visitable {
     }
 
 
+    /**
+     * Method called line builder methods to build production line.
+     * @return production line
+     * @throws CannotBuildLineException
+     */
     @Override
     public ProductionLine build() throws CannotBuildLineException {
         try {
@@ -69,7 +74,6 @@ public class ProductionSeries implements BuilderDirector, Visitable {
     public String toString() {
         return productFactory.getProduct().getClass().getSimpleName() + " of amount " + amount + " with priority " + priority;
     }
-
 
     @Override
     public void accept(VisitorDirector visitor) {
