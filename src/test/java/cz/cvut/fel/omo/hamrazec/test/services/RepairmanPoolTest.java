@@ -5,14 +5,19 @@ import cz.cvut.fel.omo.hamrazec.services.RepairPool;
 import org.junit.Test;
 import org.junit.Before;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class RepairmanPoolTest {
-    RepairPool repairPool = RepairPool.getInstance();
-    Repairman repairman = new Repairman("Jozef","Blazko", 200);
+    private RepairPool repairPool;
+    private Repairman repairman = new Repairman("Jozef","Blazko", 200);
 
     @Before
     public void init() {
+        repairPool = RepairPool.getInstance();
+        repairPool.setRepairmen(new ArrayList<>());
         repairPool.putRepairman(repairman);
     }
 
@@ -24,7 +29,7 @@ public class RepairmanPoolTest {
     @Test
     public void getNoRepairman_worksCorrect(){
         repairPool.getRepairman();
-        assertEquals("Get repairman not working correctly",null,repairPool.getRepairman());
+        assertNull("Get repairman not working correctly", repairPool.getRepairman());
     }
 
 
@@ -39,7 +44,7 @@ public class RepairmanPoolTest {
     public void putExistingRepairman_worksCorrect(){
         repairPool.putRepairman(repairman);
         repairPool.getRepairman();
-        assertEquals("Put repairman not working correctly",null,repairPool.getRepairman());
+        assertNull("Put repairman not working correctly", repairPool.getRepairman());
     }
 
 }

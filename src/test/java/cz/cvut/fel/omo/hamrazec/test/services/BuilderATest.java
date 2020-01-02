@@ -29,6 +29,9 @@ public class BuilderATest {
     private SeriesFactory seriesFactory = new SeriesFactory();
     private ProductionSeries productionSeries = seriesFactory.getSeriesA(200,2);
     private MachineGenerator generator = new MachineGenerator();
+    private List<LineWorker> workers = new ArrayList<>();
+    private ControllingRobot controllingRobot = generator.generateControlRobot();
+    private int minProduction = 0;
 
 
     public BuilderATest() throws IOException {
@@ -40,12 +43,12 @@ public class BuilderATest {
 
 
     @Before
-    public void init() throws IOException {
+    public void init() {
 
+        boolean first = true;
         List<LineWorker> robotList = new ArrayList<>();
         List<LineWorker> machineList = new ArrayList<>();
         List<LineWorker> peopleList = new ArrayList<>();
-        List<LineWorker> workers = new ArrayList<>();
         machineList.add(generator.generateMachine());
         machineList.add(generator.generateMachine());
         machineList.add(generator.generateMachine());
@@ -55,7 +58,6 @@ public class BuilderATest {
         robotList.add(generator.generateRobot());
         peopleList.add(new Worker("Jozef", "Jano", 200, 3));
         peopleList.add(new Worker("Jozef", "Judas", 200, 5));
-        ControllingRobot controllingRobot = generator.generateControlRobot();
 
         workers.addAll(robotList);
         workers.addAll(machineList);
@@ -63,22 +65,38 @@ public class BuilderATest {
         workers.add(controllingRobot);
         factory.setLineWorkers(workers);
         factory.putWorkersToProduction(workers);
+
+        for (LineWorker lw: workers) {
+            if (first) {
+                minProduction = lw.getProductPerTact();
+                first = false;
+            }
+            if (lw.getProductPerTact() < minProduction) minProduction= lw.getProductPerTact();
+        }
     }
 
     @Test
-    public void getProductionSeriesFromLineA_worksCorrect() throws CannotBuildLineException {
+    public void build_enoughWorkersForBuildA_worksCorrect() throws CannotBuildLineException {
 
         ProductionLine productionLine = productionSeries.build();
         assertEquals("Line doesnt build",productionSeries,productionLine.getSeries());
     }
 
     @Test
-    public void getProductionSeriesFromLineA_noEnaughtWorkers_worksCorrect() throws CannotBuildLineException {
+    public void build_noEnoughWorkersForBuildA_worksCorrect() throws CannotBuildLineException {
 
         thrown.expect(CannotBuildLineException.class);
         thrown.reportMissingExceptionWithMessage("Line was created without lineworkers");
         productionSeries.build();
         productionSeries.build();
+    }
+
+    @Test
+    public void update_regularUpdateA_worksCorrect() throws CannotBuildLineException {
+
+        ProductionLine productionLine = productionSeries.build();
+        productionLine.update();
+        assertEquals("Line doesnt update product",minProduction,controllingRobot.getFinishedAmount());
     }
 
 }

@@ -14,13 +14,14 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class EventListTest {
-    EventList eventList = EventList.getInstance();
-    List<LineWorker> workerList = new ArrayList<LineWorker>();
-    Alert alert;
-    MachineGenerator generator;
+    private EventList eventList = EventList.getInstance();
+    private Alert alert;
 
 
     public EventListTest() {
+
+        MachineGenerator generator = new MachineGenerator();
+        List<LineWorker> workerList = new ArrayList<LineWorker>();
         workerList.add(generator.generateMachine());
         alert = new Alert(10, workerList.get(0));
     }
