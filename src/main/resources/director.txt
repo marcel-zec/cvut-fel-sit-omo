@@ -1,5 +1,0 @@
-{
-    "firstName": "Zdenek",
-     "lastName": "Velky",
-     "wage": 30000
-    }

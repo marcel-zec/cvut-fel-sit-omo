@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Zdeno",
+    "lastName": "Rom",
+    "wage": 200,
+    "productPerTact": 7
+  },
+  {
+    "firstName": "Koloman",
+    "lastName": "Drozd",
+    "wage": 200,
+    "productPerTact": 5
+  },
+  {
+    "firstName": "Ivan",
+    "lastName": "Mitro",
+    "wage": 300,
+    "productPerTact": 10
+  },
+  {
+    "firstName": "Pavol",
+    "lastName": "Bednar",
+    "wage": 250,
+    "productPerTact": 7
+  },
+  {
+    "firstName": "Ignac",
+    "lastName": "Biely",
+    "wage": 250,
+    "productPerTact": 6
+  },
+  {
+    "firstName": "Iveta",
+    "lastName": "Mocna",
+    "wage": 200,
+    "productPerTact": 5
+  }
+]
