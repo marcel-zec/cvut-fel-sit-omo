@@ -28,6 +28,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     private List<ProductionLine> linesForEnded;
     private EventList eventList;
     private static final Logger LOG = Logger.getLogger(ProductionOperator.class.getName());
+    private boolean tryActivateLines;
     private int tact;
 
     private ProductionOperator() {
@@ -38,6 +39,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
         this.linesForEnded = new ArrayList<>();
         this.seriesFactory = new SeriesFactory();
         this.eventList = EventList.getInstance();
+        this.tryActivateLines = true;
     }
 
 
@@ -111,6 +113,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
      * @param workers
      */
     public void setWorkersToAvailable(List<LineWorker> workers) {
+        tryActivateLines = true;
         workerInUse.removeAll(workers);
         availableWorkers.addAll(workers);
         LOG.info(workers.size() + " workers are available for work.");
@@ -123,6 +126,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
      * @param worker
      */
     public void setWorkersToAvailable(LineWorker worker) {
+        tryActivateLines = true;
         workerInUse.remove(worker);
         availableWorkers.add(worker);
         LOG.info("Worker is available for work.");
@@ -177,6 +181,7 @@ public class ProductionOperator implements FactoryWorker, Visitable {
             linesForEnded.add(line);
             plan.addEndedSeries(line.getSeries());
         }
+        tryActivateLines = true;
     }
 
     /**
@@ -185,15 +190,16 @@ public class ProductionOperator implements FactoryWorker, Visitable {
      * Series which will produce built lines are removed from production plan.
      */
     public void activateLines() {
-        for (ProductionSeries series : plan.getPlan()) {
-            try {
-                ProductionLine line = series.build();
-                activeLines.add(line);
-                LOG.info("Line was build for production series.");
-                eventList.receive(new StartProduction(this, line, series));
-            } catch (CannotBuildLineException e) {
-                LOG.info("Line for production series cannot be build.");
-            }
+        for (int i = 0; i < plan.getPlan().size() ; i++) {
+                try {
+                    ProductionLine line = plan.getPlan().get(i).build();
+                    activeLines.add(line);
+                    LOG.info("Line was build for production series.");
+                    eventList.receive(new StartProduction(this, line, plan.getPlan().get(i)));
+                } catch (CannotBuildLineException e) {
+                    LOG.info("Line for production series cannot be build.");
+                }
+            tryActivateLines = false;
         }
         for (ProductionLine line : activeLines) {
             plan.removeSeries(line.getSeries());
@@ -207,10 +213,12 @@ public class ProductionOperator implements FactoryWorker, Visitable {
     public void updateProduction() {
         if (linesForEnded.size() > 0) {
             for (ProductionLine line : linesForEnded) {
+                setWorkersToAvailable(line.getLineWorkers());
                 activeLines.remove(line);
             }
             linesForEnded = new ArrayList<>();
         }
+        if (tryActivateLines) activateLines();
         for (ProductionLine line : activeLines) {
             line.update();
         }

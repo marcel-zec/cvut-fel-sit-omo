@@ -40,6 +40,10 @@ public class ProductionLine implements Visitable {
         return firstWorker;
     }
 
+    public List<LineWorker> getLineWorkers() {
+        return lineWorkers;
+    }
+
     public void setLineWorkers(List<LineWorker> lineWorkers) {
         this.lineWorkers = lineWorkers;
     }
