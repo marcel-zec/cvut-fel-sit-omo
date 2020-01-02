@@ -57,14 +57,23 @@ Riaditeľ bude navštevovať isté entity továrne prostredníctvom DirectorIter
 Aby mohli byť navštevy vykonané, tak všetci pracovníci a iné vybrané entity maju interface Visitable.
 
 #### Zoznam návrhových vzorov
-* singleton
-* chain of responsibility
-* observer
-* factory method
-* builder
-* visitor
-* iterator
-* state
+* **Singleton** - využíva sa v triedach Factory, ProductionOperator, EventList, EventOperator, FactoryTimer, RepairPool
+* **Chain of responsibility** - Pri stavaní produkčnej linky je pracovníkom nastavovaný "nextLineWorker". Pri simulácií chodu továrne je volaný update na prvom pracovnikovy 
+linky, ak tento pracovnik nie je funkčný tak volá metodu update na ďalšom pracovníkovy v poradí aby linka nestála. 
+* **Observer** - využíva sa v tride EventOperator, ktorý implementuje Observer a v triede EventList ktorého sleduje EventOperator. Ak EventList dostane event,
+            notifikuje EventOperatora, ktorý začne spracovávať eventy.
+* **Factory method**
+* **Builder** - Produčná séria je builder director(om) a teda je na nej volaná metóda build ktorá vráti produkčná linku. Séria ma v sebe odkaz na builder(a), ktorý 
+implementuje metody na správne postavenie linky. V našej implementácií je časť metód builder(ov) rovnaká, preto máme abstraktnú triedu LineBuilder a následne konkrétne
+triedy doimplementúvajú konstruktor, v ktorom určujú počet pracovníkov a metódu na určenie správneho poradia.
+* **Visitor**
+* **Iterator** - Využíva sa pri inšpekcii Directora a Inspectora a každý z nich má vlastný iterátor. DirectorIterator prechádza produkčného operátora, produkčný plán,
+           linky a všetkých pracovníkov, stroje a roboty. InspectorIterator prechádza stroje a robotov podla miery opotrebenia.
+* **State** - Stroje v linke majú na začiatku stav Working. V každom update sa volá nad stavom metóda canWork, ktorá v prípade stavu Working môže pokaziť stroj. 
+Po pokazeny sa stav zmeni na Broken a ten čaká kým bude stroju nastavený opravár. Následne prejde stroj do stavu UnderRepair a v tomto stave sa simuluje prebiehajúca oprava
+stroja. Po oprave stroj prejde naspäť do stavu Working.
+* **Object pool** - Využívaný v triede RepairPool, kde si drží všetkých opravárov a po vyžiadaní EventOperatora poskytne voľného opravára. Keď sa opravár vráti z opravy,
+tak je k dispozicií pre dalšie opravy.
 
 
 Sandra Hamráková a Marcel Žec 
