@@ -63,7 +63,7 @@ linky, ak tento pracovnik nie je funkčný tak volá metodu update na ďalšom p
 * **Observer** - využíva sa v tride EventOperator, ktorý implementuje Observer a v triede EventList ktorého sleduje EventOperator. Ak EventList dostane event,
             notifikuje EventOperatora, ktorý začne spracovávať eventy.
 * **Factory method** - využívajú triedy FactoryProductA, FactoryProductB, FactoryProductC a implementuju interface ProductFactory.Používa sa na vytváranie nových koknkrétnych 
-* produktov v linke, bez opracovania. 
+produktov v linke, bez opracovania. 
 * **Builder** - Produčná séria je builder director(om) a teda je na nej volaná metóda build ktorá vráti produkčná linku. Séria ma v sebe odkaz na builder(a), ktorý 
 implementuje metody na správne postavenie linky. V našej implementácií je časť metód builder(ov) rovnaká, preto máme abstraktnú triedu LineBuilder a následne konkrétne
 triedy doimplementúvajú konstruktor, v ktorom určujú počet pracovníkov a metódu na určenie správneho poradia.
