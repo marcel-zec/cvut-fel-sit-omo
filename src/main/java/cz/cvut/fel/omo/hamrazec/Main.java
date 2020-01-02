@@ -23,7 +23,7 @@ public class Main {
         ProductionOperator operator = factory.getProductionOperator();
         FactoryTimer timer = FactoryTimer.getInstance();
 
-        timer.timeLapse();
+        timer.timeLapse(1);
 
         factory.putWorkersToProduction(factory.getLineWorkers());
         operator.addSeriesToPlan(200, SeriesName.SeriesC,1);
