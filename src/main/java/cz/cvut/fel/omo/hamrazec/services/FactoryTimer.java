@@ -9,6 +9,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
+/**
+ * FactoryTimer is used for simulation of real time. Time is represented by tact that should represent one hour.
+ * It is possible to change time of tack for better simulation by calling method timeLapse with argument.
+ */
 public class FactoryTimer {
 
     private Timer timer = new Timer();
@@ -22,6 +26,10 @@ public class FactoryTimer {
         factoryWorkers = new ArrayList<>();
     }
 
+    /**
+     * Method change tact and update it in all factory worker which has in list.
+     * In few tact start inspection of inspector or director by calling method startInspection and startDirectorVisit in factory.
+     */
     private TimerTask tt = new TimerTask() {
         @Override
         public void run() {
@@ -41,7 +49,7 @@ public class FactoryTimer {
                 }
             }
 
-            if (tact % 8 == 0 && tact!=0) {
+            if (tact % 15 == 0 && tact!=0) {
                 try {
                     factory.startDirectorVisit();
                 } catch (IOException e) {
@@ -52,8 +60,28 @@ public class FactoryTimer {
         }
     };
 
+    /**
+     * Method that start schedule call of run method in period of one hour.
+     */
     public void timeLapse(){
-        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,1500);
+        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) , 1000 * 60 * 60);
+    }
+
+    /**
+     * Method that start schedule call of run method in given period.
+     * @param second of period
+     */
+    public void timeLapse(int second){
+        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,second * 1000);
+    }
+
+    /**
+     * Method that start schedule call of run method in given period.
+     * @param second of period
+     * @param minute of period
+     */
+    public void timeLapse(int second, int minute){
+        timer.schedule(tt,Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()) ,(second * 1000) + (minute * 60 * 1000));
     }
 
 
@@ -87,7 +115,6 @@ public class FactoryTimer {
     public void setFactoryWorkers(List<FactoryWorker> factoryWorkers) {
         this.factoryWorkers = factoryWorkers;
     }
-
 
     public void setFactory(Factory factory) {
         this.factory = factory;
