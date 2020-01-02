@@ -30,8 +30,8 @@ public class ControllingRobot extends Machine {
         boolean canWork = state.canWork();
         //checking amount of finished product for end production
         if(canWork && finishedAmount == productionLine.getSeries().getAmount()) {
-            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") count "
-                    + finishedAmount + " finished products.");
+            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() + ", line: "+ getProductionLine().getSerialNumber() +") count "
+                    + finishedAmount + " finished products. \n");
             eventList.receive(new EndProduction(this,productionLine,productionLine.getSeries()));
             return;
         }
@@ -49,11 +49,11 @@ public class ControllingRobot extends Machine {
                 depreciation();
 
             }
-            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") count "
-                    + finishedAmount + " finished products (" + (finishedAmount - finishedProductBeforeUpdate) +" in this tact).");
+            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() + ", line: "+ getProductionLine().getSerialNumber() +") count "
+                    + finishedAmount + " finished products (" + (finishedAmount - finishedProductBeforeUpdate) +" in this tact). \n");
         } else {
-            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") count "
-                    + finishedAmount + " finished products (0 in this tact).");
+            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() + ", line: "+ getProductionLine().getSerialNumber() +") count "
+                    + finishedAmount + " finished products (0 in this tact). \n");
         }
 
     }

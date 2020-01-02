@@ -54,7 +54,7 @@ public class Worker extends Person implements LineWorker {
     @Override
     public void update() {
         if (productsForWork.isEmpty()){
-            System.out.println(firstName + " " + lastName + " worked at 0 products.");
+            System.out.println(firstName + " " + lastName + " worked at 0 products. (line: "+ productionLine.getSerialNumber() +")");
             nextLineWorker.update();
         } else {
             int workedProductInTact = Math.min(productPerTactCount(),productsForWork.size());
@@ -63,7 +63,7 @@ public class Worker extends Person implements LineWorker {
                 productsForWork.remove(product);
                 nextLineWorker.forWork(workOnProduct(product));
             }
-            System.out.println(firstName + " " + lastName + " worked at " + workedProductInTact + " products.");
+            System.out.println(firstName + " " + lastName + " worked at " + workedProductInTact + " products. (line: "+ productionLine.getSerialNumber() +")");
             nextLineWorker.update();
 
             if (workedProductInTact > productPerTact){

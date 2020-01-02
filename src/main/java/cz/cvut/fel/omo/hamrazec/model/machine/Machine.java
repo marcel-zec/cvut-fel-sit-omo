@@ -173,12 +173,12 @@ abstract public class Machine implements FactoryWorker, LineWorker, VisitableIns
     @Override
     public void update() {
         if (productsForWork.isEmpty() || !state.canWork()){
-            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") worked at 0 products.");
+            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() + ", line: "+ getProductionLine().getSerialNumber() +") worked at 0 products.");
             nextLineWorker.update();
         } else {
             //working on product
             int workedProductInTact = Math.min(productPerTact,productsForWork.size());
-            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +") worked at " + workedProductInTact + " products.");
+            System.out.println(this.getClass().getSimpleName() + "(serial number: "+ getSerialNumber() +", line: "+ getProductionLine().getSerialNumber() +") worked at " + workedProductInTact + " products.");
             for (int i = 0; i < workedProductInTact; i++) {
                 Product product = productsForWork.get(0);
                 productsForWork.remove(product);
