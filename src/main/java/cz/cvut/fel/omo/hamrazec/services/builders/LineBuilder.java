@@ -74,6 +74,13 @@ abstract public class LineBuilder implements Builder {
         this.controllingRobot = controllingRobot;
     }
 
+    /**
+     * Count production share for line workers in production line and set is to builder attributes.
+     * Count also control amount for controlling robot.
+     * @param robotPercentage
+     * @param machinePercentage
+     * @param peoplePercentage
+     */
     protected void countShareInProduction(int robotPercentage, int machinePercentage, int peoplePercentage){
         if((robotPercentage + machinePercentage + peoplePercentage) != 100) throw new BadPercentageException();
         machineShare = machinePercentage / machinesAmount;
@@ -82,6 +89,9 @@ abstract public class LineBuilder implements Builder {
         controlAmount = (machinesAmount * machineShare) + (robotsAmount * robotShare) + (peopleAmount * peopleShare);
     }
 
+    /**
+     * Creates new production line.
+     */
     @Override
     public void createLine() {
         line = new ProductionLine();
@@ -159,11 +169,14 @@ abstract public class LineBuilder implements Builder {
 
         if (available.size() > 0) {
             setControllingRobot(available.remove(0));
-            //TODO - treba nastavit mnozsvto alebo sa vie dostat k nemu nejako?
             ControllingRobot robot = (ControllingRobot) controllingRobot;
         } else throw new NotEnoughWorkers();
     }
 
+    /**
+     * Put line workers to production line and remove them from available workers.
+     * @return production line
+     */
     @Override
     public ProductionLine getResult() {
         line.addLineWorkers(machineList);
@@ -178,6 +191,9 @@ abstract public class LineBuilder implements Builder {
     }
 
 
+    /**
+     * Set attribute production line to line workers in this line.
+     */
     @Override
     public void setLine(){
         LineWorker worker = line.getFirstWorker().setProductionLine(line);
@@ -194,6 +210,9 @@ abstract public class LineBuilder implements Builder {
         line.setSeries(series);
     }
 
+    /**
+     * Put new products to first line worker from product factory.
+     */
     @Override
     public void putNewProductsForProduction(){
         for (int i = 0; i < line.getSeries().getAmount(); i++) {
@@ -202,6 +221,9 @@ abstract public class LineBuilder implements Builder {
     }
 
 
+    /**
+     * Method reset line workers lists when built is not successful.
+     */
     @Override
     public void cancelBuilding() {
         if (line.getFirstWorker() != null) line.getFirstWorker().emptyForWorkList();

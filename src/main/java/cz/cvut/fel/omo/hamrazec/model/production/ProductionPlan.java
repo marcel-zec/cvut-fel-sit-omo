@@ -6,6 +6,10 @@ import cz.cvut.fel.omo.hamrazec.model.VisitorDirector;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class contains production plan of factory which contains of instances of ProductionSeries.
+ * Also contains history of ended series.
+ */
 public class ProductionPlan implements Visitable {
     private List<ProductionSeries> endedSeries;
     private List<ProductionSeries> plan;

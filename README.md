@@ -10,7 +10,7 @@ Hlavná entita systému je Factory */singleton/* .
 Za výrobný proces zodpovedá trieda ProductionOperator.
 Produkčný operátor má zoznam produkčných liniek a na ních spustí výrobu (o operátorovy a linke detailnejšie v popise [Production diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#production-diagram)).
 
-Produkčná linka pošle neopracovaný produkt prvému pracovníkovi výroby, a tým je stroj,robot alebo človek (majú interface LineWorker). Ten ho opracuje a posiela ďalej následujúcemu pracovníkovi */chain of responsibility/* .
+Produkčná linka v pravidelných intervaloch (na zaklade factory timeru) volá na prvom pracovníkovi výroby (tým je stroj,robot alebo človek) metódu update. Ten ho opracuje a posiela ďalej následujúcemu pracovníkovi */chain of responsibility/* .
 Posledný stroj vo výrobe je kontrolór, ktorý v prípade správneho počtu vyrobených výrobkov odošle event o ukončení výrobnej série (o strojoch detailnejšie v popise [Machines diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#machines-diagram)).
 
 Eventy sa odosielajú do EventList(u), ktorý ich uchováva a zároveň je observovaný EventOperator(om) */observer/* .
@@ -22,7 +22,7 @@ Továreň má ďalej triedu FactoryTimer, ktorá má zoznam všetkých pracovní
 V továrni sa nachádzajú okrem strojov aj ľudia. Opravári už boli spomenutí a ďalej sú to výrobní pracovníci, inšpektor a riaditeľ. 
 Riaditeľ a inšpektor budú robiť návštevy prostredníctvom iterátorov továrne (viac v popise [FactoryIterators diagram](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/README.md#factoryiterators-diagram)).
 
-V aplikácií je aj trieda FileManager, ktorá bude generovať konfiguračný report továrne a zároveň načítavať konfigráciu továrne.
+V aplikácií je aj trieda FileManager, ktorá načítavá konfiguráciu továrne (množstvo strojov, pracovníkov atď.)
 
 ##### Production diagram
 
@@ -31,16 +31,17 @@ Výrobná séria v sebe nesie informáciu o množstve výrobkov a referencie na 
 Nové série vytvára ProductionOperator pomocou SeriesFactory, ktorá nakombinuje správnu ProductFactory s LineBuilder(om).
 
 Výrobá sa spustí tak, že ProductionOperator postupne prechádza zoznam plánovaných výrobných sérií v produkčonom pláne.
-Od LineBuilder(a) série požiada o postavenie výrobnej linky. LineBuilder pri stavaní linky si u produkčného operátora overuje dostupnosť strojov/robotov/ľudí.
+Od LineBuilder(a) série požiada o postavenie výrobnej linky. LineBuilder pri stavaní linky si u produkčného operátora overuje dostupnosť strojov/robotov/ľudí, nastavuje
+poradie strojov abz vytvoril chain of responsibility ale aj pošle prvému pracovníky výrobký na opracovanie.
 Ak nebude mať dostatok pracovníkov tak linku nepostaví a produkčný operátor prechádza ďalšie naplánované série. 
 Naopak ak je možné postaviť linku tak je tato linka vrátená výrobnému operátorovi a ten ju zaradí do zoznamu aktívních liniek a vyradí jej pracovníkov zo zoznamu
-dostupných pracovníkov. Po prejdení celého plánu spustí výrobu aktívnych liniek.
-Výroba začína tým, že produkčná linka prostredníctvom ProductFactory pošle prvý neopracovaný výrobok prvému pracovníkovi linky.
+dostupných pracovníkov. Po prejdení celého plánu pridá linku do zoznamu aktívných liniek a pri ďalšom takte už bude táto linka produkovať. 
 
 ##### Machines diagram
 
 Stroje po každom takte ukladajú CostStatement, kde je uvedené koľko pohonných látok za daný takt spotrebovali.
-Každý stroj má na začiatku stav Working, ktorý sa po istom čase zmení na stav Broken a potom stroj vysiela AlertEvent aby ho prišli opraviť /state/. 
+Každý stroj má na začiatku stav Working, ktorý sa po istom čase zmení na stav Broken a potom stroj vysiela AlertEvent aby ho prišli opraviť /state/.
+Súčasťou eventu je aj priorita linky, ktorá je odvodená od priority výrobnej série. Podľa tejto priority bude vyhodnocovaná postupnosť opráv.
 
 ##### Events diagram
 

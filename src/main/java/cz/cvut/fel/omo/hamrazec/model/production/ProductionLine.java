@@ -17,7 +17,6 @@ public class ProductionLine implements Visitable {
     public ProductionLine() {
         lineWorkers = new ArrayList<>();
         this.serialNumber = counter++;
-
     }
 
     public ProductionSeries getSeries() {
@@ -53,6 +52,9 @@ public class ProductionLine implements Visitable {
         lineWorkers.add(lineWorker);
     }
 
+    /**
+     * Call update method on first line worker in production line to start working in chain of responsibility.
+     */
     public void update(){
         firstWorker.update();
     }
@@ -61,16 +63,13 @@ public class ProductionLine implements Visitable {
         return serialNumber;
     }
 
-
     @Override
     public void accept(VisitorDirector visitor) {
         visitor.visit(this);
     }
 
-
     @Override
     public String toString() {
-
         return  "ProductLine{ " +
                 "series=" + series.toString() +
                 ", lineWorkers=" +  lineWorkers +
