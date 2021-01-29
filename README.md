@@ -17,7 +17,7 @@ Vyvíjané v jazyku **Java** vo dvojčlennej skupine.
 
 **Software engineering and technologies**
 
-course [Management of Software Projects](https://fel.cvut.cz/en/education/bk/predmety/31/31/p3131006.html)
+course [Object-oriented design and Modeling](https://fel.cvut.cz/en/education/bk/predmety/31/29/p3129906.html)
 
 ---
 
@@ -25,7 +25,7 @@ course [Management of Software Projects](https://fel.cvut.cz/en/education/bk/pre
 Develop application that simulate smart factory using design patterns.
 Developed in **Java** in two-member group.
 
-
+---
 # Original README from school project
 
 ## OMO - Smart Factory
