@@ -1,6 +1,6 @@
 # OMO - Smart Factory
 
-### [UML diagram (zip)](https://gitlab.fel.cvut.cz/zecmarce/omo_semestralka/blob/master/UML%20diagram/UMLdiagram.zip)
+### [UML diagram (zip)](https://github.com/marcel-zec/cvut-fel-sit-omo/blob/master/UML%20diagram/UMLdiagram.zip)
 
 ### Popis diagramu
 
