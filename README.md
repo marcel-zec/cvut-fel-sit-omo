@@ -1,4 +1,34 @@
-# OMO - Smart Factory
+**České vysoké učení technické v Praze, Fakulta elektrotechnická**
+
+**Softwarové inženýrství a technologie**
+
+předmět [Objektový návrh a modelování](https://fel.cvut.cz/cz/education/bk/predmety/31/29/p3129906.html)
+
+---
+
+##### ZADANIE
+Vyvinúť aplikáciu, ktorá simuluje inteligentnú továreň za použitia **návrhových vzorov**.
+Vyvíjané v jazyku **Java** vo dvojčlennej skupine.
+
+# English
+
+
+**Czech Technical University in Prague, Faculty of Electrical Engineering**
+
+**Software engineering and technologies**
+
+course [Management of Software Projects](https://fel.cvut.cz/en/education/bk/predmety/31/31/p3131006.html)
+
+---
+
+##### ASSIGMENT
+Develop application that simulate smart factory using design patterns.
+Developed in **Java** in two-member group.
+
+
+# Original README from school project
+
+## OMO - Smart Factory
 
 ### [UML diagram (zip)](https://github.com/marcel-zec/cvut-fel-sit-omo/blob/master/UML%20diagram/UMLdiagram.zip)
 
